@@ -1,7 +1,7 @@
 package AccesoDatos;
 
 import java.io.BufferedReader; //Se utiliza para leer texto de una entrada (como un archivo)
-import java.io.File; //Proporciona una clase para trabajar con archivos y directorios
+import java.io.File; //Proporciona una clase para trabajar con archivosPDF y directorios
 //permitiendo realizar acciones como crear, borrar o verificar la existencia de un archivo.
 import java.io.FileReader;//Es una clase que permite leer el contenido de un archivo de texto carácter por carácter.
 import java.io.IOException;
@@ -9,17 +9,31 @@ import javax.mail.*;//Proporciona clases y métodos para enviar y recibir correo
 import javax.mail.internet.*;//Incluye clases específicas para trabajar con correos electrónicos de Internet
 import java.util.Properties; //Se utiliza para almacenar y gestionar un conjunto de valores clave, como configuraciones de aplicaciones.
 import java.util.ArrayList;
-import javax.activation.DataHandler;//Proporciona una forma de manejar los datos de diferentes tipos en mensajes MIME, como adjuntar archivos a correos electrónicos.
-import javax.activation.FileDataSource;//Permite manejar archivos como fuentes de datos para adjuntarlos en un correo electrónico o procesarlos en aplicaciones que usan MIME.
+import javax.activation.DataHandler;//Proporciona una forma de manejar los datos de diferentes tipos en mensajes MIME, como adjuntar archivosPDF a correos electrónicos.
+import javax.activation.FileDataSource;//Permite manejar archivosPDF como fuentes de datos para adjuntarlos en un correo electrónico o procesarlos en aplicaciones que usan MIME.
 
 public class EnviarCorreo {
+    
+    private CrearPDF objCrearPDF = new CrearPDF();
+    
+    
 
     private Properties propertiesSMTP = null;
     private Session seccionSMTP = null;
     private ArrayList<BodyPart> adjuntos = new ArrayList<>();
 
-    private ArrayList<File> archivos = new ArrayList<>();
-    private String datos;
+    private ArrayList<File> archivosPDF = new ArrayList<>();
+    
+     private String datos;
+
+    public ArrayList<File> getArchivosPDF() {
+        return archivosPDF;
+    }
+
+    public void setArchivosPDF(ArrayList<File> archivos) {
+        this.archivosPDF = archivos;
+    }
+
 
     public String getDatos() {
         return datos;
@@ -28,15 +42,20 @@ public class EnviarCorreo {
     public void setDatos(String datos) {
         this.datos = datos;
     }
+    
 
-    public ArrayList<File> getArchivos() {
-        return archivos;
+    
+    public void aaa(){
+        
+        
+        
+        
+        
     }
-
-    public void setArchivos(ArrayList<File> archivos) {
-        this.archivos = archivos;
-    }
-
+    
+    
+    
+    
     /**
     * Carga la configuración del servidor SMTP desde un archivo de texto.
     *
@@ -88,7 +107,9 @@ public class EnviarCorreo {
      */
     public void crearArchivos() throws MessagingException {
         try {
-            for (File archivos : getArchivos()) {
+
+            
+            for (File archivos : archivosPDF) {
                 BodyPart adjunto = new MimeBodyPart();
                 adjunto.setDataHandler(new DataHandler(new FileDataSource(archivos.getAbsolutePath())));
                 adjunto.setFileName(archivos.getName());
@@ -107,7 +128,7 @@ public class EnviarCorreo {
     * @throws AddressException Si ocurre un error con las direcciones de correo.
     * @throws SendFailedException Si falla el envío del correo.
     * @throws MessagingException Si ocurre una excepción relacionada con el correo.
-    * @throws IOException Si ocurre un error al leer o escribir archivos.
+    * @throws IOException Si ocurre un error al leer o escribir archivosPDF.
     */
     public void EnviarCorreos() throws AddressException, SendFailedException, MessagingException, IOException {
 
@@ -133,7 +154,7 @@ public class EnviarCorreo {
 
             // Configurar el contenido del mensaje con el multipart
             objMultipart.addBodyPart(objBodyPart);
-            if (getArchivos() != null) {
+            if (getArchivosPDF() != null) {
                 crearArchivos();
                 for (BodyPart adjunto : adjuntos) {
                     objMultipart.addBodyPart(adjunto);
@@ -154,5 +175,9 @@ public class EnviarCorreo {
         }
 
     }
+
+    
+
+    
 
 }

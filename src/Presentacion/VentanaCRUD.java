@@ -50,8 +50,9 @@ public class VentanaCRUD extends javax.swing.JFrame {
 
         modeloTablaEmpleados.addColumn("ID");
         modeloTablaEmpleados.addColumn("Nombre");
-        modeloTablaEmpleados.addColumn("Contraseña");
+        //modeloTablaEmpleados.addColumn("Contraseña");
         modeloTablaEmpleados.addColumn("Correo");
+        //modeloTablaEmpleados.addColumn("Salario Bruto");
 
         listarEmpleados();
 
@@ -77,9 +78,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
             servicioEmpleado.leerEmpleado(objEmpleados);
 
             for (String[] lista : objEmpleados.getEmpleadosLista()) {
-
-                modeloTablaEmpleados.addRow(lista);
-
+                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3]});
             }
 
         } catch (Exception e) {
@@ -111,6 +110,8 @@ public class VentanaCRUD extends javax.swing.JFrame {
         bttEliminar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         txtId = new javax.swing.JLabel();
+        lblSalarioBruto = new javax.swing.JLabel();
+        txtSalarioBruto = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmpleados = new javax.swing.JTable();
 
@@ -156,45 +157,55 @@ public class VentanaCRUD extends javax.swing.JFrame {
 
         txtId.setText("Id");
 
+        lblSalarioBruto.setText("Salario Bruto");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(bttAgregar)
-                                .addGap(18, 18, 18)
-                                .addComponent(bttActualizar))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(bttListar)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bttEliminar))))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(11, 11, 11)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtNombreAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(lblAgregarTitulo)
-                                .addGap(36, 36, 36)
-                                .addComponent(lblId))
-                            .addComponent(txtCorreoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addComponent(txtId))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addComponent(lblAgregarTitulo)
+                                        .addGap(36, 36, 36)
+                                        .addComponent(lblId))
+                                    .addComponent(txtNombreAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(txtId)
+                                    .addComponent(txtCorreoAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
+                                    .addComponent(txtSalarioBruto)))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGap(134, 134, 134)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bttEliminar)
+                                    .addComponent(bttActualizar)))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addComponent(lblNombre))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(92, 92, 92)
-                        .addComponent(lbl2Correo))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(78, 78, 78)
-                        .addComponent(lbl2Contra)))
-                .addContainerGap(47, Short.MAX_VALUE))
+                        .addGap(23, 23, 23)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(lbl2Contra)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(lblSalarioBruto)
+                                .addGap(15, 15, 15))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(bttAgregar)
+                                    .addComponent(bttListar))
+                                .addGap(0, 0, Short.MAX_VALUE)))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(44, 44, 44)
+                .addComponent(lblNombre)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lbl2Correo)
+                .addGap(43, 43, 43))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,26 +216,30 @@ public class VentanaCRUD extends javax.swing.JFrame {
                     .addComponent(lblId)
                     .addComponent(txtId))
                 .addGap(18, 18, 18)
-                .addComponent(lblNombre)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(lbl2Correo))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombreAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(30, 30, 30)
-                .addComponent(lbl2Correo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtCorreoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42)
-                .addComponent(lbl2Contra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(24, 24, 24)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombreAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCorreoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(36, 36, 36)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lbl2Contra)
+                    .addComponent(lblSalarioBruto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(38, 38, 38)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttAgregar)
                     .addComponent(bttActualizar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttListar)
                     .addComponent(bttEliminar))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(65, Short.MAX_VALUE))
         );
 
         tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
@@ -253,16 +268,12 @@ public class VentanaCRUD extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(156, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
 
         pack();
@@ -289,13 +300,13 @@ public class VentanaCRUD extends javax.swing.JFrame {
             objEmpleados.setNombre(txtNombreAgregar.getText());
             objEmpleados.setCorreo(txtCorreoAgregar.getText());
             objEmpleados.setPassword(txtPasswordAgregar.getText());
+            objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
 
             servicioEmpleado.agregarEmpleado(objEmpleados);
 
         } catch (IOException e) {
         }
         CargarEmpleados();
-
     }//GEN-LAST:event_bttAgregarActionPerformed
 
     private void bttListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarActionPerformed
@@ -324,6 +335,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
         objEmpleados.setNombre(txtNombreAgregar.getText());
         objEmpleados.setCorreo(txtCorreoAgregar.getText());
         objEmpleados.setPassword(txtPasswordAgregar.getText());
+        objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
 
         try {
             servicioEmpleado.actualizarEmpleado(objEmpleados);
@@ -385,9 +397,9 @@ public class VentanaCRUD extends javax.swing.JFrame {
 
         txtId.setText(tblEmpleados.getValueAt(fila, 0).toString());
         txtNombreAgregar.setText(tblEmpleados.getValueAt(fila, 1).toString());
-        txtPasswordAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
-        txtCorreoAgregar.setText(tblEmpleados.getValueAt(fila, 3).toString());
-
+        //txtPasswordAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
+        txtCorreoAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
+        
     }//GEN-LAST:event_tblEmpleadosMouseClicked
 
     /**
@@ -443,10 +455,12 @@ public class VentanaCRUD extends javax.swing.JFrame {
     private javax.swing.JLabel lblAgregarTitulo;
     private javax.swing.JLabel lblId;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblSalarioBruto;
     private javax.swing.JTable tblEmpleados;
     private javax.swing.JTextField txtCorreoAgregar;
     private javax.swing.JLabel txtId;
     private javax.swing.JTextField txtNombreAgregar;
     private javax.swing.JTextField txtPasswordAgregar;
+    private javax.swing.JTextField txtSalarioBruto;
     // End of variables declaration//GEN-END:variables
 }

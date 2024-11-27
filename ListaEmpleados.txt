@@ -1,2 +1,4 @@
 2,Kendall,ASSD,kendall@cor
 3,cataaaa,sdf,cata@cor
+4,jose,null,jose@,1000.0
+5,jose,null,jose@,1000.0

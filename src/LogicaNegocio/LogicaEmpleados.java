@@ -38,12 +38,10 @@ public class LogicaEmpleados implements ServicioEmpleado {
         String registro = objEmpleados.getId() + ","
                 + objEmpleados.getNombre() + ","
                 + objEmpleados.getPassword() + ","
-                + objEmpleados.getCorreo();
+                + objEmpleados.getCorreo() + ","
+                + objEmpleados.getSalarioBruto();
         objAccesoDatosEmpleados.setRegistro(registro);
     }
-    
-    
-    
     /**
      * Agrega un nuevo empleado a la lista de empleados.
      *
@@ -65,11 +63,8 @@ public class LogicaEmpleados implements ServicioEmpleado {
         int id = objServicioIdControl.getNextId(objAccesoDatosEmpleados.getNombreArchivo());
 
         objEmpleados.setId(id);
-        
         datosRegistro(objEmpleados);
-        
         objAccesoDatosEmpleados.agregarEmpleadoRegistro();
-
     }
 
     /**
@@ -175,8 +170,9 @@ public class LogicaEmpleados implements ServicioEmpleado {
      */
     public void enviarCorreos(Empleados objEmpleados) throws AddressException, SendFailedException, MessagingException, IOException {
 
+        CrearPDF objCrearPDF = new CrearPDF();
         EnviarCorreo objCorreo = new EnviarCorreo();
-        objCorreo.setArchivos(objEmpleados.getArchivos());
+        objCorreo.setArchivosPDF(objCrearPDF.getArchivos());
         datosCorreo(objEmpleados);
         objCorreo.setDatos(datosEnviar);
         objCorreo.EnviarCorreos();

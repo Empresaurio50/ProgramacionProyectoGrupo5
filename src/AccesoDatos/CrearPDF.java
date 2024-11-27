@@ -56,7 +56,7 @@ public class CrearPDF {
      /**
      * Establece el nombre del archivo.
      *
-     * @param nombreArchivo 1    
+     * @param nombreArchivo   
      */
     public void setNombreArchivo(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;

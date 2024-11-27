@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  * @author Empresaurio50
  */
 public class VentanaCRUD extends javax.swing.JFrame {
-    
+
     private Empleados objEmpleados = new Empleados();
     private ServicioEmpleado servicioEmpleado;
     private DefaultTableModel modeloTablaEmpleados;
@@ -28,39 +28,64 @@ public class VentanaCRUD extends javax.swing.JFrame {
         this.servicioEmpleado = new LogicaEmpleados();
         initComponents();
         CargarEmpleados();
-        
+
     }
+
+    /**
+    * Carga una lista de empleados en la tabla desde la base de datos.
+    *
+    * Este método se conecta a la base de datos, ejecuta una consulta SQL para obtener los datos de los empleados
+    * y los muestra en la tabla `tblEmpleados`. La tabla tiene las siguientes columnas:
+    *  - ID: Identificador único del empleado (entero).
+    *  - Nombre: Nombre completo del empleado (cadena).
+    *  - Contraseña: Contraseña del empleado (cadena).
+    *  - Correo: Correo electrónico del empleado (cadena).
+    *
+    * @throws SQLException Si ocurre un error al conectar a la base de datos o al ejecutar la consulta.
+    */
     
     public void CargarEmpleados() {
-        
+
         modeloTablaEmpleados = new DefaultTableModel();
-        
+
         modeloTablaEmpleados.addColumn("ID");
         modeloTablaEmpleados.addColumn("Nombre");
         modeloTablaEmpleados.addColumn("Contraseña");
         modeloTablaEmpleados.addColumn("Correo");
-        
+
         listarEmpleados();
-        
+
     }
-    
+
+    /**
+    * Carga una lista de empleados en la tabla desde la base de datos.
+    *
+    * Este método obtiene una lista de empleados desde la base de datos y muestra los resultados en la tabla `tblEmpleados`.
+    * La lista de empleados se devuelve como una lista de arreglos de cadenas, donde cada arreglo contiene los siguientes datos:
+    * - Índice 0: ID del empleado
+    * - Índice 1: Nombre del empleado
+    * - Índice 2: Password del empleado
+    * - Indice 3: Correo del empleado
+    *
+    * @throws SQLException Si ocurre un error al obtener los datos de la base de datos.
+    */
     public void listarEmpleados() {
-        
+
         objEmpleados = new Empleados();
-        
+
         try {
             servicioEmpleado.leerEmpleado(objEmpleados);
-            
+
             for (String[] lista : objEmpleados.getEmpleadosLista()) {
-                
+
                 modeloTablaEmpleados.addRow(lista);
-                
+
             }
-            
+
         } catch (Exception e) {
         }
         tblEmpleados.setModel(modeloTablaEmpleados);
-        
+
     }
 
     /**
@@ -243,19 +268,30 @@ public class VentanaCRUD extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+    * Maneja el evento de clic en el botón de agregar un nuevo empleado.
+    * 
+    * Este método se encarga de:
+    * 1. Crear un nuevo objeto `Empleados` para representar al nuevo empleado.
+    * 2. Obtener los datos del nuevo empleado desde los campos de texto de la interfaz.
+    * 3. Intentar agregar al nuevo empleado a la base de datos utilizando el método `agregarEmpleado` del servicio de empleados.
+    * 4. Recargar la tabla de empleados para mostrar el nuevo empleado agregado.
+    *
+    * @param evt El evento de clic en el botón.
+    */
+    
     private void bttAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAgregarActionPerformed
-        
+
         try {
             objEmpleados = new Empleados();
             servicioEmpleado = new LogicaEmpleados();
-            
-            
+
             objEmpleados.setNombre(txtNombreAgregar.getText());
             objEmpleados.setCorreo(txtCorreoAgregar.getText());
             objEmpleados.setPassword(txtPasswordAgregar.getText());
-            
+
             servicioEmpleado.agregarEmpleado(objEmpleados);
-            
+
         } catch (IOException e) {
         }
         CargarEmpleados();
@@ -263,55 +299,95 @@ public class VentanaCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_bttAgregarActionPerformed
 
     private void bttListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttListarActionPerformed
-        
+
         CargarEmpleados();
 
     }//GEN-LAST:event_bttListarActionPerformed
 
+    /**
+    * Maneja el evento de clic en el botón de actualizar un empleado.
+    *
+    * Este método se encarga de:
+    * 1. Crear un nuevo objeto `Empleados` para representar al empleado a actualizar.
+    * 2. Obtener los nuevos datos del empleado desde los campos de texto de la interfaz.
+    * 3. Intentar actualizar al empleado en la base de datos utilizando el método `actualizarEmpleado` del servicio de empleados.
+    * 4. Recargar la tabla de empleados para reflejar los cambios.
+    *
+    * @param evt El evento de clic en el botón.
+    */
+    
     private void bttActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttActualizarActionPerformed
-        
+
         objEmpleados = new Empleados();
-        
+
         objEmpleados.setId(Integer.parseInt(txtId.getText()));
         objEmpleados.setNombre(txtNombreAgregar.getText());
         objEmpleados.setCorreo(txtCorreoAgregar.getText());
         objEmpleados.setPassword(txtPasswordAgregar.getText());
-        
+
         try {
             servicioEmpleado.actualizarEmpleado(objEmpleados);
         } catch (Exception e) {
         }
-        
+
         CargarEmpleados();
-        
+
     }//GEN-LAST:event_bttActualizarActionPerformed
 
+    /**
+    * Maneja el evento de clic en el botón de eliminar un empleado.
+    *
+    * Este método se encarga de:
+    *   1. Crear un nuevo objeto `Empleados` para representar al empleado a eliminar.
+    * 2. Obtener el ID del empleado a eliminar desde el campo de texto `txtId`.
+    * 3. Intentar eliminar al empleado utilizando el método `eliminarEmpleado` del servicio de empleados.
+    * 4. Mostrar un mensaje de error si ocurre alguna excepción durante el proceso de eliminación.
+    * 5. Recargar la tabla de empleados para reflejar los cambios.
+    *
+    * @param evt El evento de clic en el botón.
+    */
     private void bttEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEliminarActionPerformed
-        
+
         objEmpleados = new Empleados();
-        
+
         objEmpleados.setId(Integer.parseInt(txtId.getText()));
-        
+
         try {
             servicioEmpleado.eliminarEmpleado(objEmpleados);
-            
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e);
         }
-        
+
         CargarEmpleados();
-        
+
     }//GEN-LAST:event_bttEliminarActionPerformed
 
+    /**
+     * Maneja el evento de clic en una fila de la tabla de empleados.
+     *
+     * Cuando se hace clic en una fila de la tabla `tblEmpleados`, este método
+     * obtiene los datos de la fila seleccionada y los muestra en los campos de
+     * texto correspondientes para su edición. La tabla `tblEmpleados` tiene la
+     * siguiente estructura: 
+     * - Columna 0: ID del empleado 
+     * - Columna 1: Nombre del empleado 
+     * - Columna 2: Contraseña del empleado 
+     * - Columna 3: Correo
+     * electrónico del empleado
+     *
+     * @param evt El evento de clic en la tabla.
+     */
+
     private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
-        
+
         int fila = tblEmpleados.getSelectedRow();
-        
+
         txtId.setText(tblEmpleados.getValueAt(fila, 0).toString());
         txtNombreAgregar.setText(tblEmpleados.getValueAt(fila, 1).toString());
         txtPasswordAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
         txtCorreoAgregar.setText(tblEmpleados.getValueAt(fila, 3).toString());
-        
+
     }//GEN-LAST:event_tblEmpleadosMouseClicked
 
     /**
@@ -347,10 +423,10 @@ public class VentanaCRUD extends javax.swing.JFrame {
             public void run() {
                 try {
                     new VentanaCRUD().setVisible(true);
-                    
+
                 } catch (Exception e) {
                 }
-                
+
             }
         });
     }

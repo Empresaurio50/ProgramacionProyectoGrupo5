@@ -36,7 +36,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
     }
 
     /**
@@ -174,14 +174,61 @@ public class VentanaCorreo extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /**
+     * Maneja el evento de clic en el botón "Enviar Correo".
+     *
+     * Este método se encarga de enviar un correo electrónico con un archivo PDF
+     * adjunto. Primero, crea un objeto `LogicaEmpleados` para manejar las
+     * operaciones relacionadas con los empleados. Luego, prepara los datos del
+     * correo y crea el archivo PDF. Finalmente, envía el correo electrónico con
+     * el PDF adjunto.
+     *
+     * Si ocurre algún error durante el proceso, se muestra un mensaje de error
+     * al usuario.
+     *
+     * @param evt El evento de clic en el botón.
+     */
+
     private void bttEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarCorreoActionPerformed
 
+        
         try {
             objServicioEmpleado = new LogicaEmpleados();
         } catch (Exception e) {
         }
 
+        /**
+         * Prepara los datos necesarios para enviar el correo electrónico.
+         *
+         * Este método recopila la información del empleado, como el nombre,
+         * correo electrónico, asunto y mensaje, y la almacena en el objeto
+         * `objEmpleados`.
+         *
+         * @param objEmpleados El objeto empleado que contiene los datos del
+         * destinatario.
+         */
         datosCorreo(objEmpleados);
+
+        
+        /**
+         * Inicializa el servicio de empleados y crea un PDF para enviar un
+         * correo.
+         *
+         * Este método se encarga de: 
+         * 1. Crear una instancia de la clase `LogicaEmpleados` para manejar las operaciones relacionadas con los
+         * empleados. 
+         * 2. Preparar los datos del correo (a través del método`datosCorreo`). 
+         * 3. Crear un archivo PDF utilizando los datos delempleado. 
+         * 4. Mostrar un mensaje de éxito o error al usuario según corresponda.
+         *
+         * **Nota:** Este método captura excepciones generales para evitar que
+         * la aplicación se detenga, pero es recomendable manejar excepciones
+         * más específicas para proporcionar mensajes de error más detallados.
+         *
+         * @param evt El evento que desencadena la ejecución de este método
+         * (generalmente un evento de clic en un botón).
+         */
+        
         try {
             objServicioEmpleado.crearPDF(objEmpleados);
             JOptionPane.showMessageDialog(null, "Se creo el PDF");
@@ -193,25 +240,51 @@ public class VentanaCorreo extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
 
+        
+        
+        /**
+         * Procesa el envío de un correo electrónico con un archivo PDF adjunto.
+         *
+         * Este método realiza las siguientes acciones: 
+         * 1. Prepara los datos del correo electrónico utilizando el método `datosCorreo`. 
+         * 2. Intenta crear un archivo PDF utilizando el método `crearPDF`. 
+         * 3. Si lacreación del PDF es exitosa, intenta enviar el correo electrónico con
+         * el PDF adjunto utilizando el método `enviarCorreos`. 
+         * 4. Maneja diferentes tipos de excepciones que pueden ocurrir durante el proceso
+         * y muestra mensajes de error informativos al usuario.
+         */
         try {
             objServicioEmpleado.enviarCorreos(objEmpleados);
             JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
 
         } catch (AddressException e) {
             JOptionPane.showMessageDialog(null, "No se pudo enviar el correo, al correo le falta un dominio\n" + "Error: " + e.getMessage());
-        } catch(SendFailedException e){
+        } catch (SendFailedException e) {
             JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
-        }catch(MessagingException e){
-            JOptionPane.showMessageDialog(null, "Error al enviar a " + objEmpleados.getCorreo()+ "\n error " + e.getMessage());
-        }catch(IOException e){
+        } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(null, "Error al enviar a " + objEmpleados.getCorreo() + "\n error " + e.getMessage());
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
 
-        }catch(Exception e){
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ya no se que paso: " + e.getMessage());
 
         }
     }//GEN-LAST:event_bttEnviarCorreoActionPerformed
 
+    /**
+    * Obtiene los datos del correo electrónico a partir de los campos de texto de la interfaz y los asigna al objeto `Empleados`.
+    *
+    * Este método se encarga de:
+    * 1. Obtener los valores de los campos de texto `txtNombre`, `txtAsunto`, `txtMensaje`, `txtMensajePDF` y `txtCorreo`.
+    * 2. Asignar los valores obtenidos a las propiedades correspondientes del objeto `Empleados`.
+    * 3. Capturar cualquier excepción que pueda ocurrir durante el proceso y mostrarla por consola.
+    *
+    * **Nota:** Es recomendable manejar las excepciones de forma más específica y proporcionar mensajes de error más informativos al usuario.
+    *
+    * @param objEmpleados El objeto `Empleados` al que se asignarán los datos del correo.
+    */
+    
     public void datosCorreo(Empleados objEmpleados) {
         try {
             objEmpleados.setNombre(txtNombre.getText());

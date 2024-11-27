@@ -11,46 +11,85 @@ import java.util.ArrayList;
 
 public class CrearPDF {
 
-    private String nombreArchivo, registro;
+    /**
+     * El nombre del archivo.
+     */
+    private String nombreArchivo;
 
+    /**
+     * Un registro de datos asociado al archivo.
+     */
+    private String registro;
+
+    /**
+     * Una lista de archivos asociados al objeto.
+     */
     private ArrayList<File> archivos = new ArrayList<>();
 
+    /**
+     * Obtiene la lista de archivos asociados al objeto.
+     *
+     * @return La lista de archivos.
+     */
     public ArrayList<File> getArchivos() {
         return archivos;
     }
 
+    /**
+     * Establece la lista de archivos asociados al objeto.
+     *
+     * @param archivos La nueva lista de archivos.
+     */
     public void setArchivos(ArrayList<File> archivos) {
         this.archivos = archivos;
     }
 
+    /**
+     * Obtiene el nombre del archivo.
+     *
+     * @return El nombre del archivo.
+     */
     public String getNombreArchivo() {
         return nombreArchivo;
     }
 
+     /**
+     * Establece el nombre del archivo.
+     *
+     * @param nombreArchivo 1    
+     */
     public void setNombreArchivo(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
     }
 
+    /**
+     * Obtiene el registro de datos asociado al archivo.
+     *
+     * @return El registro de datos.
+     */
     public String getRegistro() {
         return registro;
     }
 
+    /**
+     * Establece el registro de datos asociado al archivo.
+     *
+     * @param registro El nuevo registro de datos.
+     */
     public void setRegistro(String registro) {
         this.registro = registro;
     }
 
+
     /**
-     * El metodo createPDF esta tomando los atributos de la clase Usuario para
-     * extraer los datos que el usuario esta ingresando y tambien los que se les
-     * estan asignando.
-     *
-     * Cuando instanciamos Docuement estamos accediendo a acciones que tiene esa
-     * clase panto para la lectura, asignacion de nombre, ingresando los datos
-     * del usuario y para la creacion del documento del PDF.
-     *
-     * @throws com.itextpdf.text.DocumentException
-     * @throws java.io.FileNotFoundException
-     */
+    * Crea un archivo PDF con los datos del usuario.
+    *
+    * Este método toma los datos del usuario almacenados en el atributo `registro` y los utiliza para generar un documento PDF.
+    * El nombre del archivo PDF se obtiene del atributo `nombreArchivo`.
+    *
+    * @throws DocumentException Si ocurre un error al crear el documento PDF.
+    * @throws FileNotFoundException Si no se encuentra el archivo de salida.
+    */
     public void createPDF() throws DocumentException, FileNotFoundException {
         Document documento = new Document();
         String[] datos = this.registro.split(",");

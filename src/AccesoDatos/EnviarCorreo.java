@@ -38,12 +38,12 @@ public class EnviarCorreo {
     }
 
     /**
-     *
-     * Esta funcion sirve para agregar las propiedades del servidor desde el
-     * .txt de config donde esta escrita la configuracion del servidor de
-     * correos como el host, verifique el enable, el autenticador y el port
-     *
-     */
+    * Carga la configuración del servidor SMTP desde un archivo de texto.
+    *
+    * Lee el archivo "config.txt" y almacena las propiedades del servidor SMTP en un objeto Properties.
+    *
+    * @throws IOException Si ocurre un error al leer el archivo.
+    */
     private void cargarConfiguracionSMTP() throws IOException {
 
         propertiesSMTP = new Properties();
@@ -65,12 +65,10 @@ public class EnviarCorreo {
     }
 
     /**
-     *
-     * Esta funcion sirve para que el host pueda iniciar seccion desde el
-     * servidor de correos En este caso se esta utilizando mailtrap, donde se
-     * esta proporcionando La contraseña, host, port
-     *
-     */
+    * Crea una sesión SMTP para enviar correos electrónicos.
+    *
+    * Utiliza las propiedades cargadas previamente para crear una sesión SMTP y autenticarse en el servidor.
+    */
     public void crearSeccion() {
         seccionSMTP = Session.getInstance(propertiesSMTP, new javax.mail.Authenticator() {
             @Override
@@ -82,11 +80,11 @@ public class EnviarCorreo {
     }
 
     /**
-     * crearArchivos esta utilizando de parametro la clase Usuario para la
-     * insertar datos y con el bucle foreach sirve para el conteo de los
-     * archivos que el usuario este ingresando al correo permitiendo que no solo
-     * pueda adjuntar un archivo PDF si no multiples
-     *
+    * Crea partes MIME para adjuntar archivos al correo electrónico.
+    *
+    * Itera sobre los archivos proporcionados y crea partes MIME para cada uno, agregándolas a una lista.
+    *
+    * @throws MessagingException Si ocurre un error al crear las partes MIME.
      */
     public void crearArchivos() throws MessagingException {
         try {
@@ -102,22 +100,15 @@ public class EnviarCorreo {
     }
 
     /**
-     *
-     * Método para enviar un correo electrónico con un archivo adjunto Donde
-     * esta cargando los metonos cargarConfiguracionSMTP y crearSeccion Para
-     * cuando se llame la funcion EnviarCorreos se puedan ejecutar primero para
-     * optimizar el programa y se pueda ejecutar el programa de mejor forma
-     *
-     * En EnviarCorreos se esta pasando el parametro de Usuario para que pueda
-     * llamar los datos del usuario para cuando se requiera
-     *
-     * En EnviarCorreos se instancia Message como objCorreo para darle un
-     * mensaje al usuario aparte del PDF.
-     *
-     * Donde se crean multi lineas para el mensaje, un cuerpo para el texto y un
-     * mensaje de confirmacion de que se envio el correo de manera correcto o no
-     * se pudo enviar
-     */
+    * Envía un correo electrónico con archivos adjuntos.
+    *
+    * Carga la configuración SMTP, crea una sesión, crea el mensaje con los datos del usuario y los adjuntos, y envía el correo.
+    *
+    * @throws AddressException Si ocurre un error con las direcciones de correo.
+    * @throws SendFailedException Si falla el envío del correo.
+    * @throws MessagingException Si ocurre una excepción relacionada con el correo.
+    * @throws IOException Si ocurre un error al leer o escribir archivos.
+    */
     public void EnviarCorreos() throws AddressException, SendFailedException, MessagingException, IOException {
 
         cargarConfiguracionSMTP();

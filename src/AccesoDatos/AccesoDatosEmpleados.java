@@ -49,36 +49,44 @@ public class AccesoDatosEmpleados {
         this.registro = registro;
     }
 
+    /**
+     * Agrega un nuevo registro de empleado al archivo de texto.
+     *
+     * @throws IOException Si ocurre un error al escribir en el archivo.
+     */
     public void agregarEmpleadoRegistro() throws IOException {
 
         try (BufferedWriter objAgregarRegistro = new BufferedWriter(new FileWriter(this.nombreArchivo, true))) {
 
             objAgregarRegistro.append(registro);
             objAgregarRegistro.newLine();
-
         }
-
     }
-
+    /**
+     * Lee los registros de empleados del archivo de texto y los almacena en una
+     * lista.
+     *
+     * @throws IOException Si ocurre un error al leer el archivo.
+     */
     public void leerEmpleadoRegistro() throws IOException {
 
         listaEmpleados = new ArrayList();
-
         try (BufferedReader objLeerRegistro = new BufferedReader(new FileReader(this.nombreArchivo))) {
 
             String lineaEmpleado = "";
             while ((lineaEmpleado = objLeerRegistro.readLine()) != null) {
-
                 String[] datosEmpleados = lineaEmpleado.split(",");
-
                 this.listaEmpleados.add(datosEmpleados);
-
             }
-
         }
-
     }
 
+    /**
+     * Actualiza un registro de empleado existente en el archivo de texto.
+     *
+     * @param id El ID del empleado a actualizar.
+     * @throws IOException Si ocurre un error al leer o escribir en el archivo.
+     */
     public void actualizarEmpleadoRegistro(int id) throws IOException {
 
         File archivoActual = new File(this.nombreArchivo);
@@ -95,25 +103,23 @@ public class AccesoDatosEmpleados {
                 } else {
                     bW.append(registroActual);
                     bW.newLine();
-
                 }
-
             }
-
         }
         if (!archivoActual.delete()) {
-
             throw new IOException("No se puede borrar el archivo actual");
-
         }
-
         if (!archivoTemporal.renameTo(archivoActual)) {
             throw new IOException("No se puede renombrear el archivo actual");
-
         }
-
     }
 
+    /**
+     * Elimina un registro de empleado del archivo de texto.
+     *
+     * @param id El ID del empleado a eliminar.
+     * @throws IOException Si ocurre un error al leer o escribir en el archivo.
+     */
     public void eliminarEmpleadoRegistro(int id) throws IOException {
 
         File archivoActual = new File(this.nombreArchivo);
@@ -122,37 +128,23 @@ public class AccesoDatosEmpleados {
         try (BufferedReader bR = new BufferedReader(new FileReader(archivoActual)); BufferedWriter bW = new BufferedWriter(new FileWriter(archivoTemporal))) {
 
             String registroActual;
-
             while ((registroActual = bR.readLine()) != null) {
-
                 String[] datos = registroActual.split(",");
 
                 if (datos[0].equals(String.valueOf(id))) {
-
                     continue;
-
+                    
                 } else {
-
                     bW.append(registroActual);
                     bW.newLine();
-
                 }
-
             }
-            
-
         }
         if (!archivoActual.delete()) {
-
-                throw new IOException("No se puede borrar el archivo actual");
-
-            }
-
-            if (!archivoTemporal.renameTo(archivoActual)) {
-                throw new IOException("No se puede renombrear el archivo actual");
-
-            }
-
+            throw new IOException("No se puede borrar el archivo actual");
+        }
+        if (!archivoTemporal.renameTo(archivoActual)) {
+            throw new IOException("No se puede renombrear el archivo actual");
+        }
     }
-
 }

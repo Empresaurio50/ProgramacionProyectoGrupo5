@@ -14,35 +14,7 @@ public class CrearPDF {
     /**
      * El nombre del archivo.
      */
-    private String nombreArchivo;
-
-    /**
-     * Un registro de datos asociado al archivo.
-     */
-    private String registro;
-
-    /**
-     * Una lista de archivos asociados al objeto.
-     */
-    private ArrayList<File> archivos = new ArrayList<>();
-
-    /**
-     * Obtiene la lista de archivos asociados al objeto.
-     *
-     * @return La lista de archivos.
-     */
-    public ArrayList<File> getArchivos() {
-        return archivos;
-    }
-
-    /**
-     * Establece la lista de archivos asociados al objeto.
-     *
-     * @param archivos La nueva lista de archivos.
-     */
-    public void setArchivos(ArrayList<File> archivos) {
-        this.archivos = archivos;
-    }
+    private String nombreArchivo, registro;
 
     /**
      * Obtiene el nombre del archivo.

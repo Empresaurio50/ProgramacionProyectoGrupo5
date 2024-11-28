@@ -20,6 +20,7 @@ public class AccesoDatosEmpleados {
 
     private String nombreArchivo, registro;
     private ArrayList<String[]> listaEmpleados;
+    private String nombreArchivoPDF;
 
     public AccesoDatosEmpleados() {
 

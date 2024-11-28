@@ -4,9 +4,8 @@
  */
 package Presentacion;
 
-import Entidades.Empleados;
-import LogicaNegocio.LogicaEmpleados;
-import Servicios.ServicioEmpleado;
+import Entidades.Correos;
+import LogicaNegocio.LogicaCorreos;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -14,15 +13,15 @@ import javax.mail.MessagingException;
 import javax.mail.SendFailedException;
 import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
-
+import Servicios.ServicioCorreo;
 /**
  *
  * @author Empresaurio50
  */
 public class VentanaCorreo extends javax.swing.JFrame {
 
-    private Empleados objEmpleados = new Empleados();
-    private ServicioEmpleado objServicioEmpleado;
+    private Correos objCorreo = new Correos();
+    private ServicioCorreo servicioCorreo;
 
     /**
      * Creates new form VentanaCorreo
@@ -30,7 +29,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
     public VentanaCorreo() {
         initComponents();
         try {
-            objServicioEmpleado = new LogicaEmpleados();
+            servicioCorreo = new LogicaCorreos();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -191,7 +190,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
         
         try {
-            objServicioEmpleado = new LogicaEmpleados();
+            servicioCorreo = new LogicaCorreos();
         } catch (Exception e) {
         }
 
@@ -205,7 +204,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
          * @param objEmpleados El objeto empleado que contiene los datos del
          * destinatario.
          */
-        datosCorreo(objEmpleados);
+        datosCorreo(objCorreo);
 
         
         /**
@@ -228,7 +227,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
          */
         
         try {
-            objServicioEmpleado.crearPDF(objEmpleados);
+            servicioCorreo.crearPDF(objCorreo);
             JOptionPane.showMessageDialog(null, "Se creo el PDF");
 
         } catch (DocumentException | FileNotFoundException e) {
@@ -252,7 +251,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
          * y muestra mensajes de error informativos al usuario.
          */
         try {
-            objServicioEmpleado.enviarCorreos(objEmpleados);
+            servicioCorreo.enviarCorreos(objCorreo);
             JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
 
         } catch (AddressException e) {
@@ -260,7 +259,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
         } catch (SendFailedException e) {
             JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
         } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(null, "Error al enviar a " + objEmpleados.getCorreo() + "\n error " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al enviar a " + objCorreo.getCorreo() + "\n error " + e.getMessage());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
 
@@ -280,16 +279,16 @@ public class VentanaCorreo extends javax.swing.JFrame {
     *
     * **Nota:** Es recomendable manejar las excepciones de forma más específica y proporcionar mensajes de error más informativos al usuario.
     *
-    * @param objEmpleados El objeto `Empleados` al que se asignarán los datos del correo.
+    * @param objCorreo El objeto `Empleados` al que se asignarán los datos del correo.
     */
     
-    public void datosCorreo(Empleados objEmpleados) {
+    public void datosCorreo(Correos objCorreo) {
         try {
-            objEmpleados.setNombre(txtNombre.getText());
-            objEmpleados.setAsunto(txtAsunto.getText());
-            objEmpleados.setMensaje(txtMensaje.getText());
-            objEmpleados.setMensajePDF(txtMensajePDF.getText());
-            objEmpleados.setCorreo(txtCorreo.getText());
+            objCorreo.setNombre(txtNombre.getText());
+            objCorreo.setAsunto(txtAsunto.getText());
+            objCorreo.setMensaje(txtMensaje.getText());
+            objCorreo.setMensajePDF(txtMensajePDF.getText());
+            objCorreo.setCorreo(txtCorreo.getText());
 
         } catch (Exception e) {
             System.out.print(e);

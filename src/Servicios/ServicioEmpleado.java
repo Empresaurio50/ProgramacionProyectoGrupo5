@@ -5,12 +5,7 @@
 package Servicios;
 
 import Entidades.Empleados;
-import com.itextpdf.text.DocumentException;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
-import javax.mail.internet.AddressException;
 
 /**
  *
@@ -22,7 +17,6 @@ public interface ServicioEmpleado {
     void leerEmpleado(Empleados objEmpleados) throws IOException;
     void eliminarEmpleado(Empleados objEmpleados) throws IOException;
     void actualizarEmpleado(Empleados objEmpleados) throws IOException;
-    void enviarCorreos(Empleados objEmpleados) throws AddressException, SendFailedException, MessagingException, IOException;
-    void crearPDF(Empleados objEmpleados) throws DocumentException, FileNotFoundException;
+    
     
 }

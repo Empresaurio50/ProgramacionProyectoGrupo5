@@ -30,20 +30,18 @@ public class VentanaCRUD extends javax.swing.JFrame {
         CargarEmpleados();
 
     }
-
     /**
-    * Carga una lista de empleados en la tabla desde la base de datos.
-    *
-    * Este método se conecta a la base de datos, ejecuta una consulta SQL para obtener los datos de los empleados
-    * y los muestra en la tabla `tblEmpleados`. La tabla tiene las siguientes columnas:
-    *  - ID: Identificador único del empleado (entero).
-    *  - Nombre: Nombre completo del empleado (cadena).
-    *  - Contraseña: Contraseña del empleado (cadena).
-    *  - Correo: Correo electrónico del empleado (cadena).
-    *
-    * @throws SQLException Si ocurre un error al conectar a la base de datos o al ejecutar la consulta.
-    */
-    
+     * Carga una lista de empleados en la tabla desde la base de datos.
+     *
+     * Este método se conecta a la base de datos, ejecuta una consulta SQL para
+     * obtener los datos de los empleados y los muestra en la tabla
+     * `tblEmpleados`. La tabla tiene las siguientes columnas: - ID:
+     * Identificador único del empleado (entero). - Nombre: Nombre completo del
+     * empleado (cadena). - Contraseña: Contraseña del empleado (cadena). -
+     * Correo: Correo electrónico del empleado (cadena).
+     *
+     *
+     */
     public void CargarEmpleados() {
 
         modeloTablaEmpleados = new DefaultTableModel();
@@ -52,24 +50,24 @@ public class VentanaCRUD extends javax.swing.JFrame {
         modeloTablaEmpleados.addColumn("Nombre");
         //modeloTablaEmpleados.addColumn("Contraseña");
         modeloTablaEmpleados.addColumn("Correo");
-        //modeloTablaEmpleados.addColumn("Salario Bruto");
+        modeloTablaEmpleados.addColumn("Salario Bruto");
 
         listarEmpleados();
 
     }
 
     /**
-    * Carga una lista de empleados en la tabla desde la base de datos.
-    *
-    * Este método obtiene una lista de empleados desde la base de datos y muestra los resultados en la tabla `tblEmpleados`.
-    * La lista de empleados se devuelve como una lista de arreglos de cadenas, donde cada arreglo contiene los siguientes datos:
-    * - Índice 0: ID del empleado
-    * - Índice 1: Nombre del empleado
-    * - Índice 2: Password del empleado
-    * - Indice 3: Correo del empleado
-    *
-    * @throws SQLException Si ocurre un error al obtener los datos de la base de datos.
-    */
+     * Carga una lista de empleados en la tabla desde la base de datos.
+     *
+     * Este método obtiene una lista de empleados desde la base de datos y
+     * muestra los resultados en la tabla `tblEmpleados`. La lista de empleados
+     * se devuelve como una lista de arreglos de cadenas, donde cada arreglo
+     * contiene los siguientes datos: - Índice 0: ID del empleado - Índice 1:
+     * Nombre del empleado - Índice 2: Password del empleado - Indice 3: Correo
+     * del empleado
+     *
+     * 
+     */
     public void listarEmpleados() {
 
         objEmpleados = new Empleados();
@@ -78,7 +76,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
             servicioEmpleado.leerEmpleado(objEmpleados);
 
             for (String[] lista : objEmpleados.getEmpleadosLista()) {
-                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3]});
+                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4]});
             }
 
         } catch (Exception e) {
@@ -103,7 +101,6 @@ public class VentanaCRUD extends javax.swing.JFrame {
         lbl2Correo = new javax.swing.JLabel();
         lbl2Contra = new javax.swing.JLabel();
         txtCorreoAgregar = new javax.swing.JTextField();
-        txtPasswordAgregar = new javax.swing.JTextField();
         bttAgregar = new javax.swing.JButton();
         bttListar = new javax.swing.JButton();
         bttActualizar = new javax.swing.JButton();
@@ -112,6 +109,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
         txtId = new javax.swing.JLabel();
         lblSalarioBruto = new javax.swing.JLabel();
         txtSalarioBruto = new javax.swing.JTextField();
+        txtPasswordAgregar = new javax.swing.JPasswordField();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblEmpleados = new javax.swing.JTable();
 
@@ -155,7 +153,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
 
         lblId.setText("ID");
 
-        txtId.setText("Id");
+        txtId.setText("0");
 
         lblSalarioBruto.setText("Salario Bruto");
 
@@ -169,13 +167,14 @@ public class VentanaCRUD extends javax.swing.JFrame {
                         .addGap(11, 11, 11)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(lblAgregarTitulo)
-                                        .addGap(36, 36, 36)
-                                        .addComponent(lblId))
-                                    .addComponent(txtNombreAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                            .addComponent(lblAgregarTitulo)
+                                            .addGap(36, 36, 36)
+                                            .addComponent(lblId))
+                                        .addComponent(txtNombreAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtId)
@@ -227,11 +226,14 @@ public class VentanaCRUD extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lbl2Contra)
                     .addComponent(lblSalarioBruto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(38, 38, 38)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(bttAgregar)
                     .addComponent(bttActualizar))
@@ -280,17 +282,18 @@ public class VentanaCRUD extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-    * Maneja el evento de clic en el botón de agregar un nuevo empleado.
-    * 
-    * Este método se encarga de:
-    * 1. Crear un nuevo objeto `Empleados` para representar al nuevo empleado.
-    * 2. Obtener los datos del nuevo empleado desde los campos de texto de la interfaz.
-    * 3. Intentar agregar al nuevo empleado a la base de datos utilizando el método `agregarEmpleado` del servicio de empleados.
-    * 4. Recargar la tabla de empleados para mostrar el nuevo empleado agregado.
-    *
-    * @param evt El evento de clic en el botón.
-    */
-    
+     * Maneja el evento de clic en el botón de agregar un nuevo empleado.
+     *
+     * Este método se encarga de: 1. Crear un nuevo objeto `Empleados` para
+     * representar al nuevo empleado. 2. Obtener los datos del nuevo empleado
+     * desde los campos de texto de la interfaz. 3. Intentar agregar al nuevo
+     * empleado a la base de datos utilizando el método `agregarEmpleado` del
+     * servicio de empleados. 4. Recargar la tabla de empleados para mostrar el
+     * nuevo empleado agregado.
+     *
+     * @param evt El evento de clic en el botón.
+     */
+
     private void bttAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAgregarActionPerformed
 
         try {
@@ -316,17 +319,19 @@ public class VentanaCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_bttListarActionPerformed
 
     /**
-    * Maneja el evento de clic en el botón de actualizar un empleado.
-    *
-    * Este método se encarga de:
-    * 1. Crear un nuevo objeto `Empleados` para representar al empleado a actualizar.
-    * 2. Obtener los nuevos datos del empleado desde los campos de texto de la interfaz.
-    * 3. Intentar actualizar al empleado en la base de datos utilizando el método `actualizarEmpleado` del servicio de empleados.
-    * 4. Recargar la tabla de empleados para reflejar los cambios.
-    *
-    * @param evt El evento de clic en el botón.
-    */
-    
+     * Maneja el evento de clic en el botón de actualizar un empleado.
+     *
+     * Este método se encarga de: 1. Crear un nuevo objeto `Empleados` para
+     * representar al empleado a actualizar. 2. Obtener los nuevos datos del
+     * empleado desde los campos de texto de la interfaz. 3. Intentar actualizar
+     * al empleado en la base de datos utilizando el método `actualizarEmpleado`
+     * del servicio de empleados. 4. Recargar la tabla de empleados para
+     * reflejar los cambios.
+     *
+     * @param evt El evento de clic en el botón.
+     * @autor Samuel Zamora
+     */
+
     private void bttActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttActualizarActionPerformed
 
         objEmpleados = new Empleados();
@@ -334,8 +339,26 @@ public class VentanaCRUD extends javax.swing.JFrame {
         objEmpleados.setId(Integer.parseInt(txtId.getText()));
         objEmpleados.setNombre(txtNombreAgregar.getText());
         objEmpleados.setCorreo(txtCorreoAgregar.getText());
-        objEmpleados.setPassword(txtPasswordAgregar.getText());
+        
         objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
+
+        if (!txtPasswordAgregar.getText().isEmpty()) {
+            objEmpleados.setPassword(txtPasswordAgregar.getText());
+        } else {
+            try {
+                servicioEmpleado.leerEmpleado(objEmpleados);
+                String contrasena = null;
+                for (String[] fila : objEmpleados.getEmpleadosLista()) {
+                    if (fila[0].equals(String.valueOf(objEmpleados.getId()))) {
+                        contrasena = fila[2];
+                        break;
+                    }
+                }
+                objEmpleados.setPassword(contrasena == null ? "" : contrasena);
+            } catch (IOException ex) {
+                JOptionPane.showMessageDialog(null, ex.getMessage());
+            }
+        }
 
         try {
             servicioEmpleado.actualizarEmpleado(objEmpleados);
@@ -347,17 +370,18 @@ public class VentanaCRUD extends javax.swing.JFrame {
     }//GEN-LAST:event_bttActualizarActionPerformed
 
     /**
-    * Maneja el evento de clic en el botón de eliminar un empleado.
-    *
-    * Este método se encarga de:
-    *   1. Crear un nuevo objeto `Empleados` para representar al empleado a eliminar.
-    * 2. Obtener el ID del empleado a eliminar desde el campo de texto `txtId`.
-    * 3. Intentar eliminar al empleado utilizando el método `eliminarEmpleado` del servicio de empleados.
-    * 4. Mostrar un mensaje de error si ocurre alguna excepción durante el proceso de eliminación.
-    * 5. Recargar la tabla de empleados para reflejar los cambios.
-    *
-    * @param evt El evento de clic en el botón.
-    */
+     * Maneja el evento de clic en el botón de eliminar un empleado.
+     *
+     * Este método se encarga de: 1. Crear un nuevo objeto `Empleados` para
+     * representar al empleado a eliminar. 2. Obtener el ID del empleado a
+     * eliminar desde el campo de texto `txtId`. 3. Intentar eliminar al
+     * empleado utilizando el método `eliminarEmpleado` del servicio de
+     * empleados. 4. Mostrar un mensaje de error si ocurre alguna excepción
+     * durante el proceso de eliminación. 5. Recargar la tabla de empleados para
+     * reflejar los cambios.
+     *
+     * @param evt El evento de clic en el botón.
+     */
     private void bttEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEliminarActionPerformed
 
         objEmpleados = new Empleados();
@@ -381,11 +405,8 @@ public class VentanaCRUD extends javax.swing.JFrame {
      * Cuando se hace clic en una fila de la tabla `tblEmpleados`, este método
      * obtiene los datos de la fila seleccionada y los muestra en los campos de
      * texto correspondientes para su edición. La tabla `tblEmpleados` tiene la
-     * siguiente estructura: 
-     * - Columna 0: ID del empleado 
-     * - Columna 1: Nombre del empleado 
-     * - Columna 2: Contraseña del empleado 
-     * - Columna 3: Correo
+     * siguiente estructura: - Columna 0: ID del empleado - Columna 1: Nombre
+     * del empleado - Columna 2: Contraseña del empleado - Columna 3: Correo
      * electrónico del empleado
      *
      * @param evt El evento de clic en la tabla.
@@ -399,7 +420,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
         txtNombreAgregar.setText(tblEmpleados.getValueAt(fila, 1).toString());
         //txtPasswordAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
         txtCorreoAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
-        
+        txtSalarioBruto.setText(tblEmpleados.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_tblEmpleadosMouseClicked
 
     /**
@@ -460,7 +481,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
     private javax.swing.JTextField txtCorreoAgregar;
     private javax.swing.JLabel txtId;
     private javax.swing.JTextField txtNombreAgregar;
-    private javax.swing.JTextField txtPasswordAgregar;
+    private javax.swing.JPasswordField txtPasswordAgregar;
     private javax.swing.JTextField txtSalarioBruto;
     // End of variables declaration//GEN-END:variables
 }

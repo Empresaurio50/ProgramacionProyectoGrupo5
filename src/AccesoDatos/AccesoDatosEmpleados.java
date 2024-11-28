@@ -62,6 +62,7 @@ public class AccesoDatosEmpleados {
             objAgregarRegistro.newLine();
         }
     }
+
     /**
      * Lee los registros de empleados del archivo de texto y los almacena en una
      * lista.
@@ -96,8 +97,10 @@ public class AccesoDatosEmpleados {
 
             String registroActual;
             while ((registroActual = bR.readLine()) != null) {
-                String[] datos = registroActual.split(",");
-                if (datos[0].equals(String.valueOf(id))) {
+                String[] datosActuales = registroActual.split(",");
+
+                if (datosActuales[0].equals(String.valueOf(id))) {
+
                     bW.append(this.registro);
                     bW.newLine();
                 } else {
@@ -106,6 +109,7 @@ public class AccesoDatosEmpleados {
                 }
             }
         }
+
         if (!archivoActual.delete()) {
             throw new IOException("No se puede borrar el archivo actual");
         }
@@ -133,7 +137,7 @@ public class AccesoDatosEmpleados {
 
                 if (datos[0].equals(String.valueOf(id))) {
                     continue;
-                    
+
                 } else {
                     bW.append(registroActual);
                     bW.newLine();

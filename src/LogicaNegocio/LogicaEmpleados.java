@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package LogicaNegocio;
 
 import AccesoDatos.AccesoDatosEmpleados;
@@ -128,8 +124,13 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
         objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
 
-        datosRegistro(objEmpleados);
-
+        String registro = objEmpleados.getId() + ","
+                + objEmpleados.getNombre() + ","
+                + objEmpleados.getPassword() + ","
+                + objEmpleados.getCorreo() + ","
+                + objEmpleados.getSalarioBruto();
+        
+        objAccesoDatosEmpleados.setRegistro(registro);
         objAccesoDatosEmpleados.actualizarEmpleadoRegistro(objEmpleados.getId());
 
     }
@@ -145,11 +146,10 @@ public class LogicaEmpleados implements ServicioEmpleado {
     public void datosCorreo(Empleados objEmpleados) {
 
         datosEnviar = objEmpleados.getNombre() + "," //0 contiene el nombre del usuario
-                + objEmpleados.getCorreo() + "," //1 contiene el apellido del empleado
+                + objEmpleados.getCorreo() + "," //1 contiene el correo del empleado
                 + objEmpleados.getMensajePDF() + "," //2 contiene el mensaje del pdf
-                + objEmpleados.getCorreo() + "," //3 contiene el correo del empleado
-                + objEmpleados.getAsunto() + "," //4 contiene el asunto del correo
-                + objEmpleados.getMensaje(); //5 contiene el mensaje del correo
+                + objEmpleados.getAsunto() + "," //3 contiene el asunto del correo
+                + objEmpleados.getMensaje(); //4 contiene el mensaje del correo
     }
 
     /**

@@ -22,7 +22,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
     private Correos objCorreo = new Correos();
     private ServicioCorreo servicioCorreo;
-
+    private VentanaPrincipal vPrincipal;
     /**
      * Creates new form VentanaCorreo
      */
@@ -60,6 +60,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
         lblCorreo = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         bttEnviarCorreo = new javax.swing.JButton();
+        bttVolverPrincipal = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -92,6 +93,13 @@ public class VentanaCorreo extends javax.swing.JFrame {
             }
         });
 
+        bttVolverPrincipal.setText("Volver Atrás");
+        bttVolverPrincipal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttVolverPrincipalActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -117,7 +125,10 @@ public class VentanaCorreo extends javax.swing.JFrame {
                                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
                                 .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(35, 35, 35)
+                                .addComponent(bttVolverPrincipal))
                             .addComponent(lblMensajePDF)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(91, 91, 91)
@@ -151,7 +162,9 @@ public class VentanaCorreo extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bttVolverPrincipal))
                 .addContainerGap())
         );
 
@@ -236,9 +249,6 @@ public class VentanaCorreo extends javax.swing.JFrame {
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
         }
-
-        
-        
         /**
          * Procesa el envío de un correo electrónico con un archivo PDF adjunto.
          *
@@ -268,6 +278,16 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
         }
     }//GEN-LAST:event_bttEnviarCorreoActionPerformed
+
+    private void bttVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVolverPrincipalActionPerformed
+        
+        vPrincipal = new VentanaPrincipal();
+        
+        vPrincipal.setVisible(true);
+        this.setVisible(false);
+        
+        
+    }//GEN-LAST:event_bttVolverPrincipalActionPerformed
 
     /**
     * Obtiene los datos del correo electrónico a partir de los campos de texto de la interfaz y los asigna al objeto `Empleados`.
@@ -333,6 +353,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttEnviarCorreo;
+    private javax.swing.JButton bttVolverPrincipal;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;

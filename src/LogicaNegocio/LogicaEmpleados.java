@@ -1,19 +1,11 @@
 package LogicaNegocio;
 
 import AccesoDatos.AccesoDatosEmpleados;
-import AccesoDatos.CrearPDF;
-import AccesoDatos.EnviarCorreo;
 import AccesoDatos.IdControl;
 import Entidades.Empleados;
 import java.io.IOException;
 import Servicios.ServicioEmpleado;
 import Servicios.ServicioIdControl;
-import com.itextpdf.text.DocumentException;
-import java.io.File;
-import java.io.FileNotFoundException;
-import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
-import javax.mail.internet.AddressException;
 
 /**
  *
@@ -35,7 +27,8 @@ public class LogicaEmpleados implements ServicioEmpleado {
                 + objEmpleados.getNombre() + ","
                 + objEmpleados.getPassword() + ","
                 + objEmpleados.getCorreo() + ","
-                + objEmpleados.getSalarioBruto();
+                + objEmpleados.getSalarioBruto() + ","
+                + objEmpleados.getSalarioNeto();
         objAccesoDatosEmpleados.setRegistro(registro);
     }
     /**
@@ -128,7 +121,8 @@ public class LogicaEmpleados implements ServicioEmpleado {
                 + objEmpleados.getNombre() + ","
                 + objEmpleados.getPassword() + ","
                 + objEmpleados.getCorreo() + ","
-                + objEmpleados.getSalarioBruto();
+                + objEmpleados.getSalarioBruto() + ","
+                + objEmpleados.getSalarioNeto();
         
         objAccesoDatosEmpleados.setRegistro(registro);
         objAccesoDatosEmpleados.actualizarEmpleadoRegistro(objEmpleados.getId());

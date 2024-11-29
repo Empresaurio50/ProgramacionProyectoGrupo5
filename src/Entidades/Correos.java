@@ -4,9 +4,6 @@
  */
 package Entidades;
 
-import java.io.File;
-import java.util.ArrayList;
-
 /**
  *
  * @author Empresaurio50
@@ -14,7 +11,7 @@ import java.util.ArrayList;
 public class Correos extends Empleados{
     
     private String asunto, mensajePDF, mensaje;
-    private ArrayList<File> archivos = new ArrayList<>();
+    
     
     /**
      * Obtiene el asunto de un mensaje (posiblemente relacionado con un correo
@@ -52,24 +49,6 @@ public class Correos extends Empleados{
      */
     public void setMensajePDF(String mensajePDF) {
         this.mensajePDF = mensajePDF;
-    }
-
-    /**
-     * Obtiene una lista de archivos asociados a este objeto.
-     *
-     * @return Una lista de archivos.
-     */
-    public ArrayList<File> getArchivos() {
-        return archivos;
-    }
-
-    /**
-     * Agrega un archivo a la lista de archivos asociados.
-     *
-     * @param archivos El archivo a agregar.
-     */
-    public void setArchivos(File archivos) {
-        this.archivos.add(archivos);
     }
 
     /**

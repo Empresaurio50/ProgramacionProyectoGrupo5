@@ -68,9 +68,9 @@ public class CrearPDF {
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(nombreArchivo));
             documento.open();
-            documento.add(new Paragraph("Hola " + datos[0] + " " + datos[1] + ", " + "\n"
+            documento.add(new Paragraph("Hola " + datos[0] + " " + datos[3] + "." + "\n"
                     + datos[2] + "\n"
-                    + " Se le contacto por su correo: " + datos[3] ));
+                    + " Se le contacto por su correo: " + datos[1] ));
 
         } finally {
             documento.close();

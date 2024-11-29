@@ -1,3 +1,2 @@
-1,Kendall,321,kendall@gmail.com,4000.0
-2,kendall,123,kendall@ulatina.net,5000.0
-4,Samuiel,cd21,Samuel@gmail.com,65560.0
+1,catalina,123,cata@12,20000.0,19500.0
+2,catalina,123,cata@12,60000.0,59500.0

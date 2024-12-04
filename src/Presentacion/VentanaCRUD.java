@@ -47,6 +47,8 @@ public class VentanaCRUD extends javax.swing.JFrame {
         //modeloTablaEmpleados.addColumn("Contraseña");
         modeloTablaEmpleados.addColumn("Correo");
         modeloTablaEmpleados.addColumn("Salario Bruto");
+        modeloTablaEmpleados.addColumn("CCSS");
+        modeloTablaEmpleados.addColumn("Impusetos Renta");
         modeloTablaEmpleados.addColumn("Neto");
 
         listarEmpleados();
@@ -73,7 +75,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
             servicioEmpleado.leerEmpleado(objEmpleados);
 
             for (String[] lista : objEmpleados.getEmpleadosLista()) {
-                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4], lista[5]});
+                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4], lista[5], lista[6], lista[7]});
             }
 
         } catch (Exception e) {
@@ -315,7 +317,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
             objEmpleados.setCorreo(txtCorreoAgregar.getText());
             objEmpleados.setPassword(txtPasswordAgregar.getText());
             objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
-            objEmpleados.setSalarioNeto(objEmpleados.getSalarioBruto() - 500);
+            
 
             servicioEmpleado.agregarEmpleado(objEmpleados);
             
@@ -357,7 +359,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
         objEmpleados.setNombre(txtNombreAgregar.getText());
         objEmpleados.setCorreo(txtCorreoAgregar.getText());
         objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
-        objEmpleados.setSalarioNeto(objEmpleados.getSalarioBruto() - 500);
+        
 
         if (!txtPasswordAgregar.getText().isEmpty()) {
             objEmpleados.setPassword(txtPasswordAgregar.getText());

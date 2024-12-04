@@ -21,14 +21,46 @@ public class LogicaEmpleados implements ServicioEmpleado {
         this.objServicioIdControl = new IdControl();
 
     }
+    
+    public void rebajaSalario(Empleados objEmpleados){
+        
+        objEmpleados.setSeguro(objEmpleados.getSalarioBruto() * 0.10 );
+        
+        if (objEmpleados.getSalarioBruto() > 4783000) {
+            
+            objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.25);
+            
+            
+        }if ((objEmpleados.getImpuestoRenta() > 2392000) && (objEmpleados.getImpuestoRenta() <= 4783000)) {
+            
+            objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.20);
+            
+        }if ((objEmpleados.getSalarioBruto() > 1363000) && (objEmpleados.getSalarioBruto() <= 2392000)) {
+            
+            objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.15);
+            
+        }if ((objEmpleados.getSalarioBruto() > 929000) && (objEmpleados.getSalarioBruto() <= 1363000)) {
+            
+            objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.10);
+        }if ((objEmpleados.getSalarioBruto() <= 929000)){
+            
+            objEmpleados.setImpuestoRenta(0);
+            
+        }
+        objEmpleados.setSalarioNeto((objEmpleados.getSalarioBruto() - objEmpleados.getImpuestoRenta()) - objEmpleados.getSeguro());
+    }
+    
+    
 
     public void datosRegistro(Empleados objEmpleados){
-        String registro = objEmpleados.getId() + ","
-                + objEmpleados.getNombre() + ","
-                + objEmpleados.getPassword() + ","
-                + objEmpleados.getCorreo() + ","
-                + objEmpleados.getSalarioBruto() + ","
-                + objEmpleados.getSalarioNeto();
+        String registro = objEmpleados.getId() + ","// 0
+                + objEmpleados.getNombre() + "," // 1
+                + objEmpleados.getPassword() + "," //2
+                + objEmpleados.getCorreo() + "," //3
+                + objEmpleados.getSalarioBruto() + "," // 4
+                + objEmpleados.getSeguro()+ "," //5
+                + objEmpleados.getImpuestoRenta() + "," //6
+                + objEmpleados.getSalarioNeto(); //7
         objAccesoDatosEmpleados.setRegistro(registro);
     }
     /**
@@ -51,6 +83,8 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
         int id = objServicioIdControl.getNextId(objAccesoDatosEmpleados.getNombreArchivo());
 
+        rebajaSalario(objEmpleados);
+        
         objEmpleados.setId(id);
         datosRegistro(objEmpleados);
         objAccesoDatosEmpleados.agregarEmpleadoRegistro();
@@ -117,15 +151,11 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
         objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
 
-        String registro = objEmpleados.getId() + ","
-                + objEmpleados.getNombre() + ","
-                + objEmpleados.getPassword() + ","
-                + objEmpleados.getCorreo() + ","
-                + objEmpleados.getSalarioBruto() + ","
-                + objEmpleados.getSalarioNeto();
+        datosRegistro(objEmpleados);
+        rebajaSalario(objEmpleados);
         
-        objAccesoDatosEmpleados.setRegistro(registro);
         objAccesoDatosEmpleados.actualizarEmpleadoRegistro(objEmpleados.getId());
+        
 
     }
 

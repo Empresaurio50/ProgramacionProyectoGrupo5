@@ -15,54 +15,53 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
     private static AccesoDatosEmpleados objAccesoDatosEmpleados;
     private static ServicioIdControl objServicioIdControl;
-    
 
     public LogicaEmpleados() throws IOException {
         this.objServicioIdControl = new IdControl();
 
     }
-    
-    public void rebajaSalario(Empleados objEmpleados){
-        
-        objEmpleados.setSeguro(objEmpleados.getSalarioBruto() * 0.10 );
-        
-        if (objEmpleados.getSalarioBruto() > 4783000) {
-            
+
+    public void rebajaSalario(Empleados objEmpleados) {
+
+        objEmpleados.setSeguro(objEmpleados.getSalarioBruto() * 0.10);
+
+        if (objEmpleados.getSalarioBruto() > 4783000.0) {
             objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.25);
-            
-            
-        }if ((objEmpleados.getImpuestoRenta() > 2392000) && (objEmpleados.getImpuestoRenta() <= 4783000)) {
-            
+
+        }
+        if ((objEmpleados.getImpuestoRenta() > 2392000.0) && (objEmpleados.getImpuestoRenta() <= 4783000.0)) {
             objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.20);
-            
-        }if ((objEmpleados.getSalarioBruto() > 1363000) && (objEmpleados.getSalarioBruto() <= 2392000)) {
-            
+
+        }
+        if ((objEmpleados.getSalarioBruto() > 1363000.0) && (objEmpleados.getSalarioBruto() <= 2392000.0)) {
             objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.15);
-            
-        }if ((objEmpleados.getSalarioBruto() > 929000) && (objEmpleados.getSalarioBruto() <= 1363000)) {
-            
+
+        }
+        if ((objEmpleados.getSalarioBruto() > 929000.0) && (objEmpleados.getSalarioBruto() <= 1363000.0)) {
             objEmpleados.setImpuestoRenta(objEmpleados.getSalarioBruto() * 0.10);
-        }if ((objEmpleados.getSalarioBruto() <= 929000)){
-            
+        }
+        if ((objEmpleados.getSalarioBruto() <= 929000.0)) {
             objEmpleados.setImpuestoRenta(0);
-            
+
         }
         objEmpleados.setSalarioNeto((objEmpleados.getSalarioBruto() - objEmpleados.getImpuestoRenta()) - objEmpleados.getSeguro());
     }
-    
-    
 
-    public void datosRegistro(Empleados objEmpleados){
+    public void datosRegistro(Empleados objEmpleados) {
+
+        rebajaSalario(objEmpleados);
+
         String registro = objEmpleados.getId() + ","// 0
                 + objEmpleados.getNombre() + "," // 1
                 + objEmpleados.getPassword() + "," //2
                 + objEmpleados.getCorreo() + "," //3
                 + objEmpleados.getSalarioBruto() + "," // 4
-                + objEmpleados.getSeguro()+ "," //5
+                + objEmpleados.getSeguro() + "," //5
                 + objEmpleados.getImpuestoRenta() + "," //6
                 + objEmpleados.getSalarioNeto(); //7
         objAccesoDatosEmpleados.setRegistro(registro);
     }
+
     /**
      * Agrega un nuevo empleado a la lista de empleados.
      *
@@ -84,7 +83,7 @@ public class LogicaEmpleados implements ServicioEmpleado {
         int id = objServicioIdControl.getNextId(objAccesoDatosEmpleados.getNombreArchivo());
 
         rebajaSalario(objEmpleados);
-        
+
         objEmpleados.setId(id);
         datosRegistro(objEmpleados);
         objAccesoDatosEmpleados.agregarEmpleadoRegistro();
@@ -152,28 +151,24 @@ public class LogicaEmpleados implements ServicioEmpleado {
         objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
 
         datosRegistro(objEmpleados);
-        rebajaSalario(objEmpleados);
-        
+
         objAccesoDatosEmpleados.actualizarEmpleadoRegistro(objEmpleados.getId());
-        
 
     }
 
-    public void verificarEmpleado(Empleados objEmpleados) throws IOException{
-        
+    public void verificarEmpleado(Empleados objEmpleados) throws IOException {
+
         objAccesoDatosEmpleados = new AccesoDatosEmpleados();
-        
+
         objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
-        
+
         objAccesoDatosEmpleados.setBuscarCorreo(objEmpleados.getCorreo());
         objAccesoDatosEmpleados.setBuscarPassword(objEmpleados.getPassword());
-        
+
         objAccesoDatosEmpleados.verificarEmpleado();
-        
-        objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion());
-        
-        
+
+        objEmpleados.setVerificacion(objAccesoDatosEmpleados.isVerificacion());
+
     }
-    
 
 }

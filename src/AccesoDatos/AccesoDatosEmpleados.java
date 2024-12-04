@@ -20,16 +20,18 @@ public class AccesoDatosEmpleados {
 
     private String nombreArchivo, registro, buscarCorreo, buscarPassword;
     private ArrayList<String[]> listaEmpleados;
-    private String nombreArchivoPDF;
-    private Boolean verificacion;
-
-    public Boolean getVerificacion() {
+    private String nombreArchivoPDF; 
+    private boolean verificacion;
+    
+    public boolean isVerificacion() {
         return verificacion;
     }
 
-    public void setVerificacion(Boolean verificacion) {
+    public void setVerificacion(boolean verificacion) {
         this.verificacion = verificacion;
     }
+    
+
 
     public String getBuscarCorreo() {
         return buscarCorreo;
@@ -190,6 +192,7 @@ public class AccesoDatosEmpleados {
                 if (datos[3].equals(buscarCorreo) && datos[2].equals(buscarPassword)) {
 
                     verificacion = true;
+                    break;
                 } else {
                     verificacion = false;
                 }

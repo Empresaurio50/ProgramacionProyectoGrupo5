@@ -15,7 +15,9 @@ public class Empleados {
     private String nombre, correo, password;
     private int id;
     private double salarioBruto, salarioNeto, seguro, impuestoRenta, aportesPatronales;
-
+    private ArrayList empleadosLista = new ArrayList();
+    private boolean verificacion;
+    
     public double getSeguro() {
         return seguro;
     }
@@ -39,8 +41,7 @@ public class Empleados {
     public void setAportesPatronales(double aportesPatronales) {
         this.aportesPatronales = aportesPatronales;
     }
-    private ArrayList empleadosLista = new ArrayList();
-    private boolean verificacion;
+
 
     
     

@@ -16,7 +16,19 @@ public class Empleados {
     private int id;
     private double salarioBruto, salarioNeto;
     private ArrayList empleadosLista = new ArrayList();
+    private boolean verificacion;
 
+    
+    
+    
+    public boolean isVerificacion() {
+        return verificacion;
+    }
+
+    public void setVerificacion(boolean verificacion) {
+        this.verificacion = verificacion;
+    }
+    
     /**
      * Obtiene el salario bruto (sin descuentos) de un empleado.
      *
@@ -41,7 +53,7 @@ public class Empleados {
      *
      * @return El salario neto como un valor double.
      *
-     * @ lưu ý: Esta función no está implementada en el código proporcionado.
+     * Esta función no está implementada en el código proporcionado.
      * Deberá implementarla para calcular el salario neto en base al salario
      * bruto y cualquier descuento aplicable.
      */
@@ -55,7 +67,7 @@ public class Empleados {
      * @param salarioNeto El nuevo salario neto del empleado como un valor
      * double.
      *
-     * @ lưu ý: Esta función puede ser útil si se calcula el salario neto en
+     * Esta función puede ser útil si se calcula el salario neto en
      * otro lugar y se desea establecerlo directamente. Sin embargo, es más
      * común calcular el salario neto en el método `getSalarioNeto`.
      */
@@ -125,8 +137,7 @@ public class Empleados {
     }
 
     /**
-     * Obtiene la contraseña de un empleado (se recomienda almacenar contraseñas
-     * de forma segura).
+     * Obtiene la contraseña de un empleado.
      *
      * @return La contraseña del empleado como una cadena de caracteres.
      *
@@ -139,15 +150,12 @@ public class Empleados {
     }
 
     /**
-     * Establece la contraseña de un empleado (se recomienda almacenar
-     * contraseñas de forma segura).
+     * Establece la contraseña de un empleado.
      *
      * @param password La nueva contraseña del empleado como una cadena de
      * caracteres.
      *
-     * @aviso: Almacenar contraseñas en texto plano es una mala práctica de
-     * seguridad. Se deben utilizar técnicas como el hash y el salazón para
-     * proteger las contraseñas.
+     * 
      */
     public void setPassword(String password) {
         this.password = password;

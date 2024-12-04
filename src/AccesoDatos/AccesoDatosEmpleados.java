@@ -18,9 +18,34 @@ import java.util.ArrayList;
  */
 public class AccesoDatosEmpleados {
 
-    private String nombreArchivo, registro;
+    private String nombreArchivo, registro, buscarCorreo, buscarPassword;
     private ArrayList<String[]> listaEmpleados;
     private String nombreArchivoPDF;
+    private Boolean verificacion;
+
+    public Boolean getVerificacion() {
+        return verificacion;
+    }
+
+    public void setVerificacion(Boolean verificacion) {
+        this.verificacion = verificacion;
+    }
+
+    public String getBuscarCorreo() {
+        return buscarCorreo;
+    }
+
+    public void setBuscarCorreo(String buscarCorreo) {
+        this.buscarCorreo = buscarCorreo;
+    }
+
+    public String getBuscarPassword() {
+        return buscarPassword;
+    }
+
+    public void setBuscarPassword(String buscarPassword) {
+        this.buscarPassword = buscarPassword;
+    }
 
     public AccesoDatosEmpleados() {
 
@@ -138,7 +163,6 @@ public class AccesoDatosEmpleados {
 
                 if (datos[0].equals(String.valueOf(id))) {
                     continue;
-
                 } else {
                     bW.append(registroActual);
                     bW.newLine();
@@ -150,6 +174,26 @@ public class AccesoDatosEmpleados {
         }
         if (!archivoTemporal.renameTo(archivoActual)) {
             throw new IOException("No se puede renombrear el archivo actual");
+        }
+    }
+
+    public void verificarEmpleado() throws IOException {
+
+        try (BufferedReader readEmpleado = new BufferedReader(new FileReader(this.nombreArchivo))) {
+
+            String line;
+
+            while ((line = readEmpleado.readLine()) != null) {
+
+                String[] datos = line.split(",");
+
+                if (datos[3].equals(buscarCorreo) && datos[2].equals(buscarPassword)) {
+
+                    verificacion = true;
+                } else {
+                    verificacion = false;
+                }
+            }
         }
     }
 }

@@ -129,6 +129,21 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
     }
 
+    public void verificarEmpleado(Empleados objEmpleados) throws IOException{
+        
+        objAccesoDatosEmpleados = new AccesoDatosEmpleados();
+        
+        objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
+        
+        objAccesoDatosEmpleados.setBuscarCorreo(objEmpleados.getCorreo());
+        objAccesoDatosEmpleados.setBuscarPassword(objEmpleados.getPassword());
+        
+        objAccesoDatosEmpleados.verificarEmpleado();
+        
+        objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion());
+        
+        
+    }
     
 
 }

@@ -17,6 +17,7 @@ public interface ServicioEmpleado {
     void leerEmpleado(Empleados objEmpleados) throws IOException;
     void eliminarEmpleado(Empleados objEmpleados) throws IOException;
     void actualizarEmpleado(Empleados objEmpleados) throws IOException;
+    void verificarEmpleado(Empleados objEmpleados) throws IOException;
     
     
 }

@@ -318,8 +318,13 @@ public class VentanaCRUD extends javax.swing.JFrame {
             objEmpleados.setSalarioNeto(objEmpleados.getSalarioBruto() - 500);
 
             servicioEmpleado.agregarEmpleado(objEmpleados);
-
-        } catch (IOException e) {
+            
+            
+           
+            
+            
+            
+        }catch (IOException e) {
         }
         CargarEmpleados();
     }//GEN-LAST:event_bttAgregarActionPerformed

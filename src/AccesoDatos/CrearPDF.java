@@ -4,10 +4,8 @@ import com.itextpdf.text.Document; // Importa la clase Document de iText, que se
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;//Permite trabajar con objetos de tipo Paragraph para añadir texto en los documentos PDF.
 import com.itextpdf.text.pdf.PdfWriter; //permite escribir contenido en un archivo PDF y manejar la creación del archivo.
-import java.io.File; //Importa la clase File, que se usa para manejar operaciones relacionadas con archivos, como crear o verificar su existencia.
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;// Esta clase se usa para escribir datos a un archivo, en este caso, para guardar el PDF generado.
-import java.util.ArrayList;
 
 public class CrearPDF {
 

@@ -38,7 +38,8 @@ public class LogicaCorreos implements Servicios.ServicioCorreo{
                 + objCorreo.getCorreo() + "," //1 contiene el correo del empleado
                 + objCorreo.getMensajePDF() + "," //2 contiene el mensaje del pdf
                 + objCorreo.getAsunto() + "," //3 contiene el asunto del correo
-                + objCorreo.getMensaje(); //4 contiene el mensaje del correo
+                + objCorreo.getMensaje() //4 contiene el mensaje del correo
+                + objCorreo.getSalarioBruto(); // 5 contiene el salario bruto
     }
 
     /**

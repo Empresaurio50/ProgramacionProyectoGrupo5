@@ -47,9 +47,6 @@ public class VentanaCRUD extends javax.swing.JFrame {
         //modeloTablaEmpleados.addColumn("Contraseña");
         modeloTablaEmpleados.addColumn("Correo");
         modeloTablaEmpleados.addColumn("Salario Bruto");
-        modeloTablaEmpleados.addColumn("CCSS");
-        modeloTablaEmpleados.addColumn("Impusetos Renta");
-        modeloTablaEmpleados.addColumn("Neto");
 
         listarEmpleados();
 
@@ -75,7 +72,7 @@ public class VentanaCRUD extends javax.swing.JFrame {
             servicioEmpleado.leerEmpleado(objEmpleados);
 
             for (String[] lista : objEmpleados.getEmpleadosLista()) {
-                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4], lista[5], lista[6], lista[7]});
+                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4]});
             }
 
         } catch (Exception e) {

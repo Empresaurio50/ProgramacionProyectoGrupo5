@@ -8,7 +8,7 @@ package Entidades;
  *
  * @author Empresaurio50
  */
-public class Correos extends Empleados{
+public class Correos extends Nominas{
     
     private String asunto, mensajePDF, mensaje;
     

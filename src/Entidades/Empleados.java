@@ -14,37 +14,9 @@ public class Empleados {
 
     private String nombre, correo, password;
     private int id;
-    private double salarioBruto, salarioNeto, seguro, impuestoRenta, aportesPatronales;
+    private double salarioBruto;
     private ArrayList empleadosLista = new ArrayList();
     private boolean verificacion;
-    
-    public double getSeguro() {
-        return seguro;
-    }
-
-    public void setSeguro(double seguro) {
-        this.seguro = seguro;
-    }
-
-    public double getImpuestoRenta() {
-        return impuestoRenta;
-    }
-
-    public void setImpuestoRenta(double impuestoRenta) {
-        this.impuestoRenta = impuestoRenta;
-    }
-
-    public double getAportesPatronales() {
-        return aportesPatronales;
-    }
-
-    public void setAportesPatronales(double aportesPatronales) {
-        this.aportesPatronales = aportesPatronales;
-    }
-
-
-    
-    
     
     public boolean isVerificacion() {
         return verificacion;
@@ -73,33 +45,7 @@ public class Empleados {
         this.salarioBruto = salarioBruto;
     }
 
-    /**
-     * Obtiene el salario neto (con descuentos aplicados) de un empleado.
-     *
-     * @return El salario neto como un valor double.
-     *
-     * Esta función no está implementada en el código proporcionado.
-     * Deberá implementarla para calcular el salario neto en base al salario
-     * bruto y cualquier descuento aplicable.
-     */
-    public double getSalarioNeto() {
-        return salarioNeto;
-    }
-
-    /**
-     * Establece el salario neto (con descuentos aplicados) de un empleado.
-     *
-     * @param salarioNeto El nuevo salario neto del empleado como un valor
-     * double.
-     *
-     * Esta función puede ser útil si se calcula el salario neto en
-     * otro lugar y se desea establecerlo directamente. Sin embargo, es más
-     * común calcular el salario neto en el método `getSalarioNeto`.
-     */
-    public void setSalarioNeto(double salarioNeto) {
-        this.salarioNeto = salarioNeto;
-    }
-
+    
     /**
      * Obtiene una lista de empleados.
      *

@@ -4,8 +4,15 @@
  */
 package Presentacion;
 
+import java.awt.BorderLayout;
+import java.awt.Dimension;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.JFreeChart;
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.ui.ArrowPanel;
 
 /**
  *
@@ -15,7 +22,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private VentanaCRUD vCRUD;
     private VentanaCorreo vCorreo;
+    
 
+    private VentanaPatrono vPatrono;
     /**
      * Creates new form VentanaPrincipal
      */
@@ -23,12 +32,17 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         try {
             this.vCRUD = new VentanaCRUD();
             this.vCorreo = new VentanaCorreo();
+            this.vPatrono = new VentanaPatrono();
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null,"Error: " + e.getMessage());
         }
         
         initComponents();
     }
+    
+    
+  
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -43,20 +57,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         bttCorreos = new javax.swing.JButton();
         bttEmpleados = new javax.swing.JButton();
         lblTituloMenuPrincipal = new javax.swing.JLabel();
+        bttPatron = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        Jpanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imanConejo.jpg"))); // NOI18N
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/homeroFile.jpg"))); // NOI18N
 
@@ -66,19 +81,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(194, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(59, 59, 59)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addContainerGap(111, Short.MAX_VALUE))
+                .addGap(20, 20, 20)
+                .addComponent(jLabel2)
+                .addContainerGap(180, Short.MAX_VALUE))
         );
 
         jPanel3.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -20, 350, 400));
@@ -110,6 +121,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         lblTituloMenuPrincipal.setText("Menú Opciones");
 
+        bttPatron.setText("Patron");
+        bttPatron.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttPatronActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
@@ -117,6 +135,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addGap(63, 63, 63)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bttPatron)
                     .addComponent(lblTituloMenuPrincipal)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addGap(3, 3, 3)
@@ -133,18 +152,37 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addComponent(bttCorreos)
                 .addGap(44, 44, 44)
                 .addComponent(bttEmpleados)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGap(62, 62, 62)
+                .addComponent(bttPatron)
+                .addContainerGap(68, Short.MAX_VALUE))
         );
+
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        Jpanel1.setBackground(new java.awt.Color(255, 255, 255));
+        Jpanel1.setForeground(new java.awt.Color(255, 255, 255));
+        Jpanel1.setLayout(new java.awt.BorderLayout());
+        jPanel2.add(Jpanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 280, 210));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/imanConejo.jpg"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(25, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 536, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -153,8 +191,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
                 .addGap(21, 21, 21)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 255, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -171,6 +213,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vCRUD.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bttEmpleadosActionPerformed
+
+    private void bttPatronActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPatronActionPerformed
+        
+        
+        vPatrono.setVisible(true);
+        this.setVisible(false);
+        
+        
+        
+    }//GEN-LAST:event_bttPatronActionPerformed
 
     /**
      * @param args the command line arguments
@@ -208,11 +260,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Jpanel1;
     private javax.swing.JButton bttCorreos;
     private javax.swing.JButton bttEmpleados;
+    private javax.swing.JButton bttPatron;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;

@@ -1,7 +1,5 @@
-3,samuel,43,samuel@g,100000.0,10000.0,0.0,90000.0
-4,kendall,43,lol@12,2500000.0,250000.0,0.0,2250000.0
-5,saaaa,43,sdca@,5000000.0,500000.0,1250000.0,3250000.0
-6,catalina,43,cataa@,1492000.0,149200.0,223800.0,1119000.0
-7,balboa,213,balboa@,1000000.0,100000.0,100000.0,800000.0
-8,ApoloCreed,43,bryan@,1500000.0,150000.0,225000.0,1125000.0
-9,Messi,43,messi@,1373000.0,137300.0,205950.0,1029750.0
+1,Kendall,123,kendall@gmail.com,1000000.0
+2,Lionel,321,messi@gmail.com,1.0E7
+3,Rocky,3214,Balboa@gmail.com,5000000.0
+4,Josbel,55,Josbel@gmail.com,3000000.0
+5,Samuel,5,samuel@gmail.com,2000000.0

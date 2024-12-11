@@ -3,7 +3,11 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Presentacion;
-
+import LogicaNegocio.LogicaEmpleados;
+import Servicios.ServicioEmpleado;
+import Entidades.Empleados;
+import java.io.IOException;
+import javax.swing.JOptionPane;
 /**
  *
  * @author Empresaurio50
@@ -13,7 +17,15 @@ public class VentanaPatrono extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPatrono
      */
+    private ServicioEmpleado servicioEmpleado;
+    private Empleados objEmpleados;
     public VentanaPatrono() {
+        try {
+            
+            servicioEmpleado = new LogicaEmpleados();
+        } catch (Exception e) {
+        }
+        
         initComponents();
     }
 
@@ -29,6 +41,8 @@ public class VentanaPatrono extends javax.swing.JFrame {
         lblOpciones = new javax.swing.JLabel();
         bttPlantilla = new javax.swing.JButton();
         bttPagosTotales = new javax.swing.JButton();
+        bttTodosCorreo = new javax.swing.JButton();
+        bttTotalSalarios = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -37,6 +51,20 @@ public class VentanaPatrono extends javax.swing.JFrame {
         bttPlantilla.setText("Plantilla");
 
         bttPagosTotales.setText("Pagos Plantilla");
+
+        bttTodosCorreo.setText("Todos Correos");
+        bttTodosCorreo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttTodosCorreoActionPerformed(evt);
+            }
+        });
+
+        bttTotalSalarios.setText("Total Salario");
+        bttTotalSalarios.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttTotalSalariosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -51,7 +79,9 @@ public class VentanaPatrono extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bttPlantilla)
-                            .addComponent(bttPagosTotales))))
+                            .addComponent(bttPagosTotales)
+                            .addComponent(bttTodosCorreo)
+                            .addComponent(bttTotalSalarios))))
                 .addContainerGap(259, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -63,11 +93,61 @@ public class VentanaPatrono extends javax.swing.JFrame {
                 .addComponent(bttPlantilla)
                 .addGap(48, 48, 48)
                 .addComponent(bttPagosTotales)
-                .addContainerGap(112, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(bttTodosCorreo)
+                .addGap(18, 18, 18)
+                .addComponent(bttTotalSalarios)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void bttTodosCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTodosCorreoActionPerformed
+        objEmpleados = new Empleados();
+        
+        try {
+            servicioEmpleado.leerEmpleado(objEmpleados);
+            
+            for (String[] strings : objEmpleados.getEmpleadosLista()) {
+                
+                    JOptionPane.showMessageDialog(null, strings[3]);
+                
+            }
+            
+        } catch (IOException e) {
+            
+            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+        }
+        
+        
+        
+        
+    }//GEN-LAST:event_bttTodosCorreoActionPerformed
+
+    private void bttTotalSalariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTotalSalariosActionPerformed
+        
+        objEmpleados = new Empleados();
+        
+        try {
+            servicioEmpleado.leerEmpleado(objEmpleados);
+             double totalSalarios = 0;
+            
+            for (String[] strings : objEmpleados.getEmpleadosLista()) {
+                
+                
+                 totalSalarios = totalSalarios + Double.parseDouble(strings[4]);
+                
+            }
+            
+            JOptionPane.showMessageDialog(null, totalSalarios);
+        } catch (IOException e) {
+            
+            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+        }
+        
+        
+    }//GEN-LAST:event_bttTotalSalariosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,6 +187,8 @@ public class VentanaPatrono extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttPagosTotales;
     private javax.swing.JButton bttPlantilla;
+    private javax.swing.JButton bttTodosCorreo;
+    private javax.swing.JButton bttTotalSalarios;
     private javax.swing.JLabel lblOpciones;
     // End of variables declaration//GEN-END:variables
 }

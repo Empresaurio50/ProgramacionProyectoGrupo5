@@ -6,6 +6,7 @@ import Entidades.Empleados;
 import java.io.IOException;
 import Servicios.ServicioEmpleado;
 import Servicios.ServicioIdControl;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -139,5 +140,14 @@ public class LogicaEmpleados implements ServicioEmpleado {
         objEmpleados.setVerificacion(objAccesoDatosEmpleados.isVerificacion());
 
     }
+    
+    
+        
+        
+    
+    
+    
+    
+    
 
 }

@@ -18,20 +18,19 @@ import java.util.ArrayList;
  */
 public class AccesoDatosEmpleados {
 
-    private String nombreArchivo, registro, buscarCorreo, buscarPassword;
+    private String nombreArchivo, registro, buscarCorreo, buscarPassword,
+            administrador = "admin@gmail.com", contraAdmin = "321";
+    ;
     private ArrayList<String[]> listaEmpleados;
-    private String nombreArchivoPDF; 
-    private boolean verificacion;
-    
-    public boolean isVerificacion() {
+    private int verificacion;
+
+    public int getVerificacion() {
         return verificacion;
     }
 
-    public void setVerificacion(boolean verificacion) {
+    public void setVerificacion(int verificacion) {
         this.verificacion = verificacion;
     }
-    
-
 
     public String getBuscarCorreo() {
         return buscarCorreo;
@@ -189,12 +188,18 @@ public class AccesoDatosEmpleados {
 
                 String[] datos = line.split(",");
 
+                if ((buscarCorreo.equals(administrador)) && (buscarPassword.equals(contraAdmin))) {
+
+                    verificacion = 1;
+                    break;
+                }
+
                 if (datos[3].equals(buscarCorreo) && datos[2].equals(buscarPassword)) {
 
-                    verificacion = true;
+                    verificacion = 2;
                     break;
                 } else {
-                    verificacion = false;
+                    verificacion = 3;
                 }
             }
         }

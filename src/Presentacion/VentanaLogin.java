@@ -9,30 +9,33 @@ import LogicaNegocio.LogicaEmpleados;
 import javax.swing.JOptionPane;
 import Servicios.ServicioEmpleado;
 import java.io.IOException;
+import Presentacion.VentanaPatrono;
+
 /**
  *
  * @author Empresaurio50
  */
 public class VentanaLogin extends javax.swing.JFrame {
 
-    
     private Empleados objEmpleados = new Empleados();
     private ServicioEmpleado servicioEmpledo;
     private VentanaPrincipal ventanaPrincipal;
-    
+    private VentanaPatrono ventanaPatrono;
+
     /**
      * Creates new form VentanaLogin
      */
     public VentanaLogin() {
         initComponents();
         ventanaPrincipal = new VentanaPrincipal();
+        ventanaPatrono = new VentanaPatrono();
         try {
             servicioEmpledo = new LogicaEmpleados();
-            
+
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-        
+
     }
 
     /**
@@ -121,19 +124,24 @@ public class VentanaLogin extends javax.swing.JFrame {
 
         try {
             servicioEmpledo.verificarEmpleado(objEmpleados);
-            if (objEmpleados.isVerificacion()) {
-                
-                
-                ventanaPrincipal.setVisible(true);
-                this.setVisible(false);
-                
-            }else{
 
-                JOptionPane.showMessageDialog(null, "La contrseña o el correo son incorrectos");
+            switch (objEmpleados.getVerificacion()) {
+                case 1:
+                    ventanaPatrono.setVisible(true);
+                    this.setVisible(false);
 
+                    break;
+                case 2:
+
+                    ventanaPrincipal.setVisible(true);
+                    this.setVisible(false);
+                    break;
+
+                default:
+                    JOptionPane.showMessageDialog(null, "La contrseña o el correo son incorrectos");
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 

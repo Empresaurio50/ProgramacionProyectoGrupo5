@@ -4,7 +4,9 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/VentanaPatrono.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/VentanaPrincipal.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Entidades/Patrono.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaPatrono.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Servicios/ServicioPatrono.java</file>
         </group>
     </open-files>
 </project-private>

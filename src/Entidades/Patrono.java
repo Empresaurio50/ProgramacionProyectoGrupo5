@@ -8,11 +8,20 @@ package Entidades;
  *
  * @author Empresaurio50
  */
-public class Patrono {
+public class Patrono extends Empleados{
     
     private int id;
     private String nombre, password, correo;
+    private double totalPagar;
 
+    public double getTotalPagar() {
+        return totalPagar;
+    }
+
+    public void setTotalPagar(double totalPagar) {
+        this.totalPagar = totalPagar;
+    }
+    
     public int getId() {
         return id;
     }

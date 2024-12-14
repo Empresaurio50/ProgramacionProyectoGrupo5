@@ -16,15 +16,17 @@ public class Empleados {
     private int id;
     private double salarioBruto;
     private ArrayList empleadosLista = new ArrayList();
-    private boolean verificacion;
-    
-    public boolean isVerificacion() {
+
+    public int getVerificacion() {
         return verificacion;
     }
 
-    public void setVerificacion(boolean verificacion) {
+    public void setVerificacion(int verificacion) {
         this.verificacion = verificacion;
     }
+    private int verificacion;
+    
+
     
     /**
      * Obtiene el salario bruto (sin descuentos) de un empleado.

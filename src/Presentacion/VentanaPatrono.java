@@ -3,11 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package Presentacion;
+
 import LogicaNegocio.LogicaEmpleados;
 import Servicios.ServicioEmpleado;
-import Entidades.Empleados;
+import Entidades.Patrono;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Empresaurio50
@@ -18,14 +20,15 @@ public class VentanaPatrono extends javax.swing.JFrame {
      * Creates new form VentanaPatrono
      */
     private ServicioEmpleado servicioEmpleado;
-    private Empleados objEmpleados;
+    private Patrono objPatrono;
+
     public VentanaPatrono() {
         try {
-            
+
             servicioEmpleado = new LogicaEmpleados();
         } catch (Exception e) {
         }
-        
+
         initComponents();
     }
 
@@ -104,49 +107,39 @@ public class VentanaPatrono extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void bttTodosCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTodosCorreoActionPerformed
-        objEmpleados = new Empleados();
-        
+        objPatrono = new Patrono();
+
         try {
-            servicioEmpleado.leerEmpleado(objEmpleados);
-            
-            for (String[] strings : objEmpleados.getEmpleadosLista()) {
-                
-                    JOptionPane.showMessageDialog(null, strings[3]);
-                
+            servicioEmpleado.leerEmpleado(objPatrono);
+
+            for (String[] Datos : objPatrono.getEmpleadosLista()) {
+
+                JOptionPane.showMessageDialog(null, "Se envio un reporte de su salario a " + Datos[3]);
+
             }
-            
+
         } catch (IOException e) {
-            
+
             JOptionPane.showMessageDialog(null, "Ocurrio un error");
         }
-        
-        
-        
-        
+
+
     }//GEN-LAST:event_bttTodosCorreoActionPerformed
 
     private void bttTotalSalariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTotalSalariosActionPerformed
-        
-        objEmpleados = new Empleados();
-        
+
+        objPatrono = new Patrono();
+
         try {
-            servicioEmpleado.leerEmpleado(objEmpleados);
-             double totalSalarios = 0;
-            
-            for (String[] strings : objEmpleados.getEmpleadosLista()) {
-                
-                
-                 totalSalarios = totalSalarios + Double.parseDouble(strings[4]);
-                
-            }
-            
-            JOptionPane.showMessageDialog(null, totalSalarios);
+            servicioEmpleado.leerEmpleado(objPatrono);
+
+            JOptionPane.showMessageDialog(null, "El total a pagar de plantilla seria de " + objPatrono.getTotalPagar());
         } catch (IOException e) {
-            
+
             JOptionPane.showMessageDialog(null, "Ocurrio un error");
         }
-        
-        
+
+
     }//GEN-LAST:event_bttTotalSalariosActionPerformed
 
     /**

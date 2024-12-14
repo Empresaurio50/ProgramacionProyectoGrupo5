@@ -137,7 +137,7 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
         objAccesoDatosEmpleados.verificarEmpleado();
 
-        objEmpleados.setVerificacion(objAccesoDatosEmpleados.isVerificacion());
+        objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion());
 
     }
     

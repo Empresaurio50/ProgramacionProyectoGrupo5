@@ -4,11 +4,21 @@
  */
 package Presentacion;
 
+import Entidades.Correos;
+import Entidades.Empleados;
 import LogicaNegocio.LogicaEmpleados;
 import Servicios.ServicioEmpleado;
 import Entidades.Patrono;
+import LogicaNegocio.LogicaCorreos;
 import java.io.IOException;
 import javax.swing.JOptionPane;
+import Servicios.ServicioCorreo;
+import com.itextpdf.text.DocumentException;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
 
 /**
  *
@@ -19,8 +29,11 @@ public class VentanaPatrono extends javax.swing.JFrame {
     /**
      * Creates new form VentanaPatrono
      */
+    private ServicioCorreo servicioCorreo;
     private ServicioEmpleado servicioEmpleado;
     private Patrono objPatrono;
+    private Correos objCorreo;
+    private Empleados objEmpleados;
 
     public VentanaPatrono() {
         try {
@@ -108,19 +121,37 @@ public class VentanaPatrono extends javax.swing.JFrame {
 
     private void bttTodosCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTodosCorreoActionPerformed
         objPatrono = new Patrono();
+        objCorreo = new Correos();
+        objEmpleados = new Empleados();
+        servicioCorreo = new LogicaCorreos();
 
         try {
-            servicioEmpleado.leerEmpleado(objPatrono);
+            servicioEmpleado.leerEmpleado(objEmpleados);
 
-            for (String[] Datos : objPatrono.getEmpleadosLista()) {
+            for (String[] Datos : objEmpleados.getEmpleadosLista()) {
 
                 JOptionPane.showMessageDialog(null, "Se envio un reporte de su salario a " + Datos[3]);
+
+                objCorreo.setNombre(Datos[1]);
+                objCorreo.setCorreo(Datos[3]);
+                objCorreo.setMensaje(" gfd");
+                objCorreo.setMensajePDF("dfg ");
+                objCorreo.setAsunto(" fdg");
+                
+                servicioCorreo.crearPDF(objCorreo);
+                servicioCorreo.enviarCorreos(objCorreo);
 
             }
 
         } catch (IOException e) {
 
             JOptionPane.showMessageDialog(null, "Ocurrio un error");
+        } catch (SendFailedException ex) {
+            Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
+            Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (DocumentException ex) {
+            Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
         }
 
 
@@ -133,7 +164,14 @@ public class VentanaPatrono extends javax.swing.JFrame {
         try {
             servicioEmpleado.leerEmpleado(objPatrono);
 
-            JOptionPane.showMessageDialog(null, "El total a pagar de plantilla seria de " + objPatrono.getTotalPagar());
+            double totalPagar = 0;
+            for (String[] datosPatrono : objPatrono.getEmpleadosLista()) {
+
+                totalPagar = totalPagar + Double.parseDouble(datosPatrono[4]);
+
+            }
+            JOptionPane.showMessageDialog(null, "Total a pagar " + totalPagar);
+            objPatrono.setTotalPagar(totalPagar);
         } catch (IOException e) {
 
             JOptionPane.showMessageDialog(null, "Ocurrio un error");

@@ -5,8 +5,8 @@
         <group>
             <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/VentanaPatrono.java</file>
             <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Entidades/Patrono.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaPatrono.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Servicios/ServicioPatrono.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/VentanaCorreo.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaCorreos.java</file>
         </group>
     </open-files>
 </project-private>

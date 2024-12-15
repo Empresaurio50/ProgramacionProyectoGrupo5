@@ -1,14 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package Entidades;
 
 /**
  *
  * @author Empresaurio50
  */
-public class Patrono extends Empleados{
+public class Patrono extends Correos{
     
     private int id;
     private String nombre, password, correo;

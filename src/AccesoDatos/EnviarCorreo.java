@@ -20,28 +20,58 @@ public class EnviarCorreo {
     private ArrayList<File> archivos = new ArrayList<>();
     private String nombrePDF;
 
+    /**
+     * Obtiene el nombre del archivo PDF.
+     *
+     * @return El nombre del archivo PDF.
+     */
     public String getNombrePDF() {
         return nombrePDF;
     }
 
+    /**
+     * Establece el nombre del archivo PDF.
+     *
+     * @param nombrePDF El nombre del archivo PDF.
+     */
     public void setNombrePDF(String nombrePDF) {
         this.nombrePDF = nombrePDF;
     }
 
     private String datos;
 
+    /**
+     * Obtiene la lista de archivos.
+     *
+     * @return La lista de archivos.
+     */
     public ArrayList<File> getArchivos() {
         return archivos;
     }
 
+    /**
+     * Añade un archivo a la lista de archivos.
+     *
+     * @param archivos El archivo a añadir a la lista.
+     */
     public void setArchivos(File archivos) {
         this.archivos.add(archivos);
     }
 
+    /**
+     * Obtiene los datos.
+     *
+     * @return Los datos.
+     */
     public String getDatos() {
         return datos;
     }
 
+    /**
+     * Establece los datos.
+     *
+     * @param datos Los nuevos datos.
+     */
     public void setDatos(String datos) {
         this.datos = datos;
     }
@@ -96,9 +126,9 @@ public class EnviarCorreo {
      * @throws MessagingException Si ocurre un error al crear las partes MIME.
      */
     public void crearArchivos() throws MessagingException {
-        
+
         try {
-            
+
             for (File archivos : getArchivos()) {
                 BodyPart adjunto = new MimeBodyPart();
                 adjunto.setDataHandler(new DataHandler(new FileDataSource(archivos.getAbsolutePath())));
@@ -148,7 +178,7 @@ public class EnviarCorreo {
 
             // Configurar el contenido del mensaje con el multipart
             objMultipart.addBodyPart(objBodyPart);
-            if (getArchivos()!= null) {
+            if (getArchivos() != null) {
                 crearArchivos();
                 for (BodyPart adjunto : adjuntos) {
                     objMultipart.addBodyPart(adjunto);

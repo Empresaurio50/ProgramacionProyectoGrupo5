@@ -20,71 +20,136 @@ public class AccesoDatosEmpleados {
 
     private String nombreArchivo, registro, buscarCorreo, buscarPassword,
             administrador = "admin@gmail.com", contraAdmin = "321";
+
     ;
 
-    public String getAdministrador() {
+    /**
+ * Obtiene el administrador.
+ * 
+ * @return El administrador.
+ */
+public String getAdministrador() {
         return administrador;
     }
+
     private ArrayList<String[]> listaEmpleados;
     private int verificacion;
 
+    /**
+     * Obtiene el valor de verificación.
+     *
+     * @return El valor de verificación.
+     */
     public int getVerificacion() {
         return verificacion;
     }
 
+    /**
+     * Establece el valor de verificación.
+     *
+     * @param verificacion El nuevo valor de verificación.
+     */
     public void setVerificacion(int verificacion) {
         this.verificacion = verificacion;
     }
 
+    /**
+     * Obtiene el correo a buscar.
+     *
+     * @return El correo a buscar.
+     */
     public String getBuscarCorreo() {
         return buscarCorreo;
     }
 
+    /**
+     * Establece el correo a buscar.
+     *
+     * @param buscarCorreo El nuevo correo a buscar.
+     */
     public void setBuscarCorreo(String buscarCorreo) {
         this.buscarCorreo = buscarCorreo;
     }
 
+    /**
+     * Obtiene la contraseña a buscar.
+     *
+     * @return La contraseña a buscar.
+     */
     public String getBuscarPassword() {
         return buscarPassword;
     }
 
+    /**
+     * Establece la contraseña a buscar.
+     *
+     * @param buscarPassword La nueva contraseña a buscar.
+     */
     public void setBuscarPassword(String buscarPassword) {
         this.buscarPassword = buscarPassword;
     }
 
+    /**
+     * Constructor de la clase AccesoDatosEmpleados.
+     */
     public AccesoDatosEmpleados() {
 
     }
 
+    /**
+     * Obtiene el nombre del archivo.
+     *
+     * @return El nombre del archivo.
+     */
     public String getNombreArchivo() {
         return nombreArchivo;
     }
 
+    /**
+     * Establece el nombre del archivo.
+     *
+     * @param nombreArchivo El nuevo nombre del archivo.
+     */
     public void setNombreArchivo(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
     }
 
+    /**
+     * Obtiene la lista de empleados.
+     *
+     * @return La lista de empleados.
+     */
     public ArrayList<String[]> getListaEmpleados() {
         return listaEmpleados;
     }
 
+    /**
+     * Establece la lista de empleados.
+     *
+     * @param listaEmpleados La nueva lista de empleados.
+     */
     public void setListaEmpleados(ArrayList<String[]> listaEmpleados) {
         this.listaEmpleados = listaEmpleados;
     }
 
+    /**
+     * Obtiene el registro.
+     *
+     * @return El registro.
+     */
     public String getRegistro() {
         return registro;
     }
 
+    /**
+     * Establece el registro.
+     *
+     * @param registro El nuevo registro.
+     */
     public void setRegistro(String registro) {
         this.registro = registro;
     }
 
-    /**
-     * Agrega un nuevo registro de empleado al archivo de texto.
-     *
-     * @throws IOException Si ocurre un error al escribir en el archivo.
-     */
     public void agregarEmpleadoRegistro() throws IOException {
 
         try (BufferedWriter objAgregarRegistro = new BufferedWriter(new FileWriter(this.nombreArchivo, true))) {
@@ -182,13 +247,15 @@ public class AccesoDatosEmpleados {
         }
     }
 
-    /** * Verifica la existencia de un empleado en el archivo. * * Lee el archivo
-     * línea por línea y compara los datos de cada línea * con los correos y contraseñas buscados.
-     * Asigna un valor de verificación según el resultado de la búsqueda: 
-     * - 1 si se encuentra el administrador.
-     * - 2 si se encuentra un empleado. * 
-     * - 3 si no se encuentra ninguno. * 
-     * @throws IOException Si ocurre un error durante la lectura del archivo. 
+    /**
+     * * Verifica la existencia de un empleado en el archivo. * * Lee el
+     * archivo línea por línea y compara los datos de cada línea * con los
+     * correos y contraseñas buscados. Asigna un valor de verificación según el
+     * resultado de la búsqueda: - 1 si se encuentra el administrador. - 2 si se
+     * encuentra un empleado. * - 3 si no se encuentra ninguno.
+     *
+     *
+     * @throws IOException Si ocurre un error durante la lectura del archivo.
      */
     public void verificarEmpleado() throws IOException {
 

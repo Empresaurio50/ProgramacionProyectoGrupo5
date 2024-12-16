@@ -133,19 +133,28 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
     }
 
-    public void verificarEmpleado(Empleados objEmpleados) throws IOException {
+/**
+ * Verifica los datos de un empleado.
+ * 
+ * Este método utiliza un objeto `Empleados` para obtener los datos del empleado,
+ * y luego llama al método de verificación en `AccesoDatosEmpleados` para comprobar 
+ * las credenciales del empleado contra un archivo de datos.
+ * 
+ * @param objEmpleados El objeto `Empleados` que contiene los datos del empleado.
+ * @throws IOException Si ocurre un error durante la lectura del archivo.
+ */
+public void verificarEmpleado(Empleados objEmpleados) throws IOException {
+    objAccesoDatosEmpleados = new AccesoDatosEmpleados(); // Inicializa el objeto de acceso a datos de empleados.
 
-        objAccesoDatosEmpleados = new AccesoDatosEmpleados();
+    objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt"); // Establece el nombre del archivo de empleados.
 
-        objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
+    objAccesoDatosEmpleados.setBuscarCorreo(objEmpleados.getCorreo()); // Establece el correo a buscar.
+    objAccesoDatosEmpleados.setBuscarPassword(objEmpleados.getPassword()); // Establece la contraseña a buscar.
 
-        objAccesoDatosEmpleados.setBuscarCorreo(objEmpleados.getCorreo());
-        objAccesoDatosEmpleados.setBuscarPassword(objEmpleados.getPassword());
+    objAccesoDatosEmpleados.verificarEmpleado(); // Verifica los datos del empleado.
 
-        objAccesoDatosEmpleados.verificarEmpleado();
+    objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion()); // Establece el resultado de la verificación.
+}
 
-        objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion());
-
-    }
 
 }

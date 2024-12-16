@@ -9,25 +9,39 @@ import java.util.ArrayList;
 public class Empleados {
 
     private String nombre, correo, password;
-    private int id;
-
-    public double getSalarioBruto() {
-        return salarioBruto;
-    }
+    private int id, verificacion;
     private double salarioBruto;
     private ArrayList empleadosLista = new ArrayList();
 
+    /**
+     * Obtiene el salario bruto.
+     *
+     * @return El salario bruto.
+     */
+    public double getSalarioBruto() {
+        return salarioBruto;
+    }
+
+    /**
+     * Obtiene el valor de verificación.
+     *
+     * @return El valor de verificación.
+     */
     public int getVerificacion() {
         return verificacion;
     }
 
+    /**
+     * Establece el valor de verificación.
+     *
+     * @param verificacion El nuevo valor de verificación.
+     */
     public void setVerificacion(int verificacion) {
         this.verificacion = verificacion;
     }
-    private int verificacion;
-    
 
     
+
     /**
      * Obtiene el salario bruto (sin descuentos) de un empleado.
      *
@@ -47,7 +61,6 @@ public class Empleados {
         this.salarioBruto = salarioBruto;
     }
 
-    
     /**
      * Obtiene una lista de empleados.
      *
@@ -128,7 +141,7 @@ public class Empleados {
      * @param password La nueva contraseña del empleado como una cadena de
      * caracteres.
      *
-     * 
+     *
      */
     public void setPassword(String password) {
         this.password = password;

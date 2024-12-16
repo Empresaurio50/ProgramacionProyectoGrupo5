@@ -35,6 +35,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
     private Empleados objEmpleados;
     private ServicioEmpleado servicioEmpleado;
     private DefaultTableModel modeloTablaEmpleados;
+
     /**
      * Creates new form VentanaCorreo
      */
@@ -256,7 +257,6 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
     private void bttEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarCorreoActionPerformed
 
-        
         try {
             servicioDeducciones = new LogicaDeducciones();
         } catch (Exception e) {
@@ -274,17 +274,16 @@ public class VentanaCorreo extends javax.swing.JFrame {
          */
         datosCorreo(objDeducciones);
 
-        
         /**
          * Inicializa el servicio de empleados y crea un PDF para enviar un
          * correo.
          *
-         * Este método se encarga de: 
-         * 1. Crear una instancia de la clase `LogicaEmpleados` para manejar las operaciones relacionadas con los
-         * empleados. 
-         * 2. Preparar los datos del correo (a través del método`datosCorreo`). 
-         * 3. Crear un archivo PDF utilizando los datos delempleado. 
-         * 4. Mostrar un mensaje de éxito o error al usuario según corresponda.
+         * Este método se encarga de: 1. Crear una instancia de la clase
+         * `LogicaEmpleados` para manejar las operaciones relacionadas con los
+         * empleados. 2. Preparar los datos del correo (a través del
+         * método`datosCorreo`). 3. Crear un archivo PDF utilizando los datos
+         * delempleado. 4. Mostrar un mensaje de éxito o error al usuario según
+         * corresponda.
          *
          * **Nota:** Este método captura excepciones generales para evitar que
          * la aplicación se detenga, pero es recomendable manejar excepciones
@@ -293,7 +292,6 @@ public class VentanaCorreo extends javax.swing.JFrame {
          * @param evt El evento que desencadena la ejecución de este método
          * (generalmente un evento de clic en un botón).
          */
-        
         try {
             servicioDeducciones.crearPDF(objDeducciones);
             JOptionPane.showMessageDialog(null, "Se creo el PDF");
@@ -307,12 +305,12 @@ public class VentanaCorreo extends javax.swing.JFrame {
         /**
          * Procesa el envío de un correo electrónico con un archivo PDF adjunto.
          *
-         * Este método realiza las siguientes acciones: 
-         * 1. Prepara los datos del correo electrónico utilizando el método `datosCorreo`. 
-         * 2. Intenta crear un archivo PDF utilizando el método `crearPDF`. 
-         * 3. Si lacreación del PDF es exitosa, intenta enviar el correo electrónico con
-         * el PDF adjunto utilizando el método `enviarCorreos`. 
-         * 4. Maneja diferentes tipos de excepciones que pueden ocurrir durante el proceso
+         * Este método realiza las siguientes acciones: 1. Prepara los datos del
+         * correo electrónico utilizando el método `datosCorreo`. 2. Intenta
+         * crear un archivo PDF utilizando el método `crearPDF`. 3. Si
+         * lacreación del PDF es exitosa, intenta enviar el correo electrónico
+         * con el PDF adjunto utilizando el método `enviarCorreos`. 4. Maneja
+         * diferentes tipos de excepciones que pueden ocurrir durante el proceso
          * y muestra mensajes de error informativos al usuario.
          */
         try {
@@ -335,35 +333,51 @@ public class VentanaCorreo extends javax.swing.JFrame {
     }//GEN-LAST:event_bttEnviarCorreoActionPerformed
 
     private void bttVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVolverPrincipalActionPerformed
-        
+
+        /**
+         * Crea una nueva instancia de la ventana del patrono y la muestra.
+         *
+         * Este código crea una nueva instancia de `VentanaPatrono`, la hace
+         * visible, la centra en la pantalla y oculta la ventana actual.
+         */
         ventanaPatrono = new VentanaPatrono();
-        
-        ventanaPatrono.setVisible(true);
-        this.setVisible(false);
-        
-        
+
+        ventanaPatrono.setVisible(true); // Hace visible la ventana del patrono.
+        ventanaPatrono.setLocationRelativeTo(null); // Centra la ventana del patrono en la pantalla.
+        this.setVisible(false); // Oculta la ventana actual.
+
+
     }//GEN-LAST:event_bttVolverPrincipalActionPerformed
 
+    
+    /** 
+     * Genera y envía los reportes de deducciones salariales a los empleados. 
+     * * Este método crea instancias de las clases Deducciones, Empleados y LogicaDeducciones. 
+     * Luego, lee los datos de los empleados y, para cada empleado, prepara un mensaje y 
+     * un PDF con las deducciones salariales, que luego se envía por correo electrónico. 
+     *  Finalmente, muestra un mensaje de confirmación si los reportes se enviaron correctamente, 
+     * o maneja diferentes excepciones en caso de error. 
+     */
     private void bttEnviarReportesTodosEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarReportesTodosEmpleadosActionPerformed
 
         objDeducciones = new Deducciones();
         objEmpleados = new Empleados();
         servicioDeducciones = new LogicaDeducciones();
-        
 
         try {
             servicioEmpleado.leerEmpleado(objEmpleados);
 
             for (String[] Datos : objEmpleados.getEmpleadosLista()) {
 
+                // Para cada empleado, prepara y envía el reporte de deducciones salariales.
                 objDeducciones.setNombre(Datos[1]);
                 objDeducciones.setCorreo(Datos[3]);
                 objDeducciones.setMensaje(" Hola Empleado");
                 objDeducciones.setMensajePDF("Reducciones ");
                 objDeducciones.setAsunto("Reporte de salario");
-                
-                servicioDeducciones.crearPDF(objDeducciones);
-                servicioDeducciones.enviarCorreos(objDeducciones);
+
+                servicioDeducciones.crearPDF(objDeducciones);// Crea el PDF con las deducciones.
+                servicioDeducciones.enviarCorreos(objDeducciones);// Envía el correo con el PDF adjunto.
 
             }
 
@@ -380,15 +394,13 @@ public class VentanaCorreo extends javax.swing.JFrame {
         }
 
 
-
     }//GEN-LAST:event_bttEnviarReportesTodosEmpleadosActionPerformed
 
     private void tblCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCorreoMouseClicked
-        
+
         int fila = tblCorreo.getSelectedRow();// Obtiene la fila seleccionada en la tabla.
 
         // Establece los datos de la fila seleccionada en los campos de texto.
-        
         txtNombre.setText(tblCorreo.getValueAt(fila, 1).toString());
         txtCorreo.setText(tblCorreo.getValueAt(fila, 2).toString());
     }//GEN-LAST:event_tblCorreoMouseClicked
@@ -405,7 +417,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
         listarEmpleados();
 
     }
-    
+
     public void listarEmpleados() {
 
         objEmpleados = new Empleados();
@@ -422,21 +434,23 @@ public class VentanaCorreo extends javax.swing.JFrame {
         tblCorreo.setModel(modeloTablaEmpleados);
 
     }
-    
-    
+
     /**
-    * Obtiene los datos del correo electrónico a partir de los campos de texto de la interfaz y los asigna al objeto `Empleados`.
-    *
-    * Este método se encarga de:
-    * 1. Obtener los valores de los campos de texto `txtNombre`, `txtAsunto`, `txtMensaje`, `txtMensajePDF` y `txtCorreo`.
-    * 2. Asignar los valores obtenidos a las propiedades correspondientes del objeto `Empleados`.
-    * 3. Capturar cualquier excepción que pueda ocurrir durante el proceso y mostrarla por consola.
-    *
-    * **Nota:** Es recomendable manejar las excepciones de forma más específica y proporcionar mensajes de error más informativos al usuario.
-    *
-    * @param objCorreo El objeto `Empleados` al que se asignarán los datos del correo.
-    */
-    
+     * Obtiene los datos del correo electrónico a partir de los campos de texto
+     * de la interfaz y los asigna al objeto `Empleados`.
+     *
+     * Este método se encarga de: 1. Obtener los valores de los campos de texto
+     * `txtNombre`, `txtAsunto`, `txtMensaje`, `txtMensajePDF` y `txtCorreo`. 2.
+     * Asignar los valores obtenidos a las propiedades correspondientes del
+     * objeto `Empleados`. 3. Capturar cualquier excepción que pueda ocurrir
+     * durante el proceso y mostrarla por consola.
+     *
+     * **Nota:** Es recomendable manejar las excepciones de forma más
+     * específica y proporcionar mensajes de error más informativos al usuario.
+     *
+     * @param objCorreo El objeto `Empleados` al que se asignarán los datos del
+     * correo.
+     */
     public void datosCorreo(Correos objCorreo) {
         try {
             objCorreo.setNombre(txtNombre.getText());

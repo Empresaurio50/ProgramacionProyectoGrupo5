@@ -15,6 +15,7 @@ import Entidades.Empleados;
 import LogicaNegocio.LogicaNominas;
 import Servicios.ServicioPatrono;
 import com.itextpdf.text.DocumentException;
+import Presentacion.VentanaLogin;
 
 /**
  *
@@ -32,6 +33,7 @@ public class VentanaPatrono extends javax.swing.JFrame {
     private VentanaPlantilla ventanaCRUD;
     private VentanaCorreo ventanaCorreo;
     private ServicioPatrono servicioPatrono;
+    private VentanaLogin ventanaLogin;
 
     public VentanaPatrono() {
         try {
@@ -57,6 +59,7 @@ public class VentanaPatrono extends javax.swing.JFrame {
         bttPlantilla = new javax.swing.JButton();
         bttReporteNomina = new javax.swing.JButton();
         bttReportes = new javax.swing.JButton();
+        bttAtras = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +86,13 @@ public class VentanaPatrono extends javax.swing.JFrame {
             }
         });
 
+        bttAtras.setText("Cerrar Session");
+        bttAtras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAtrasActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -97,7 +107,10 @@ public class VentanaPatrono extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bttPlantilla)
                             .addComponent(bttReportes)
-                            .addComponent(bttReporteNomina))))
+                            .addComponent(bttReporteNomina)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(38, 38, 38)
+                        .addComponent(bttAtras)))
                 .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -107,11 +120,13 @@ public class VentanaPatrono extends javax.swing.JFrame {
                 .addComponent(lblOpciones)
                 .addGap(32, 32, 32)
                 .addComponent(bttPlantilla)
-                .addGap(99, 99, 99)
-                .addComponent(bttReportes)
                 .addGap(71, 71, 71)
+                .addComponent(bttReportes)
+                .addGap(99, 99, 99)
                 .addComponent(bttReporteNomina)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGap(57, 57, 57)
+                .addComponent(bttAtras)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         pack();
@@ -142,6 +157,13 @@ public class VentanaPatrono extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bttReportesActionPerformed
 
+    /** 
+     * Acción a realizar cuando se pulsa el botón de reporte de nómina. 
+     * Este método se encarga de calcular el total a pagar de las nóminas, 
+     * generar un archivo PDF con el reporte de nómina y manejar posibles 
+     * excepciones que ocurran durante el proceso. 
+     * @param evt El evento de acción que disparó este método. 
+     */
     private void bttReporteNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttReporteNominaActionPerformed
 
         objNominas = new Nominas();
@@ -151,12 +173,13 @@ public class VentanaPatrono extends javax.swing.JFrame {
             servicioEmpleado.leerEmpleado(objEmpleados);
 
             double totalPagar = 0;
+            // Calcula el total a pagar sumando los salarios brutos de todos los empleados.
             for (String[] datosPatrono : objEmpleados.getEmpleadosLista()) {
 
                 totalPagar = totalPagar + Double.parseDouble(datosPatrono[4]);
 
             }
-            objNominas.setTotalPagar(totalPagar);
+            objNominas.setTotalPagar(totalPagar);// Establece el total a pagar en el objeto Nominas.
 
             
             servicioPatrono.crearPDF(objNominas);
@@ -170,6 +193,17 @@ public class VentanaPatrono extends javax.swing.JFrame {
  
 
     }//GEN-LAST:event_bttReporteNominaActionPerformed
+
+    private void bttAtrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAtrasActionPerformed
+        
+        ventanaLogin = new VentanaLogin();
+        
+        ventanaLogin.setVisible(true);
+        ventanaLogin.setLocationRelativeTo(null);
+        
+        this.setVisible(false);
+        
+    }//GEN-LAST:event_bttAtrasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,6 +241,7 @@ public class VentanaPatrono extends javax.swing.JFrame {
 }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bttAtras;
     private javax.swing.JButton bttPlantilla;
     private javax.swing.JButton bttReporteNomina;
     private javax.swing.JButton bttReportes;

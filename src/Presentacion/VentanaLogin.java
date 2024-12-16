@@ -22,6 +22,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     private ServicioEmpleado servicioEmpledo;
     private VentanaPatrono ventanaPatrono;
     private VentanaEmpleado ventanaEmpleado;
+    private VentanaPatrono ventanaPatrono1;
 
     /**
      * Constructor de la clase VentanaLogin.
@@ -141,12 +142,15 @@ public class VentanaLogin extends javax.swing.JFrame {
             switch (objEmpleados.getVerificacion()) {
                 case 1:
                     ventanaPatrono.setVisible(true);// Mostrar ventana del patrono.
+                    ventanaPatrono.setLocationRelativeTo(null);
                     this.setVisible(false);// Ocultar la ventana actual.
                     break;
                 case 2:
 
                     ventanaEmpleado.setVisible(true);// Mostrar ventana del empleado.
+                    ventanaEmpleado.setLocationRelativeTo(null);
                     this.setVisible(false);// Ocultar la ventana actual.
+                    
                     break;
 
                 default:

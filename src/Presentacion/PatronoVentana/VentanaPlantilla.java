@@ -7,6 +7,7 @@ import java.io.IOException;
 import javax.swing.table.DefaultTableModel;
 import Servicios.ServicioEmpleado;
 import javax.swing.JOptionPane; 
+import Exepciones.CustomException;
 
 /**
  *
@@ -303,7 +304,10 @@ public class VentanaPlantilla extends javax.swing.JFrame {
 
             servicioEmpleado.agregarEmpleado(objEmpleados);
             
-        }catch (IOException e) {
+        }catch(IOException e){
+            
+            JOptionPane.showMessageDialog(null, e);
+            
         }
         CargarEmpleados();
     }//GEN-LAST:event_bttAgregarActionPerformed
@@ -431,7 +435,9 @@ public class VentanaPlantilla extends javax.swing.JFrame {
         
         ventanaPatrono = new VentanaPatrono(); // Crea una nueva instancia de la ventana del patrono.
         
+        
         ventanaPatrono.setVisible(true); // Hace visible la ventana del patrono.
+        ventanaPatrono.setLocationRelativeTo(null);
         this.setVisible(false);// Oculta la ventana actual.
     }//GEN-LAST:event_bttVolverPrincipalActionPerformed
 

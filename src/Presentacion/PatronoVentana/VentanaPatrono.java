@@ -4,21 +4,13 @@
  */
 package Presentacion.PatronoVentana;
 
-import Presentacion.PatronoVentana.VentanaCorreo;
-import Entidades.Correos;
-import Entidades.Empleados;
 import LogicaNegocio.LogicaEmpleados;
 import Servicios.ServicioEmpleado;
-import Entidades.Patrono;
-import LogicaNegocio.LogicaCorreos;
+import Entidades.Nominas;
 import java.io.IOException;
 import javax.swing.JOptionPane;
-import Servicios.ServicioCorreo;
-import com.itextpdf.text.DocumentException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.MessagingException;
-import javax.mail.SendFailedException;
 
 
 /**
@@ -31,7 +23,7 @@ public class VentanaPatrono extends javax.swing.JFrame {
      * Creates new form VentanaPatrono
      */
     private ServicioEmpleado servicioEmpleado;
-    private Patrono objPatrono;
+    private Nominas objNominas;
     private VentanaPlantilla ventanaCRUD;
     private VentanaCorreo ventanaCorreo;
 
@@ -126,19 +118,23 @@ public class VentanaPatrono extends javax.swing.JFrame {
 
     private void bttTotalSalariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTotalSalariosActionPerformed
 
-        objPatrono = new Patrono();
+        objNominas = new Nominas();
 
         try {
-            servicioEmpleado.leerEmpleado(objPatrono);
+            servicioEmpleado.leerEmpleado(objNominas);
 
             double totalPagar = 0;
-            for (String[] datosPatrono : objPatrono.getEmpleadosLista()) {
+            for (String[] datosPatrono : objNominas.getEmpleadosLista()) {
 
                 totalPagar = totalPagar + Double.parseDouble(datosPatrono[4]);
+                
+                
 
             }
             JOptionPane.showMessageDialog(null, "Total a pagar " + totalPagar);
-            objPatrono.setTotalPagar(totalPagar);
+            objNominas.setTotalPagar(totalPagar);
+            
+            JOptionPane.showMessageDialog(null, objNominas.getTotalPagar());
         } catch (IOException e) {
 
             JOptionPane.showMessageDialog(null, "Ocurrio un error");

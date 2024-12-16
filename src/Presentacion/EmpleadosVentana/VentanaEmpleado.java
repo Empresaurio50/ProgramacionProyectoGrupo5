@@ -106,33 +106,51 @@ public class VentanaEmpleado extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    /** 
+     * Acción a realizar cuando se pulsa el botón de mirar plantilla.
+     * Este método se encarga de crear y mostrar la ventana de mirar plantilla,
+     * y ocultar la ventana actual. * * @param evt El evento de acción que disparó este método. 
+     */
     private void bttMirarPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttMirarPlantillaActionPerformed
         
-        ventanaMirarPlantilla = new VentanaMirarPlantilla();
+        ventanaMirarPlantilla = new VentanaMirarPlantilla();// Crea una nueva instancia de la ventana de mirar plantilla.
         
-        ventanaMirarPlantilla.setVisible(true);
-        ventanaMirarPlantilla.setLocationRelativeTo(null);
+        ventanaMirarPlantilla.setVisible(true); // Hace visible la ventana de mirar plantilla.
+        ventanaMirarPlantilla.setLocationRelativeTo(null);// Centra la ventana de mirar plantilla en la pantalla.
         
-        this.setVisible(false);
+        this.setVisible(false);// Oculta la ventana actual.
         
     }//GEN-LAST:event_bttMirarPlantillaActionPerformed
 
+    /** 
+     * Acción a realizar cuando se pulsa el botón de correo a empleado. 
+     * Este método se encarga de crear y mostrar la ventana de correos a empleados, 
+     * y ocultar la ventana actual. 
+     * @param evt El evento de acción que disparó este método. 
+     */
+    
     private void bttCorreoEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCorreoEmpleadoActionPerformed
-        ventanaCorreosEmpleados = new VentanaCorreosEmpleados();
+        ventanaCorreosEmpleados = new VentanaCorreosEmpleados();// Crea una nueva instancia de la ventana de correos a empleados.
         
-        ventanaCorreosEmpleados.setVisible(true);
-        ventanaCorreosEmpleados.setLocationRelativeTo(null);
-        this.setVisible(false);
+        ventanaCorreosEmpleados.setVisible(true);// Hace visible la ventana de correos a empleados.
+        ventanaCorreosEmpleados.setLocationRelativeTo(null);// Centra la ventana de correos a empleados en la pantalla.
+        this.setVisible(false);// Oculta la ventana actual.
         
     }//GEN-LAST:event_bttCorreoEmpleadoActionPerformed
 
+    /** 
+     * Acción a realizar cuando se pulsa el botón de cerrar sesión. 
+     * Este método se encarga de crear y mostrar la ventana de inicio de sesión, 
+     * y ocultar la ventana actual. 
+     *  @param evt El evento de acción que disparó este método. 
+     */
     private void bttCerrarSeccionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttCerrarSeccionActionPerformed
         
-        ventanaLogin = new VentanaLogin();
-        ventanaLogin.setVisible(true);
-        ventanaLogin.setLocationRelativeTo(null);
+        ventanaLogin = new VentanaLogin();// Crea una nueva instancia de la ventana de inicio de sesión.
+        ventanaLogin.setVisible(true);// Hace visible la ventana de inicio de sesión.
+        ventanaLogin.setLocationRelativeTo(null);// Centra la ventana de inicio de sesión en la pantalla.
         
-        this.setVisible(false);
+        this.setVisible(false);// Oculta la ventana actual.
     }//GEN-LAST:event_bttCerrarSeccionActionPerformed
 
     /**

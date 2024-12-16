@@ -12,6 +12,6 @@ import java.io.IOException;
  */
 public interface ServicioIdControl {
     
-    int getNextId(String fileName) throws IOException;
+    int siguienteId(String fileName) throws IOException;
     
 }

@@ -16,18 +16,16 @@ import Servicios.ServicioIdControl;
  */
 public class IdControl implements ServicioIdControl {
 
-    // Nombre del archivo donde se almacenan los IDs de control.
     private final String archivoControl;
-    
-    // Mapa que asocia un nombre de archivo con su último ID generado.
     private final Map<String, Integer> idMap;
 
     /**
      * Constructor de la clase IdControl.
-     * Inicializa el archivo de control y carga los IDs existentes en memoria.
+     * Inicializa el archivo ids que existenten.
      * 
      * @throws IOException Si ocurre un error durante la creación o lectura del archivo.
      */
+    
     public IdControl() throws IOException {
         this.archivoControl = "IdControl.txt"; // Nombre del archivo que almacenará los IDs.
         this.idMap = new HashMap<>(); // Mapa para almacenar los IDs en memoria.
@@ -37,7 +35,7 @@ public class IdControl implements ServicioIdControl {
         if (!file.exists()) {
             file.createNewFile(); // Crea el archivo vacío.
         }
-        loadIds(); // Carga los IDs desde el archivo de control.
+        cargarIds(); // Carga los IDs desde el archivo de control.
     }
 
     /**
@@ -45,7 +43,7 @@ public class IdControl implements ServicioIdControl {
      * 
      * @throws IOException Si ocurre un error durante la lectura del archivo.
      */
-    private void loadIds() throws IOException {
+    private void cargarIds() throws IOException {
         try (BufferedReader reader = new BufferedReader(new FileReader(archivoControl))) {
             String line;
             // Lee línea por línea, donde cada línea tiene el formato "nombreArchivo=ID".
@@ -61,7 +59,7 @@ public class IdControl implements ServicioIdControl {
      * 
      * @throws IOException Si ocurre un error durante la escritura en el archivo.
      */
-    private void saveIds() throws IOException {
+    private void guardarIds() throws IOException {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(archivoControl))) {
             // Escribe cada entrada del mapa en el archivo con el formato "nombreArchivo=ID".
             for (Map.Entry<String, Integer> entry : idMap.entrySet()) {
@@ -79,17 +77,17 @@ public class IdControl implements ServicioIdControl {
      * @throws IOException Si ocurre un error durante la actualización del archivo de control.
      */
     @Override
-    public synchronized int getNextId(String fileName) throws IOException {
+    public synchronized int siguienteId(String fileName) throws IOException {
         // Obtiene el siguiente ID para el archivo, o 1 si es la primera vez que se solicita.
-        int nextId = idMap.getOrDefault(fileName, 1);
+        int idSiguiente = idMap.getOrDefault(fileName, 1);
 
         // Actualiza el mapa incrementando el ID para el próximo uso.
-        idMap.put(fileName, nextId + 1);
+        idMap.put(fileName, idSiguiente + 1);
 
         // Guarda el mapa actualizado en el archivo de control.
-        saveIds();
+        guardarIds();
 
         // Retorna el ID actual.
-        return nextId;
+        return idSiguiente;
     }
 }

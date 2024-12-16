@@ -178,6 +178,14 @@ public class AccesoDatosEmpleados {
         }
     }
 
+    /** * Verifica la existencia de un empleado en el archivo. * * Lee el archivo
+     * línea por línea y compara los datos de cada línea * con los correos y contraseñas buscados.
+     * Asigna un valor de verificación según el resultado de la búsqueda: 
+     * - 1 si se encuentra el administrador.
+     * - 2 si se encuentra un empleado. * 
+     * - 3 si no se encuentra ninguno. * 
+     * @throws IOException Si ocurre un error durante la lectura del archivo. 
+     */
     public void verificarEmpleado() throws IOException {
 
         try (BufferedReader readEmpleado = new BufferedReader(new FileReader(this.nombreArchivo))) {

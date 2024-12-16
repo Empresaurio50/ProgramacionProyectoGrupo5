@@ -24,19 +24,23 @@ public class VentanaLogin extends javax.swing.JFrame {
     private VentanaEmpleado ventanaEmpleado;
 
     /**
-     * Creates new form VentanaLogin
+     * Constructor de la clase VentanaLogin.
+     *
+     * Inicializa los componentes de la ventana de inicio de sesión, así como
+     * las ventanas de patrono y empleado. También intenta inicializar el
+     * servicio de empleados y muestra un mensaje de error si ocurre una
+     * excepción.
      */
     public VentanaLogin() {
-        initComponents();
-        ventanaPatrono = new VentanaPatrono();
-        ventanaEmpleado = new VentanaEmpleado();
+        initComponents(); // Inicializa los componentes de la interfaz gráfica.
+        ventanaPatrono = new VentanaPatrono(); // Crea una nueva ventana para el patrono.
+        ventanaEmpleado = new VentanaEmpleado(); // Crea una nueva ventana para el empleado.
         try {
-            servicioEmpledo = new LogicaEmpleados();
-
+            servicioEmpledo = new LogicaEmpleados(); // Intenta inicializar el servicio de empleados.
         } catch (IOException e) {
+            // Muestra un cuadro de diálogo con el mensaje de error en caso de excepción.
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
     }
 
     /**
@@ -116,28 +120,37 @@ public class VentanaLogin extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    
+    /** * Acción a realizar cuando se pulsa el botón de inicio de sesión. 
+     * Este método se encarga de verificar los datos de inicio de sesión del empleado, 
+     * y abrir la ventana correspondiente (ventanaPatrono o ventanaEmpleado) dependiendo 
+     * del resultado de la verificación. * 
+     * @param evt El evento de acción que disparó este método. 
+     */
     private void bttLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttLoginActionPerformed
 
-        objEmpleados = new Empleados();
+        objEmpleados = new Empleados();// Crear una nueva instancia de Empleados.
 
-        objEmpleados.setCorreo(txtCorreo.getText());
-        objEmpleados.setPassword(txtContra.getText());
+        objEmpleados.setCorreo(txtCorreo.getText());// Establecer el correo del empleado.
+        objEmpleados.setPassword(txtContra.getText());// Establecer la contraseña del empleado.
 
         try {
-            servicioEmpledo.verificarEmpleado(objEmpleados);
+            servicioEmpledo.verificarEmpleado(objEmpleados); // Verificar los datos del empleado.
 
+            // Dependiendo del resultado de la verificación, abrir la ventana correspondiente.
             switch (objEmpleados.getVerificacion()) {
                 case 1:
-                    ventanaPatrono.setVisible(true);
-                    this.setVisible(false);
+                    ventanaPatrono.setVisible(true);// Mostrar ventana del patrono.
+                    this.setVisible(false);// Ocultar la ventana actual.
                     break;
                 case 2:
 
-                    ventanaEmpleado.setVisible(true);
-                    this.setVisible(false);
+                    ventanaEmpleado.setVisible(true);// Mostrar ventana del empleado.
+                    this.setVisible(false);// Ocultar la ventana actual.
                     break;
 
                 default:
+                    // Mostrar mensaje de error si el correo o la contraseña son incorrectos.
                     JOptionPane.showMessageDialog(null, "La contrseña o el correo son incorrectos");
             }
 

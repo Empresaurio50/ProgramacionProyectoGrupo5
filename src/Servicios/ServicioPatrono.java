@@ -5,7 +5,7 @@
 package Servicios;
 
 import Entidades.Empleados;
-import Entidades.Patrono;
+import Entidades.Nominas;
 import java.io.IOException;
 
 /**
@@ -14,7 +14,7 @@ import java.io.IOException;
  */
 public interface ServicioPatrono {
     
-    void pagoTotalEmpleados(Patrono objPatrono) throws IOException;
+    void pagoTotalEmpleados(Nominas objNominas) throws IOException;
     void enviarTodosCorreos(Empleados objEmpleados) throws IOException;
     
     

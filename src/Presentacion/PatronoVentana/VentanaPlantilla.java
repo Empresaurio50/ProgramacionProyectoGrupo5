@@ -50,7 +50,6 @@ public class VentanaPlantilla extends javax.swing.JFrame {
 
         modeloTablaEmpleados.addColumn("ID");
         modeloTablaEmpleados.addColumn("Nombre");
-        //modeloTablaEmpleados.addColumn("Contraseña");
         modeloTablaEmpleados.addColumn("Correo");
         modeloTablaEmpleados.addColumn("Salario Bruto");
 
@@ -64,11 +63,12 @@ public class VentanaPlantilla extends javax.swing.JFrame {
      * Este método obtiene una lista de empleados desde la base de datos y
      * muestra los resultados en la tabla `tblEmpleados`. La lista de empleados
      * se devuelve como una lista de arreglos de cadenas, donde cada arreglo
-     * contiene los siguientes datos: - Índice 0: ID del empleado - Índice 1:
-     * Nombre del empleado - Índice 2: Password del empleado - Indice 3: Correo
-     * del empleado
-     *
-     * 
+     * contiene los siguientes datos:
+     * - Índice 0: ID del empleado 
+     * - Índice 1: Nombre del empleado 
+     * - Índice 2: Password del empleado 
+     * - Indice 3: Correodel empleado
+
      */
     public void listarEmpleados() {
 
@@ -303,11 +303,6 @@ public class VentanaPlantilla extends javax.swing.JFrame {
 
             servicioEmpleado.agregarEmpleado(objEmpleados);
             
-            
-           
-            
-            
-            
         }catch (IOException e) {
         }
         CargarEmpleados();
@@ -329,38 +324,44 @@ public class VentanaPlantilla extends javax.swing.JFrame {
 
     private void bttActualizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttActualizarActionPerformed
 
-        objEmpleados = new Empleados();
+        objEmpleados = new Empleados(); // Crear una nueva instancia de Empleados.
 
+        // Establecer los datos del empleado.
         objEmpleados.setId(Integer.parseInt(txtId.getText()));
         objEmpleados.setNombre(txtNombreAgregar.getText());
         objEmpleados.setCorreo(txtCorreoAgregar.getText());
         objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
         
 
+        // Verificar si se ha ingresado una nueva contraseña.
         if (!txtPasswordAgregar.getText().isEmpty()) {
             objEmpleados.setPassword(txtPasswordAgregar.getText());
         } else {
             try {
-                servicioEmpleado.leerEmpleado(objEmpleados);
+                servicioEmpleado.leerEmpleado(objEmpleados); // Leer los datos del empleado desde el servicio.
                 String contrasena = null;
+                // Buscar la contraseña actual del empleado en la lista.
                 for (String[] fila : objEmpleados.getEmpleadosLista()) {
                     if (fila[0].equals(String.valueOf(objEmpleados.getId()))) {
                         contrasena = fila[2];
                         break;
                     }
                 }
+                // Establecer la contraseña encontrada o una cadena vacía si no se encontró.
                 objEmpleados.setPassword(contrasena == null ? "" : contrasena);
             } catch (IOException ex) {
+                // Mostrar un mensaje de error si ocurre una excepción de E/S.
                 JOptionPane.showMessageDialog(null, ex.getMessage());
             }
         }
 
         try {
-            servicioEmpleado.actualizarEmpleado(objEmpleados);
+            servicioEmpleado.actualizarEmpleado(objEmpleados); // Actualizar los datos del empleado en el servicio
         } catch (Exception e) {
+            // Manejar cualquier excepción general.
         }
 
-        CargarEmpleados();
+        CargarEmpleados(); // Recargar la tabla de empleados.
 
     }//GEN-LAST:event_bttActualizarActionPerformed
 
@@ -400,33 +401,38 @@ public class VentanaPlantilla extends javax.swing.JFrame {
      * Cuando se hace clic en una fila de la tabla `tblEmpleados`, este método
      * obtiene los datos de la fila seleccionada y los muestra en los campos de
      * texto correspondientes para su edición. La tabla `tblEmpleados` tiene la
-     * siguiente estructura: - Columna 0: ID del empleado - Columna 1: Nombre
-     * del empleado - Columna 2: Contraseña del empleado - Columna 3: Correo
-     * electrónico del empleado
+     * siguiente estructura: 
+     * - Columna 0: ID del empleado 
+     * - Columna 1: Nombre del empleado 
+     * - Columna 2: Contraseña del empleado 
+     * - Columna 3: Correo electrónico del empleado
      *
      * @param evt El evento de clic en la tabla.
      */
 
     private void tblEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblEmpleadosMouseClicked
 
-        int fila = tblEmpleados.getSelectedRow();
+        int fila = tblEmpleados.getSelectedRow();// Obtiene la fila seleccionada en la tabla.
 
+        // Establece los datos de la fila seleccionada en los campos de texto.
         txtId.setText(tblEmpleados.getValueAt(fila, 0).toString());
         txtNombreAgregar.setText(tblEmpleados.getValueAt(fila, 1).toString());
-        //txtPasswordAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
         txtCorreoAgregar.setText(tblEmpleados.getValueAt(fila, 2).toString());
         txtSalarioBruto.setText(tblEmpleados.getValueAt(fila, 3).toString());
     }//GEN-LAST:event_tblEmpleadosMouseClicked
 
+    
+    /** 
+     * Acción a realizar cuando se pulsa el botón de volver al principal. 
+     * Este método se encarga de crear y mostrar la ventana del patrono, * y ocultar la ventana actual. 
+     * @param evt El evento de acción que disparó este método. 
+     */
     private void bttVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVolverPrincipalActionPerformed
         
-        ventanaPatrono = new VentanaPatrono();
+        ventanaPatrono = new VentanaPatrono(); // Crea una nueva instancia de la ventana del patrono.
         
-        ventanaPatrono.setVisible(true);
-        this.setVisible(false);
-        
-        
-        
+        ventanaPatrono.setVisible(true); // Hace visible la ventana del patrono.
+        this.setVisible(false);// Oculta la ventana actual.
     }//GEN-LAST:event_bttVolverPrincipalActionPerformed
 
     /**

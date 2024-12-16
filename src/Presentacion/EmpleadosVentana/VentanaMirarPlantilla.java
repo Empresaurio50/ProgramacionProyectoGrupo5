@@ -7,6 +7,7 @@ import Servicios.ServicioEmpleado;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -123,33 +124,45 @@ public class VentanaMirarPlantilla extends javax.swing.JFrame {
         
 
     }//GEN-LAST:event_bttAtrasActionPerformed
-    
+    /**
+     * Carga los empleados en el modelo de la tabla. 
+     * Este método inicializa el modelo de la tabla de empleados, añade las columnas necesarias 
+     * (ID, Nombre, Correo) y luego llama al método `listarEmpleados` para llenar la tabla con los datos. 
+     */
     public void CargarEmpleados() {
         
-        modeloTablaEmpleados = new DefaultTableModel();
+        modeloTablaEmpleados = new DefaultTableModel();// Inicializa el modelo de la tabla.
         
-        modeloTablaEmpleados.addColumn("ID");
-        modeloTablaEmpleados.addColumn("Nombre");
-        //modeloTablaEmpleados.addColumn("Contraseña");
-        modeloTablaEmpleados.addColumn("Correo");
-        modeloTablaEmpleados.addColumn("Salario Bruto");
+        modeloTablaEmpleados.addColumn("ID"); // Añade la columna "ID".
+        modeloTablaEmpleados.addColumn("Nombre"); // Añade la columna "Nombre".
+        modeloTablaEmpleados.addColumn("Correo"); // Añade la columna "Correo".
         
-        listarEmpleados();
+        listarEmpleados(); // Llama al método para listar los empleados en la tabla.
         
     }
 
+    
+    /** 
+     * Lista los empleados y los carga en el modelo de la tabla.
+     * Este método crea una instancia de `Empleados`, lee los datos de los empleados 
+     * usando el servicio de empleados y los añade al modelo de la tabla.
+     * @throws IOException Si ocurre un error durante la lectura de los empleados.
+     */
     public void listarEmpleados() {
         
-        objEmpleados = new Empleados();
+        objEmpleados = new Empleados(); // Crea una nueva instancia de Empleados.
         
         try {
-            servicioEmpleado.leerEmpleado(objEmpleados);
+            servicioEmpleado.leerEmpleado(objEmpleados); // Lee los datos de los empleados.
             
+            // Añade cada empleado al modelo de la tabla.
             for (String[] lista : objEmpleados.getEmpleadosLista()) {
-                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4]});
+                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3]});
             }
             
         } catch (IOException e) {
+            // Maneja cualquier excepción de E/S que ocurra durante la lectura.
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         tblEmpleadosTabla.setModel(modeloTablaEmpleados);
         

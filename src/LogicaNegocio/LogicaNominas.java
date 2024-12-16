@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package LogicaNegocio;
 
 import Entidades.Nominas;
@@ -11,34 +7,16 @@ import Entidades.Nominas;
  * @author Empresaurio50
  */
 public class LogicaNominas {
-    
-    
-    public void rebajaSalario(Nominas objNominas) {
 
-        objNominas.setCcss(objNominas.getSalarioBruto() * 0.10);
+    public void rebajaPatrono(Nominas objNominas) {
 
-        if (objNominas.getSalarioBruto() > 4783000.0) {
-            objNominas.setImpuestoRenta(objNominas.getSalarioBruto() * 0.25);
+        objNominas.setCcss(objNominas.getTotalPagar() * 0.15);
+        objNominas.setAportesInstitucionales(objNominas.getTotalPagar() * 0.07);
+        objNominas.setAportesLPT(objNominas.getTotalPagar() * 0.05);
 
-        }
-        if ((objNominas.getImpuestoRenta() > 2392000.0) && (objNominas.getImpuestoRenta() <= 4783000.0)) {
-            objNominas.setImpuestoRenta(objNominas.getSalarioBruto() * 0.20);
-
-        }
-        if ((objNominas.getSalarioBruto() > 1363000.0) && (objNominas.getSalarioBruto() <= 2392000.0)) {
-            objNominas.setImpuestoRenta(objNominas.getSalarioBruto() * 0.15);
-
-        }
-        if ((objNominas.getSalarioBruto() > 929000.0) && (objNominas.getSalarioBruto() <= 1363000.0)) {
-            objNominas.setImpuestoRenta(objNominas.getSalarioBruto() * 0.10);
-        }
-        if ((objNominas.getSalarioBruto() <= 929000.0)) {
-            objNominas.setImpuestoRenta(0);
-
-        }
-        objNominas.setSalarioNeto((objNominas.getSalarioBruto() - objNominas.getImpuestoRenta()) - objNominas.getCcss());
+        
+        objNominas.setPagoPatronoTotal(objNominas.getCcss() + objNominas.getAportesInstitucionales() + objNominas.getAportesLPT());
+        
     }
-    
-    
-    
+
 }

@@ -98,7 +98,6 @@ public class EnviarCorreo {
     public void crearArchivos() throws MessagingException {
         
         try {
-
             
             for (File archivos : getArchivos()) {
                 BodyPart adjunto = new MimeBodyPart();

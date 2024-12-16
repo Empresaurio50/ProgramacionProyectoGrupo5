@@ -166,12 +166,24 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    /** 
+     * Establece los datos del objeto Correo. *
+     * Este método toma los datos ingresados en los campos de texto y los establece 
+     * en el objeto Correo proporcionado. 
+     * @param objCorreo El objeto Correo que se va a actualizar con los datos ingresados. 
+     */
     public void datosCorreo(Correos objCorreo) {
         try {
+            // Establece el nombre del remitente.
             objCorreo.setNombre(txtNombre.getText());
+            // Establece el asunto del correo.
             objCorreo.setAsunto(txtAsunto.getText());
+            // Establece el mensaje del correo.
             objCorreo.setMensaje(txtMensaje.getText());
+            // Establece el mensaje en formato PDF del correo.
             objCorreo.setMensajePDF(txtMensajePDF.getText());
+            // Establece el correo electrónico del destinatario.
             objCorreo.setCorreo(txtCorreo.getText());
 
         } catch (Exception e) {
@@ -179,6 +191,11 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
         }
     }
 
+    /** 
+     * Acción a realizar cuando se pulsa el botón de enviar correo. 
+     * Este método se encarga de preparar y enviar un correo electrónico con un archivo PDF adjunto. 
+     * @param evt El evento de acción que disparó este método. 
+     */
     private void bttEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarCorreoActionPerformed
 
         try {
@@ -229,12 +246,12 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
         /**
          * Procesa el envío de un correo electrónico con un archivo PDF adjunto.
          *
-         * Este método realiza las siguientes acciones: 1. Prepara los datos del
-         * correo electrónico utilizando el método `datosCorreo`. 2. Intenta
-         * crear un archivo PDF utilizando el método `crearPDF`. 3. Si
-         * lacreación del PDF es exitosa, intenta enviar el correo electrónico
-         * con el PDF adjunto utilizando el método `enviarCorreos`. 4. Maneja
-         * diferentes tipos de excepciones que pueden ocurrir durante el proceso
+         * Este método realiza las siguientes acciones: 
+         * 1. Prepara los datos del correo electrónico utilizando el método `datosCorreo`. 
+         * 2. Intenta crear un archivo PDF utilizando el método `crearPDF`. 
+         * 3. Si lacreación del PDF es exitosa, intenta enviar el correo electrónico
+         * con el PDF adjunto utilizando el método `enviarCorreos`. 
+         * 4. Maneja diferentes tipos de excepciones que pueden ocurrir durante el proceso
          * y muestra mensajes de error informativos al usuario.
          */
         try {
@@ -258,13 +275,19 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bttEnviarCorreoActionPerformed
 
+    /** 
+     * Acción a realizar cuando se pulsa el botón de volver al principal. 
+     * Este método se encarga de crear y mostrar la ventana de empleado, 
+     * y ocultar la ventana actual. *
+     * @param evt El evento de acción que disparó este método. 
+     */
     private void bttVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVolverPrincipalActionPerformed
 
-        ventanaEmpleado = new VentanaEmpleado();
-        ventanaEmpleado.setVisible(true);
-        ventanaEmpleado.setLocationRelativeTo(null);
+        ventanaEmpleado = new VentanaEmpleado();// Crea una nueva instancia de la ventana de empleado.
+        ventanaEmpleado.setVisible(true);// Hace visible la ventana de empleado.
+        ventanaEmpleado.setLocationRelativeTo(null);// Centra la ventana de empleado en la pantalla.
         
-        this.setVisible(false);
+        this.setVisible(false);// Oculta la ventana actual.
 
     }//GEN-LAST:event_bttVolverPrincipalActionPerformed
 

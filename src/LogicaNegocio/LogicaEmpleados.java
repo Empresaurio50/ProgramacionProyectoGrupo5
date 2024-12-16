@@ -6,7 +6,6 @@ import Entidades.Empleados;
 import java.io.IOException;
 import Servicios.ServicioEmpleado;
 import Servicios.ServicioIdControl;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -22,15 +21,23 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
     }
 
-    
-
+    /**
+     * Registra los datos de un empleado.
+     *
+     * Este método toma un objeto Empleados y construye una cadena que
+     * representa los datos del empleado, separándolos por comas. Luego,
+     * almacena esta cadena en el acceso de datos de empleados.
+     *
+     * @param objEmpleados El objeto Empleados cuyos datos se desean registrar.
+     */
     public void datosRegistro(Empleados objEmpleados) {
-
-        String registro = objEmpleados.getId() + ","// 0
+        // Construye la cadena de registro con los datos del empleado.
+        String registro = objEmpleados.getId() + "," // 0
                 + objEmpleados.getNombre() + "," // 1
-                + objEmpleados.getPassword() + "," //2
-                + objEmpleados.getCorreo() + "," //3
-                + objEmpleados.getSalarioBruto();// 4
+                + objEmpleados.getPassword() + "," // 2
+                + objEmpleados.getCorreo() + "," // 3
+                + objEmpleados.getTotalPagar(); // 4
+        // Guarda la cadena de registro en el acceso de datos de empleados.
         objAccesoDatosEmpleados.setRegistro(registro);
     }
 
@@ -52,7 +59,7 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
         objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt");
 
-        int id = objServicioIdControl.getNextId(objAccesoDatosEmpleados.getNombreArchivo());
+        int id = objServicioIdControl.siguienteId(objAccesoDatosEmpleados.getNombreArchivo());
 
         objEmpleados.setId(id);
         datosRegistro(objEmpleados);
@@ -140,14 +147,5 @@ public class LogicaEmpleados implements ServicioEmpleado {
         objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion());
 
     }
-    
-    
-        
-        
-    
-    
-    
-    
-    
 
 }

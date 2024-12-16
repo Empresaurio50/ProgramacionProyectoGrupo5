@@ -4,7 +4,7 @@
  */
 package LogicaNegocio;
 
-import AccesoDatos.CrearPDF;
+import AccesoDatos.CrearEmpleadoPDF;
 import AccesoDatos.EnviarCorreo;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
@@ -22,7 +22,7 @@ public class LogicaCorreos implements Servicios.ServicioCorreo{
     private String datosEnviar;
 
 
-    private CrearPDF objCrearPDF = new CrearPDF();
+    private CrearEmpleadoPDF objCrearPDF = new CrearEmpleadoPDF();
     
     /**
      * Prepara los datos del empleado para enviarlos por correo electrónico.
@@ -32,14 +32,14 @@ public class LogicaCorreos implements Servicios.ServicioCorreo{
      *
      * @param objCorreo El objeto Empleados que contiene los datos a enviar.
      */
-    public void datosCorreo(Correos objCorreo) {
+    public void datosCorreoPatrono(Correos objCorreo) {
 
         datosEnviar = objCorreo.getNombre() + "," //0 contiene el nombre del usuario
                 + objCorreo.getCorreo() + "," //1 contiene el correo del empleado
                 + objCorreo.getMensajePDF() + "," //2 contiene el mensaje del pdf
                 + objCorreo.getAsunto() + "," //3 contiene el asunto del correo
                 + objCorreo.getMensaje() //4 contiene el mensaje del correo
-                + objCorreo.getSalarioBruto(); // 5 contiene el salario bruto
+                + objCorreo.getTotalPagar(); // 5 contiene el salario bruto
     }
 
     /**
@@ -63,7 +63,7 @@ public class LogicaCorreos implements Servicios.ServicioCorreo{
         
         EnviarCorreo objEnviarCorreo = new EnviarCorreo();
         objEnviarCorreo.setNombrePDF(objCrearPDF.getNombreArchivo());
-        datosCorreo(objCorreo);
+        datosCorreoPatrono(objCorreo);
         objEnviarCorreo.setDatos(datosEnviar);
         objEnviarCorreo.EnviarCorreos();
     }
@@ -81,11 +81,10 @@ public class LogicaCorreos implements Servicios.ServicioCorreo{
      */
     public void crearPDF(Correos objCorreo) throws DocumentException, FileNotFoundException {
 
-        objCrearPDF = new CrearPDF();
-        objCrearPDF.setNombreArchivo("Tarea1.pdf");
-        datosCorreo(objCorreo);
+        objCrearPDF = new CrearEmpleadoPDF();
+        objCrearPDF.setNombreArchivo("Reporte Salarial.pdf");
+        datosCorreoPatrono(objCorreo);
         objCrearPDF.setRegistro(datosEnviar);
-        
         objCrearPDF.createPDF();
     }
 

@@ -9,7 +9,8 @@ import LogicaNegocio.LogicaEmpleados;
 import javax.swing.JOptionPane;
 import Servicios.ServicioEmpleado;
 import java.io.IOException;
-import Presentacion.VentanaPatrono;
+import Presentacion.PatronoVentana.VentanaPatrono;
+import Presentacion.EmpleadosVentana.VentanaEmpleado;
 
 /**
  *
@@ -19,16 +20,16 @@ public class VentanaLogin extends javax.swing.JFrame {
 
     private Empleados objEmpleados = new Empleados();
     private ServicioEmpleado servicioEmpledo;
-    private VentanaPrincipal ventanaPrincipal;
     private VentanaPatrono ventanaPatrono;
+    private VentanaEmpleado ventanaEmpleado;
 
     /**
      * Creates new form VentanaLogin
      */
     public VentanaLogin() {
         initComponents();
-        ventanaPrincipal = new VentanaPrincipal();
         ventanaPatrono = new VentanaPatrono();
+        ventanaEmpleado = new VentanaEmpleado();
         try {
             servicioEmpledo = new LogicaEmpleados();
 
@@ -50,19 +51,19 @@ public class VentanaLogin extends javax.swing.JFrame {
         lblCorreo = new javax.swing.JLabel();
         lblContra = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
-        txtContra = new javax.swing.JTextField();
         lblTitulo = new javax.swing.JLabel();
         bttLogin = new javax.swing.JButton();
+        txtContra = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         lblCorreo.setText("Correo");
 
-        lblContra.setText("Password");
+        lblContra.setText("Contraseña");
 
-        lblTitulo.setText("Login");
+        lblTitulo.setText("Iniciar Sesión");
 
-        bttLogin.setText("Login");
+        bttLogin.setText("Iniciar");
         bttLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttLoginActionPerformed(evt);
@@ -76,38 +77,38 @@ public class VentanaLogin extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(80, 80, 80)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblTitulo)
-                            .addComponent(lblCorreo)))
+                        .addGap(76, 76, 76)
+                        .addComponent(lblContra))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(40, 40, 40)
-                                    .addComponent(lblContra))
-                                .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(80, 80, 80)
+                        .addComponent(lblCorreo))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(67, 67, 67)
-                        .addComponent(bttLogin)))
+                        .addComponent(bttLogin))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE)
+                            .addComponent(txtContra)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(64, 64, 64)
+                        .addComponent(lblTitulo)))
                 .addContainerGap(52, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(32, 32, 32)
+                .addGap(34, 34, 34)
                 .addComponent(lblTitulo)
-                .addGap(60, 60, 60)
+                .addGap(58, 58, 58)
                 .addComponent(lblCorreo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(36, 36, 36)
+                .addGap(30, 30, 30)
                 .addComponent(lblContra)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addComponent(txtContra, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52)
+                .addGap(40, 40, 40)
                 .addComponent(bttLogin)
                 .addContainerGap(116, Short.MAX_VALUE))
         );
@@ -129,11 +130,10 @@ public class VentanaLogin extends javax.swing.JFrame {
                 case 1:
                     ventanaPatrono.setVisible(true);
                     this.setVisible(false);
-
                     break;
                 case 2:
 
-                    ventanaPrincipal.setVisible(true);
+                    ventanaEmpleado.setVisible(true);
                     this.setVisible(false);
                     break;
 
@@ -187,7 +187,7 @@ public class VentanaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel lblContra;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JTextField txtContra;
+    private javax.swing.JPasswordField txtContra;
     private javax.swing.JTextField txtCorreo;
     // End of variables declaration//GEN-END:variables
 }

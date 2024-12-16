@@ -81,7 +81,7 @@ public class EnviarCorreo {
         seccionSMTP = Session.getInstance(propertiesSMTP, new javax.mail.Authenticator() {
             @Override
             protected PasswordAuthentication getPasswordAuthentication() {
-                return new PasswordAuthentication("20d5c5df71f13e", "af098c159e94ea");
+                return new PasswordAuthentication("empresaurio50@gmail.com", "dlnbvvsuukznqcpx");
             }
         });
 
@@ -136,7 +136,7 @@ public class EnviarCorreo {
         try {
             // Crear objeto
             Message objCorreo = new MimeMessage(seccionSMTP);
-            objCorreo.setFrom(new InternetAddress("20d5c5df71f13e"));// user del servidor TrapMail
+            objCorreo.setFrom(new InternetAddress("empresaurio50@gmail.com"));// user del servidor TrapMail
             objCorreo.setRecipients(Message.RecipientType.TO, InternetAddress.parse(datosU[1]));//datosU 1 es el correo
             objCorreo.setSubject(datosU[3]);//datosU 3 es el asunto
 

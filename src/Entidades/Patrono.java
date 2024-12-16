@@ -6,8 +6,7 @@ package Entidades;
  */
 public class Patrono extends Correos{
     
-    private int id;
-    private String nombre, password, correo;
+    private String correoAdmin, passwordAdmin, usuarioAdmin;
     private double totalPagar;
 
     public double getTotalPagar() {
@@ -17,40 +16,28 @@ public class Patrono extends Correos{
     public void setTotalPagar(double totalPagar) {
         this.totalPagar = totalPagar;
     }
-    
-    public int getId() {
-        return id;
+
+    public String getCorreoAdmin() {
+        return correoAdmin;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCorreoAdmin(String correoAdmin) {
+        this.correoAdmin = correoAdmin;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getPasswordAdmin() {
+        return passwordAdmin;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setPasswordAdmin(String passwordAdmin) {
+        this.passwordAdmin = passwordAdmin;
     }
 
-    public String getPassword() {
-        return password;
+    public String getUsuarioAdmin() {
+        return usuarioAdmin;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setUsuarioAdmin(String usuarioAdmin) {
+        this.usuarioAdmin = usuarioAdmin;
     }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
-    }
-    
-    
-    
-    
 }

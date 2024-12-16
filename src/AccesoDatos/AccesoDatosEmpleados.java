@@ -21,6 +21,10 @@ public class AccesoDatosEmpleados {
     private String nombreArchivo, registro, buscarCorreo, buscarPassword,
             administrador = "admin@gmail.com", contraAdmin = "321";
     ;
+
+    public String getAdministrador() {
+        return administrador;
+    }
     private ArrayList<String[]> listaEmpleados;
     private int verificacion;
 

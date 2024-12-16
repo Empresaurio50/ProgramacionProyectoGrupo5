@@ -10,6 +10,10 @@ public class Empleados {
 
     private String nombre, correo, password;
     private int id;
+
+    public double getSalarioBruto() {
+        return salarioBruto;
+    }
     private double salarioBruto;
     private ArrayList empleadosLista = new ArrayList();
 

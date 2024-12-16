@@ -4,8 +4,8 @@
  */
 package Presentacion.EmpleadosVentana;
 
-import LogicaNegocio.LogicaCorreos;
-import Servicios.ServicioCorreo;
+import LogicaNegocio.LogicaDeducciones;
+import Servicios.ServicioDeducciones;
 import Entidades.Correos;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
@@ -14,6 +14,7 @@ import javax.mail.MessagingException;
 import javax.mail.SendFailedException;
 import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
+import Entidades.Deducciones;
 
 /**
  *
@@ -21,8 +22,8 @@ import javax.swing.JOptionPane;
  */
 public class VentanaCorreosEmpleados extends javax.swing.JFrame {
 
-    private ServicioCorreo servicioCorreo;
-    private Correos objCorreo = new Correos();
+    private ServicioDeducciones servicioDeducciones;
+    private Deducciones objDeducciones = new Deducciones();
     private VentanaEmpleado ventanaEmpleado;
 
      /**
@@ -199,7 +200,7 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
     private void bttEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarCorreoActionPerformed
 
         try {
-            servicioCorreo = new LogicaCorreos();
+            servicioDeducciones = new LogicaDeducciones();
         } catch (Exception e) {
         }
 
@@ -213,7 +214,7 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
          * @param objEmpleados El objeto empleado que contiene los datos del
          * destinatario.
          */
-        datosCorreo(objCorreo);
+        datosCorreo(objDeducciones);
 
         /**
          * Inicializa el servicio de empleados y crea un PDF para enviar un
@@ -234,7 +235,7 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
          * (generalmente un evento de clic en un botón).
          */
         try {
-            servicioCorreo.crearPDF(objCorreo);
+            servicioDeducciones.crearPDF(objDeducciones);
             JOptionPane.showMessageDialog(null, "Se creo el PDF");
 
         } catch (DocumentException | FileNotFoundException e) {
@@ -255,7 +256,7 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
          * y muestra mensajes de error informativos al usuario.
          */
         try {
-            servicioCorreo.enviarCorreos(objCorreo);
+            servicioDeducciones.enviarCorreos(objDeducciones);
             JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
 
         } catch (AddressException e) {
@@ -263,7 +264,7 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
         } catch (SendFailedException e) {
             JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
         } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(null, "Error al enviar a " + objCorreo.getCorreo() + "\n error " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al enviar a " + objDeducciones.getCorreo() + "\n error " + e.getMessage());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
 

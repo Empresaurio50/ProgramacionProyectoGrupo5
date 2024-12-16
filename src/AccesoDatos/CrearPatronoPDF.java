@@ -7,7 +7,7 @@ import com.itextpdf.text.pdf.PdfWriter; //permite escribir contenido en un archi
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;// Esta clase se usa para escribir datos a un archivo, en este caso, para guardar el PDF generado.
 
-public class CrearEmpleadoPDF {
+public class CrearPatronoPDF {
 
     /**
      * El nombre del archivo.
@@ -66,17 +66,20 @@ public class CrearEmpleadoPDF {
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(nombreArchivo));
             documento.open();
-            documento.add(new Paragraph("Hola " + datos[0] + " " + datos[3] + "." + "\n"
-                    + datos[2] + "\n"
-                    + " Se le contacto por su correo: " + datos[1] 
-                    + "Salario Bruto " + datos[5] + "\n"
-                    + "Rebaja del ccss " + datos[6] + "\n"
-                    + "Impuestos sobre la renta " + datos[7] + "\n"
-                    + "Asociacion social " + datos[8] + "\n"
-                    + "Esto le genera un salario neto de: " + datos[9]));
+            documento.add(new Paragraph( "Nomina" + "\n"
+                    + " Se le contacto por su correo: " + datos[0] + "\n"
+                    + "El total pagar de la plantilla es " + datos[1] + "\n"
+                    + "El ccss " + datos[2] + "\n"
+                    + "Aportes Institucionales " + datos[3] + "\n"
+                    + "Aportes Leyes Proteccion Trabajador " + datos[4]));
 
         } finally {
             documento.close();
+
         }
+
     }
+    
+    
+
 }

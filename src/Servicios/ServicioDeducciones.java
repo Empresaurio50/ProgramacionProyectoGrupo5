@@ -4,7 +4,8 @@
  */
 package Servicios;
 
-import Entidades.Correos;
+import Entidades.Deducciones;
+import Entidades.Nominas;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -16,7 +17,9 @@ import javax.mail.internet.AddressException;
  *
  * @author Empresaurio50
  */
-public interface ServicioCorreo {
-    void enviarCorreos(Correos objCorreo) throws AddressException, SendFailedException, MessagingException, IOException;
-    void crearPDF(Correos objCorreo) throws DocumentException, FileNotFoundException;
+public interface ServicioDeducciones {
+    
+    void enviarCorreos(Deducciones objDeducciones) throws AddressException, SendFailedException, MessagingException, IOException ;
+
+    void crearPDF(Deducciones objDeducciones) throws DocumentException, FileNotFoundException ;
 }

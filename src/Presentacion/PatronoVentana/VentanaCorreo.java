@@ -6,7 +6,7 @@ package Presentacion.PatronoVentana;
 
 import Entidades.Correos;
 import Entidades.Empleados;
-import LogicaNegocio.LogicaCorreos;
+import LogicaNegocio.LogicaDeducciones;
 import LogicaNegocio.LogicaEmpleados;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
@@ -15,10 +15,13 @@ import javax.mail.MessagingException;
 import javax.mail.SendFailedException;
 import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
-import Servicios.ServicioCorreo;
+
 import Servicios.ServicioEmpleado;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import Servicios.ServicioDeducciones;
+import Entidades.Deducciones;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -26,23 +29,25 @@ import java.util.logging.Logger;
  */
 public class VentanaCorreo extends javax.swing.JFrame {
 
-    private Correos objCorreo = new Correos();
-    private ServicioCorreo servicioCorreo;
+    private Deducciones objDeducciones = new Deducciones();
+    private ServicioDeducciones servicioDeducciones;
     private VentanaPatrono ventanaPatrono;
     private Empleados objEmpleados;
     private ServicioEmpleado servicioEmpleado;
+    private DefaultTableModel modeloTablaEmpleados;
     /**
      * Creates new form VentanaCorreo
      */
     public VentanaCorreo() {
         initComponents();
         try {
-            servicioCorreo = new LogicaCorreos();
+            servicioDeducciones = new LogicaDeducciones();
             servicioEmpleado = new LogicaEmpleados();
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
+        CargarEmpleados();
     }
 
     /**
@@ -72,7 +77,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
         bttVolverPrincipal = new javax.swing.JButton();
         bttEnviarReportesTodosEmpleados = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblCorreo = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -194,7 +199,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblCorreo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -205,7 +210,12 @@ public class VentanaCorreo extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane3.setViewportView(jTable1);
+        tblCorreo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tblCorreoMouseClicked(evt);
+            }
+        });
+        jScrollPane3.setViewportView(tblCorreo);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -248,7 +258,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
         
         try {
-            servicioCorreo = new LogicaCorreos();
+            servicioDeducciones = new LogicaDeducciones();
         } catch (Exception e) {
         }
 
@@ -262,7 +272,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
          * @param objEmpleados El objeto empleado que contiene los datos del
          * destinatario.
          */
-        datosCorreo(objCorreo);
+        datosCorreo(objDeducciones);
 
         
         /**
@@ -285,7 +295,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
          */
         
         try {
-            servicioCorreo.crearPDF(objCorreo);
+            servicioDeducciones.crearPDF(objDeducciones);
             JOptionPane.showMessageDialog(null, "Se creo el PDF");
 
         } catch (DocumentException | FileNotFoundException e) {
@@ -306,7 +316,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
          * y muestra mensajes de error informativos al usuario.
          */
         try {
-            servicioCorreo.enviarCorreos(objCorreo);
+            servicioDeducciones.enviarCorreos(objDeducciones);
             JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
 
         } catch (AddressException e) {
@@ -314,7 +324,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
         } catch (SendFailedException e) {
             JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
         } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(null, "Error al enviar a " + objCorreo.getCorreo() + "\n error " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Error al enviar a " + objDeducciones.getCorreo() + "\n error " + e.getMessage());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
 
@@ -336,9 +346,9 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
     private void bttEnviarReportesTodosEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarReportesTodosEmpleadosActionPerformed
 
-        objCorreo = new Correos();
+        objDeducciones = new Deducciones();
         objEmpleados = new Empleados();
-        servicioCorreo = new LogicaCorreos();
+        servicioDeducciones = new LogicaDeducciones();
         
 
         try {
@@ -346,14 +356,14 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
             for (String[] Datos : objEmpleados.getEmpleadosLista()) {
 
-                objCorreo.setNombre(Datos[1]);
-                objCorreo.setCorreo(Datos[3]);
-                objCorreo.setMensaje(" gfd");
-                objCorreo.setMensajePDF("dfg ");
-                objCorreo.setAsunto(" fdg");
+                objDeducciones.setNombre(Datos[1]);
+                objDeducciones.setCorreo(Datos[3]);
+                objDeducciones.setMensaje(" Hola Empleado");
+                objDeducciones.setMensajePDF("Reducciones ");
+                objDeducciones.setAsunto("Reporte de salario");
                 
-                servicioCorreo.crearPDF(objCorreo);
-                servicioCorreo.enviarCorreos(objCorreo);
+                servicioDeducciones.crearPDF(objDeducciones);
+                servicioDeducciones.enviarCorreos(objDeducciones);
 
             }
 
@@ -373,6 +383,47 @@ public class VentanaCorreo extends javax.swing.JFrame {
 
     }//GEN-LAST:event_bttEnviarReportesTodosEmpleadosActionPerformed
 
+    private void tblCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCorreoMouseClicked
+        
+        int fila = tblCorreo.getSelectedRow();// Obtiene la fila seleccionada en la tabla.
+
+        // Establece los datos de la fila seleccionada en los campos de texto.
+        
+        txtNombre.setText(tblCorreo.getValueAt(fila, 1).toString());
+        txtCorreo.setText(tblCorreo.getValueAt(fila, 2).toString());
+    }//GEN-LAST:event_tblCorreoMouseClicked
+
+    public void CargarEmpleados() {
+
+        modeloTablaEmpleados = new DefaultTableModel();
+
+        modeloTablaEmpleados.addColumn("ID");
+        modeloTablaEmpleados.addColumn("Nombre");
+        modeloTablaEmpleados.addColumn("Correo");
+        modeloTablaEmpleados.addColumn("Salario Bruto");
+
+        listarEmpleados();
+
+    }
+    
+    public void listarEmpleados() {
+
+        objEmpleados = new Empleados();
+
+        try {
+            servicioEmpleado.leerEmpleado(objEmpleados);
+
+            for (String[] lista : objEmpleados.getEmpleadosLista()) {
+                modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4]});
+            }
+
+        } catch (Exception e) {
+        }
+        tblCorreo.setModel(modeloTablaEmpleados);
+
+    }
+    
+    
     /**
     * Obtiene los datos del correo electrónico a partir de los campos de texto de la interfaz y los asigna al objeto `Empleados`.
     *
@@ -443,13 +494,13 @@ public class VentanaCorreo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lblAsunto;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblMensajePDF;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTitulo;
+    private javax.swing.JTable tblCorreo;
     private javax.swing.JTextField txtAsunto;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextArea txtMensaje;

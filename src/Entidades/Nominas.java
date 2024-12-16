@@ -3,9 +3,17 @@ package Entidades;
  *
  * @author Empresaurio50
  */
-public class Nominas extends Empleados {
+public class Nominas extends Correos {
     
-    private double ccss, aportesInstitucionales, aportesLPT, totalPagar, pagoPatronoTotal;
+    private double ccssPatrono, aportesInstitucionales, aportesLPT, totalPagar, pagoPatronoTotal;
+
+    public double getCcssPatrono() {
+        return ccssPatrono;
+    }
+
+    public void setCcssPatrono(double ccssPatrono) {
+        this.ccssPatrono = ccssPatrono;
+    }
 
     public double getPagoPatronoTotal() {
         return pagoPatronoTotal;
@@ -15,13 +23,7 @@ public class Nominas extends Empleados {
         this.pagoPatronoTotal = pagoPatronoTotal;
     }
 
-    public double getCcss() {
-        return ccss;
-    }
 
-    public void setCcss(double ccss) {
-        this.ccss = ccss;
-    }
 
     public double getAportesInstitucionales() {
         return aportesInstitucionales;

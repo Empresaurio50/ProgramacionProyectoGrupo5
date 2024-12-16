@@ -8,7 +8,7 @@ package Entidades;
  *
  * @author Empresaurio50
  */
-public class Deducciones  extends Empleados{
+public class Deducciones  extends Correos{
     
     private double ccss, impuestoRenta, salarioNeto, asociacionSocial;
 

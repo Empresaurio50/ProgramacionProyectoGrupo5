@@ -11,12 +11,16 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-
+import Entidades.Empleados;
+import LogicaNegocio.LogicaNominas;
+import Servicios.ServicioPatrono;
+import com.itextpdf.text.DocumentException;
 
 /**
  *
  * @author Empresaurio50
  */
+
 public class VentanaPatrono extends javax.swing.JFrame {
 
     /**
@@ -24,12 +28,15 @@ public class VentanaPatrono extends javax.swing.JFrame {
      */
     private ServicioEmpleado servicioEmpleado;
     private Nominas objNominas;
+    private Empleados objEmpleados;
     private VentanaPlantilla ventanaCRUD;
     private VentanaCorreo ventanaCorreo;
+    private ServicioPatrono servicioPatrono;
 
     public VentanaPatrono() {
         try {
 
+            servicioPatrono = new LogicaNominas();
             servicioEmpleado = new LogicaEmpleados();
         } catch (IOException e) {
         }
@@ -48,8 +55,7 @@ public class VentanaPatrono extends javax.swing.JFrame {
 
         lblOpciones = new javax.swing.JLabel();
         bttPlantilla = new javax.swing.JButton();
-        bttPagosTotales = new javax.swing.JButton();
-        bttTotalSalarios = new javax.swing.JButton();
+        bttReporteNomina = new javax.swing.JButton();
         bttReportes = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,12 +69,10 @@ public class VentanaPatrono extends javax.swing.JFrame {
             }
         });
 
-        bttPagosTotales.setText("Pagos Plantilla");
-
-        bttTotalSalarios.setText("Total Salario");
-        bttTotalSalarios.addActionListener(new java.awt.event.ActionListener() {
+        bttReporteNomina.setText("Reporte Nomina");
+        bttReporteNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttTotalSalariosActionPerformed(evt);
+                bttReporteNominaActionPerformed(evt);
             }
         });
 
@@ -92,10 +96,9 @@ public class VentanaPatrono extends javax.swing.JFrame {
                         .addGap(30, 30, 30)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(bttPlantilla)
-                            .addComponent(bttTotalSalarios)
                             .addComponent(bttReportes)
-                            .addComponent(bttPagosTotales))))
-                .addContainerGap(229, Short.MAX_VALUE))
+                            .addComponent(bttReporteNomina))))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -104,110 +107,109 @@ public class VentanaPatrono extends javax.swing.JFrame {
                 .addComponent(lblOpciones)
                 .addGap(32, 32, 32)
                 .addComponent(bttPlantilla)
-                .addGap(40, 40, 40)
+                .addGap(99, 99, 99)
                 .addComponent(bttReportes)
                 .addGap(71, 71, 71)
-                .addComponent(bttPagosTotales)
-                .addGap(62, 62, 62)
-                .addComponent(bttTotalSalarios)
-                .addContainerGap(114, Short.MAX_VALUE))
+                .addComponent(bttReporteNomina)
+                .addContainerGap(144, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void bttTotalSalariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttTotalSalariosActionPerformed
-
-        objNominas = new Nominas();
-
-        try {
-            servicioEmpleado.leerEmpleado(objNominas);
-
-            double totalPagar = 0;
-            for (String[] datosPatrono : objNominas.getEmpleadosLista()) {
-
-                totalPagar = totalPagar + Double.parseDouble(datosPatrono[4]);
-                
-                
-
-            }
-            JOptionPane.showMessageDialog(null, "Total a pagar " + totalPagar);
-            objNominas.setTotalPagar(totalPagar);
-            
-            JOptionPane.showMessageDialog(null, objNominas.getTotalPagar());
-        } catch (IOException e) {
-
-            JOptionPane.showMessageDialog(null, "Ocurrio un error");
-        }
-
-
-    }//GEN-LAST:event_bttTotalSalariosActionPerformed
-
     private void bttPlantillaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttPlantillaActionPerformed
-        
+
         try {
             ventanaCRUD = new VentanaPlantilla();
         } catch (IOException ex) {
             Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         ventanaCRUD.setVisible(true);
         ventanaCRUD.setLocationRelativeTo(null);
         this.setVisible(false);
-        
+
     }//GEN-LAST:event_bttPlantillaActionPerformed
 
     private void bttReportesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttReportesActionPerformed
-        
+
         ventanaCorreo = new VentanaCorreo();
-        
+
         ventanaCorreo.setVisible(true);
         ventanaCorreo.setLocationRelativeTo(null);
         this.setVisible(false);
-        
-       
+
+
     }//GEN-LAST:event_bttReportesActionPerformed
+
+    private void bttReporteNominaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttReporteNominaActionPerformed
+
+        objNominas = new Nominas();
+        objEmpleados = new Empleados();
+
+        try {
+            servicioEmpleado.leerEmpleado(objEmpleados);
+
+            double totalPagar = 0;
+            for (String[] datosPatrono : objEmpleados.getEmpleadosLista()) {
+
+                totalPagar = totalPagar + Double.parseDouble(datosPatrono[4]);
+
+            }
+            objNominas.setTotalPagar(totalPagar);
+
+            
+            servicioPatrono.crearPDF(objNominas);
+
+        } catch (IOException e) {
+
+            JOptionPane.showMessageDialog(null, "El archivo ya esta creado");
+        } catch (DocumentException ex) {
+            Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
+        }
+ 
+
+    }//GEN-LAST:event_bttReporteNominaActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+    /* Set the Nimbus look and feel */
+    //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+    /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
+     */
+    try {
+        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+            if ("Nimbus".equals(info.getName())) {
+                javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                break;
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new VentanaPatrono().setVisible(true);
-            }
-        });
+    } catch (ClassNotFoundException ex) {
+        java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (InstantiationException ex) {
+        java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (IllegalAccessException ex) {
+        java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        java.util.logging.Logger.getLogger(VentanaPatrono.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
     }
+    //</editor-fold>
+
+    /* Create and display the form */
+    java.awt.EventQueue.invokeLater(new Runnable() {
+        public void run() {
+            new VentanaPatrono().setVisible(true);
+        }
+    });
+}
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bttPagosTotales;
     private javax.swing.JButton bttPlantilla;
+    private javax.swing.JButton bttReporteNomina;
     private javax.swing.JButton bttReportes;
-    private javax.swing.JButton bttTotalSalarios;
     private javax.swing.JLabel lblOpciones;
     // End of variables declaration//GEN-END:variables
 }

@@ -6,6 +6,7 @@ package Servicios;
 
 import Entidades.Deducciones;
 import Entidades.Nominas;
+import Exepciones.CustomException;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -19,7 +20,7 @@ import javax.mail.internet.AddressException;
  */
 public interface ServicioDeducciones {
     
-    void enviarCorreos(Deducciones objDeducciones) throws AddressException, SendFailedException, MessagingException, IOException ;
+    void enviarCorreos(Deducciones objDeducciones) throws AddressException, SendFailedException, MessagingException, IOException, CustomException ;
 
-    void crearPDF(Deducciones objDeducciones) throws DocumentException, FileNotFoundException ;
+    void crearPDF(Deducciones objDeducciones) throws DocumentException, FileNotFoundException, CustomException;
 }

@@ -96,7 +96,7 @@ public class EnviarCorreo {
             while ((linea = objBufferredReader.readLine()) != null) {
 
                 atributos = linea.split(",");
-                propertiesSMTP.put(atributos[0], atributos[1]);//en la posicion 0 esta el nombre y en la 1 el apellido
+                propertiesSMTP.put(atributos[0], atributos[1]);
             }
         }
     }
@@ -165,7 +165,7 @@ public class EnviarCorreo {
         try {
             // Crear objeto
             Message objCorreo = new MimeMessage(seccionSMTP);
-            objCorreo.setFrom(new InternetAddress("empresaurio50@gmail.com"));// user del servidor TrapMail
+            objCorreo.setFrom(new InternetAddress("empresaurio50@gmail.com"));// user del servidor
             objCorreo.setRecipients(Message.RecipientType.TO, InternetAddress.parse(datosU[1]));//datosU 1 es el correo
             objCorreo.setSubject(datosU[3]);//datosU 3 es el asunto
 
@@ -189,7 +189,6 @@ public class EnviarCorreo {
 
             // Enviar el correo
             Transport.send(objCorreo);
-            System.out.println("Correo enviado exitosamente a " + datosU[3]);
 
         } finally {
         }

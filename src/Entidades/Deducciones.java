@@ -12,6 +12,8 @@ public class Deducciones  extends Correos{
     
     private double ccss, impuestoRenta, salarioNeto, asociacionSocial;
 
+    
+    
     public double getCcss() {
         return ccss;
     }

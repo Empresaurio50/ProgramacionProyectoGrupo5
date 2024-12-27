@@ -3,6 +3,7 @@ package AccesoDatos;
 import com.itextpdf.text.Document; // Importa la clase Document de iText, que se usa para crear y manipular documentos PDF en Java.
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Paragraph;//Permite trabajar con objetos de tipo Paragraph para añadir texto en los documentos PDF.
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter; //permite escribir contenido en un archivo PDF y manejar la creación del archivo.
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;// Esta clase se usa para escribir datos a un archivo, en este caso, para guardar el PDF generado.
@@ -66,13 +67,30 @@ public class CrearPatronoPDF {
         try {
             PdfWriter.getInstance(documento, new FileOutputStream(nombreArchivo));
             documento.open();
-            documento.add(new Paragraph( "Nomina" + "\n"
-                    + " Se le contacto por su correo: " + datos[0] + "\n"
-                    + "El total pagar de la plantilla es " + datos[1] + "\n"
-                    + "El ccss " + datos[2] + "\n"
-                    + "Aportes Institucionales " + datos[3] + "\n"
-                    + "Aportes Leyes Proteccion Trabajador " + datos[4]));
+            documento.add(new Paragraph( "Asunto: Envío de Nómina del Patrono" + "\n"
+                    + " Estimado/a Patrono " + "\n"
+                    + "Le enviamos la nómina del personal correspondiente en formato PDF, desde la dirección de " + datos[0] + "\n"
+                    + "Quedamos a su disposición para cualquier consulta o aclaración que pueda necesitar respecto a este documento. " + "\n"
+                    ));
 
+            documento.add(new Paragraph("\n"));
+
+            PdfPTable tabla = new PdfPTable(5);
+
+            tabla.addCell("Total Planilla");
+            tabla.addCell("CCSS");
+            tabla.addCell("Aportes Institucionales");
+            tabla.addCell("Aportes LPT");
+            tabla.addCell("Total de aportaciones");
+
+            tabla.addCell("₡ "+datos[1]);
+            tabla.addCell("₡ "+datos[2]);
+            tabla.addCell("₡ "+datos[3]);
+            tabla.addCell("₡ "+datos[4]);
+            tabla.addCell("₡ "+datos[5]);
+
+            documento.add(tabla);
+            
         } finally {
             documento.close();
 

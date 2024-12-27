@@ -7,6 +7,11 @@ package Entidades;
 public class Nominas extends Correos {
 
     private double ccssPatrono, aportesInstitucionales, aportesLPT, totalPagar, pagoPatronoTotal;
+    private String correoPatrono = "samuelzamora1307@gmail.com";
+
+    public String getCorreoPatrono() {
+        return correoPatrono;
+    }
 
     /**
      * Obtiene el valor de la CCSS (Caja Costarricense de Seguro Social) para el

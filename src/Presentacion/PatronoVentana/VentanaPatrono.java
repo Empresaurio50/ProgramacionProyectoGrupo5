@@ -16,6 +16,8 @@ import LogicaNegocio.LogicaNominas;
 import Servicios.ServicioPatrono;
 import com.itextpdf.text.DocumentException;
 import Presentacion.VentanaLogin;
+import javax.mail.MessagingException;
+import javax.mail.SendFailedException;
 
 /**
  *
@@ -55,78 +57,75 @@ public class VentanaPatrono extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        lblOpciones = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         bttPlantilla = new javax.swing.JButton();
         bttReporteNomina = new javax.swing.JButton();
         bttReportes = new javax.swing.JButton();
         bttAtras = new javax.swing.JButton();
+        lblOpciones = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblOpciones.setText("Menu");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        bttPlantilla.setText("Plantilla");
+        bttPlantilla.setBackground(new java.awt.Color(250, 250, 250));
+        bttPlantilla.setText("Planilla");
         bttPlantilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttPlantillaActionPerformed(evt);
             }
         });
+        jPanel1.add(bttPlantilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 140, 40));
 
+        bttReporteNomina.setBackground(new java.awt.Color(252, 252, 252));
         bttReporteNomina.setText("Reporte Nomina");
         bttReporteNomina.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttReporteNominaActionPerformed(evt);
             }
         });
+        jPanel1.add(bttReporteNomina, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, 140, 40));
 
+        bttReportes.setBackground(new java.awt.Color(252, 252, 252));
         bttReportes.setText("Reportes Empleados");
         bttReportes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttReportesActionPerformed(evt);
             }
         });
+        jPanel1.add(bttReportes, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 300, 180, 40));
 
+        bttAtras.setBackground(new java.awt.Color(252, 252, 252));
         bttAtras.setText("Cerrar Session");
         bttAtras.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttAtrasActionPerformed(evt);
             }
         });
+        jPanel1.add(bttAtras, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 160, 60));
+
+        lblOpciones.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
+        lblOpciones.setText("Menu");
+        jPanel1.add(lblOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prueba 2.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 60, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondaxo de todo lado.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-140, -70, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(48, 48, 48)
-                        .addComponent(lblOpciones))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(30, 30, 30)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bttPlantilla)
-                            .addComponent(bttReportes)
-                            .addComponent(bttReporteNomina)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(bttAtras)))
-                .addContainerGap(36, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(lblOpciones)
-                .addGap(32, 32, 32)
-                .addComponent(bttPlantilla)
-                .addGap(71, 71, 71)
-                .addComponent(bttReportes)
-                .addGap(99, 99, 99)
-                .addComponent(bttReporteNomina)
-                .addGap(57, 57, 57)
-                .addComponent(bttAtras)
-                .addContainerGap(60, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -137,7 +136,7 @@ public class VentanaPatrono extends javax.swing.JFrame {
         try {
             ventanaCRUD = new VentanaPlantilla();
         } catch (IOException ex) {
-            Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex);
         }
 
         ventanaCRUD.setVisible(true);
@@ -183,11 +182,18 @@ public class VentanaPatrono extends javax.swing.JFrame {
 
             
             servicioPatrono.crearPDF(objNominas);
+            servicioPatrono.enviarCorreos(objNominas);
+            JOptionPane.showMessageDialog(null, "Se le envio un PDF a su correo");
+            
 
         } catch (IOException e) {
 
             JOptionPane.showMessageDialog(null, "El archivo ya esta creado");
         } catch (DocumentException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        } catch (SendFailedException ex) {
+            Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (MessagingException ex) {
             Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
         }
  
@@ -245,6 +251,9 @@ public class VentanaPatrono extends javax.swing.JFrame {
     private javax.swing.JButton bttPlantilla;
     private javax.swing.JButton bttReporteNomina;
     private javax.swing.JButton bttReportes;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblOpciones;
     // End of variables declaration//GEN-END:variables
 }

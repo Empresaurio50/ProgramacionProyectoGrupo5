@@ -5,6 +5,7 @@
 package Servicios;
 
 import Entidades.Empleados;
+import Exepciones.CustomException;
 import java.io.IOException;
 
 /**
@@ -13,11 +14,11 @@ import java.io.IOException;
  */
 public interface ServicioEmpleado {
     
-    void agregarEmpleado(Empleados objEmpleados) throws IOException;
+    void agregarEmpleado(Empleados objEmpleados) throws IOException, CustomException;
     void leerEmpleado(Empleados objEmpleados) throws IOException;
     void eliminarEmpleado(Empleados objEmpleados) throws IOException;
-    void actualizarEmpleado(Empleados objEmpleados) throws IOException;
-    void verificarEmpleado(Empleados objEmpleados) throws IOException;
+    void actualizarEmpleado(Empleados objEmpleados) throws IOException, CustomException;
+    void verificarEmpleado(Empleados objEmpleados) throws IOException, CustomException;
     
     
 }

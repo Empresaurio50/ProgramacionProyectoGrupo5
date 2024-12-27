@@ -82,7 +82,8 @@ public class VentanaPlantilla extends javax.swing.JFrame {
                 modeloTablaEmpleados.addRow(new Object[]{lista[0], lista[1], lista[3], lista[4]});
             }
 
-        } catch (Exception e) {
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
         }
         tblEmpleados.setModel(modeloTablaEmpleados);
 
@@ -97,148 +98,59 @@ public class VentanaPlantilla extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        lblAgregarTitulo = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblSalarioBruto = new javax.swing.JLabel();
         lblNombre = new javax.swing.JLabel();
+        txtSalarioBruto = new javax.swing.JTextField();
         txtNombreAgregar = new javax.swing.JTextField();
+        txtPasswordAgregar = new javax.swing.JPasswordField();
         lbl2Correo = new javax.swing.JLabel();
+        bttVolverPrincipal = new javax.swing.JButton();
         lbl2Contra = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblEmpleados = new javax.swing.JTable();
         txtCorreoAgregar = new javax.swing.JTextField();
         bttAgregar = new javax.swing.JButton();
         bttActualizar = new javax.swing.JButton();
         bttEliminar = new javax.swing.JButton();
         lblId = new javax.swing.JLabel();
         txtId = new javax.swing.JLabel();
-        lblSalarioBruto = new javax.swing.JLabel();
-        txtSalarioBruto = new javax.swing.JTextField();
-        txtPasswordAgregar = new javax.swing.JPasswordField();
-        bttVolverPrincipal = new javax.swing.JButton();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        tblEmpleados = new javax.swing.JTable();
+        lblAgregarTitulo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblAgregarTitulo.setText("Agregar Empleado");
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        lblNombre.setText("Nombre");
-
-        lbl2Correo.setText("Correo");
-
-        lbl2Contra.setText("Contraseña");
-
-        bttAgregar.setText("Agregar");
-        bttAgregar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttAgregarActionPerformed(evt);
-            }
-        });
-
-        bttActualizar.setText("Actualizar");
-        bttActualizar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttActualizarActionPerformed(evt);
-            }
-        });
-
-        bttEliminar.setText("Eliminar");
-        bttEliminar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bttEliminarActionPerformed(evt);
-            }
-        });
-
-        lblId.setText("ID");
-
-        txtId.setText("0");
-
+        lblSalarioBruto.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         lblSalarioBruto.setText("Salario Bruto");
+        jPanel1.add(lblSalarioBruto, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 220, -1, -1));
 
+        lblNombre.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 140, -1, -1));
+        jPanel1.add(txtSalarioBruto, new org.netbeans.lib.awtextra.AbsoluteConstraints(173, 250, 110, -1));
+        jPanel1.add(txtNombreAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 103, -1));
+        jPanel1.add(txtPasswordAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 250, 110, -1));
+
+        lbl2Correo.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lbl2Correo.setText("Correo");
+        jPanel1.add(lbl2Correo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 140, -1, -1));
+
+        bttVolverPrincipal.setBackground(new java.awt.Color(252, 252, 252));
         bttVolverPrincipal.setText("Volver Atrás");
         bttVolverPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttVolverPrincipalActionPerformed(evt);
             }
         });
+        jPanel1.add(bttVolverPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 370, -1, -1));
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(44, 44, 44)
-                        .addComponent(lblNombre))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addGroup(jPanel2Layout.createSequentialGroup()
-                                    .addComponent(lblAgregarTitulo)
-                                    .addGap(36, 36, 36)
-                                    .addComponent(lblId))
-                                .addComponent(txtNombreAgregar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblSalarioBruto)
-                                    .addComponent(txtId)
-                                    .addComponent(lbl2Correo)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(txtCorreoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(1, 1, 1))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(lbl2Contra))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(bttVolverPrincipal)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(bttAgregar)
-                                .addGap(18, 18, 18)
-                                .addComponent(bttActualizar)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bttEliminar)))
-                .addContainerGap(11, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblAgregarTitulo)
-                    .addComponent(lblId)
-                    .addComponent(txtId))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblNombre)
-                    .addComponent(lbl2Correo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombreAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCorreoAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbl2Contra)
-                    .addComponent(lblSalarioBruto))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtPasswordAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttAgregar)
-                    .addComponent(bttActualizar)
-                    .addComponent(bttEliminar))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 54, Short.MAX_VALUE)
-                .addComponent(bttVolverPrincipal)
-                .addGap(15, 15, 15))
-        );
+        lbl2Contra.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lbl2Contra.setText("Contraseña");
+        jPanel1.add(lbl2Contra, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, -1, 20));
 
         tblEmpleados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -258,20 +170,63 @@ public class VentanaPlantilla extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblEmpleados);
 
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 30, 370, 380));
+        jPanel1.add(txtCorreoAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, 106, -1));
+
+        bttAgregar.setBackground(new java.awt.Color(252, 252, 252));
+        bttAgregar.setText("Agregar");
+        bttAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttAgregarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bttAgregar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, -1, -1));
+
+        bttActualizar.setBackground(new java.awt.Color(252, 252, 252));
+        bttActualizar.setText("Actualizar");
+        bttActualizar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttActualizarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bttActualizar, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
+
+        bttEliminar.setBackground(new java.awt.Color(252, 252, 252));
+        bttEliminar.setText("Eliminar");
+        bttEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bttEliminarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(bttEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 320, 80, -1));
+
+        lblId.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblId.setText("ID");
+        jPanel1.add(lblId, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
+
+        txtId.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        txtId.setText("0");
+        jPanel1.add(txtId, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 100, -1, -1));
+
+        lblAgregarTitulo.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        lblAgregarTitulo.setText("Gestionar Planilla");
+        jPanel1.add(lblAgregarTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prueba 2.png"))); // NOI18N
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 20, -1, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fondaxo de todo lado.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 0, 540, 430));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 357, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -292,6 +247,10 @@ public class VentanaPlantilla extends javax.swing.JFrame {
 
     private void bttAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttAgregarActionPerformed
 
+        
+        
+        
+        
         try {
             objEmpleados = new Empleados();
             servicioEmpleado = new LogicaEmpleados();
@@ -301,11 +260,14 @@ public class VentanaPlantilla extends javax.swing.JFrame {
             objEmpleados.setPassword(txtPasswordAgregar.getText());
             objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
             
-
             servicioEmpleado.agregarEmpleado(objEmpleados);
             
-        }catch(IOException e){
-            
+        }catch (CustomException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"No ingresó un número válido. Solo se permiten números en el apartado salario bruto.");
+        }
+        catch(IOException e){
             JOptionPane.showMessageDialog(null, e);
             
         }
@@ -361,8 +323,16 @@ public class VentanaPlantilla extends javax.swing.JFrame {
 
         try {
             servicioEmpleado.actualizarEmpleado(objEmpleados); // Actualizar los datos del empleado en el servicio
-        } catch (Exception e) {
-            // Manejar cualquier excepción general.
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,e);
+        } 
+        
+        catch (CustomException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        catch(IOException e){
+            JOptionPane.showMessageDialog(null, e);
+            
         }
 
         CargarEmpleados(); // Recargar la tabla de empleados.
@@ -391,7 +361,7 @@ public class VentanaPlantilla extends javax.swing.JFrame {
         try {
             servicioEmpleado.eliminarEmpleado(objEmpleados);
 
-        } catch (Exception e) {
+        } catch (IOException e) {
             JOptionPane.showMessageDialog(null, e);
         }
 
@@ -489,7 +459,9 @@ public class VentanaPlantilla extends javax.swing.JFrame {
     private javax.swing.JButton bttAgregar;
     private javax.swing.JButton bttEliminar;
     private javax.swing.JButton bttVolverPrincipal;
-    private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbl2Contra;
     private javax.swing.JLabel lbl2Correo;

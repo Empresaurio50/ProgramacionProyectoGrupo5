@@ -6,6 +6,7 @@ import Entidades.Empleados;
 import java.io.IOException;
 import Servicios.ServicioEmpleado;
 import Servicios.ServicioIdControl;
+import Exepciones.CustomException;
 
 /**
  *
@@ -15,7 +16,7 @@ public class LogicaEmpleados implements ServicioEmpleado {
 
     private static AccesoDatosEmpleados objAccesoDatosEmpleados;
     private static ServicioIdControl objServicioIdControl;
-
+    
     public LogicaEmpleados() throws IOException {
         this.objServicioIdControl = new IdControl();
 
@@ -29,8 +30,29 @@ public class LogicaEmpleados implements ServicioEmpleado {
      * almacena esta cadena en el acceso de datos de empleados.
      *
      * @param objEmpleados El objeto Empleados cuyos datos se desean registrar.
+     * @throws CustomException se digitan nulls en el programa y pasan de limites o faltas de caracter.
      */
-    public void datosRegistro(Empleados objEmpleados) {
+    public void datosRegistro(Empleados objEmpleados) throws CustomException {
+        
+        if (objEmpleados.getNombre() == null || objEmpleados.getNombre().trim().isEmpty()) {
+            throw new CustomException("El nombre no puede estar vacío.");
+        }
+        if (objEmpleados.getNombre()== null || objEmpleados.getNombre().length() < 3 || objEmpleados.getNombre().length() > 15) {
+            throw new CustomException("El nombre debe tener entre 3 y 15 caracteres.");
+        }
+        for (char letra : objEmpleados.getNombre().toCharArray()) {
+            if (!Character.isLetter(letra)) {
+                throw new CustomException("El nombre solo puede contener letras, sin espacios ni caracteres especiales.");
+            }
+        }
+        
+        if (objEmpleados.getCorreo() == null || objEmpleados.getCorreo().trim().isEmpty()) {
+            throw new CustomException("La contraseña no puede estar vacía.");
+        }
+        if (objEmpleados.getCorreo() == null || !objEmpleados.getCorreo().contains("@")) {
+            throw new CustomException("El correo debe contener un '@'.");
+        }
+        
         // Construye la cadena de registro con los datos del empleado.
         String registro = objEmpleados.getId() + "," // 0
                 + objEmpleados.getNombre() + "," // 1
@@ -39,6 +61,9 @@ public class LogicaEmpleados implements ServicioEmpleado {
                 + objEmpleados.getTotalPagar(); // 4
         // Guarda la cadena de registro en el acceso de datos de empleados.
         objAccesoDatosEmpleados.setRegistro(registro);
+        
+        
+        
     }
 
     /**
@@ -51,9 +76,10 @@ public class LogicaEmpleados implements ServicioEmpleado {
      * @param objEmpleados El objeto Empleados que contiene los datos del nuevo
      * empleado.
      * @throws IOException Si ocurre un error al escribir en el archivo.
+     *  @throws CustomException se digitan nulls en el programa y pasan de limites o faltas de caracter.
      */
     @Override
-    public void agregarEmpleado(Empleados objEmpleados) throws IOException {
+    public void agregarEmpleado(Empleados objEmpleados) throws IOException, CustomException{
 
         objAccesoDatosEmpleados = new AccesoDatosEmpleados();
 
@@ -119,9 +145,10 @@ public class LogicaEmpleados implements ServicioEmpleado {
      *
      * @param objEmpleados El objeto Empleados con los datos actualizados.
      * @throws IOException Si ocurre un error al escribir en el archivo.
+     *  @throws CustomException se digitan nulls en el programa y pasan de limites o faltas de caracter.
      */
     @Override
-    public void actualizarEmpleado(Empleados objEmpleados) throws IOException {
+    public void actualizarEmpleado(Empleados objEmpleados) throws IOException, CustomException{
 
         objAccesoDatosEmpleados = new AccesoDatosEmpleados();
 
@@ -143,14 +170,23 @@ public class LogicaEmpleados implements ServicioEmpleado {
  * @param objEmpleados El objeto `Empleados` que contiene los datos del empleado.
  * @throws IOException Si ocurre un error durante la lectura del archivo.
  */
-public void verificarEmpleado(Empleados objEmpleados) throws IOException {
+public void verificarEmpleado(Empleados objEmpleados) throws IOException, CustomException {
     objAccesoDatosEmpleados = new AccesoDatosEmpleados(); // Inicializa el objeto de acceso a datos de empleados.
 
     objAccesoDatosEmpleados.setNombreArchivo("ListaEmpleados.txt"); // Establece el nombre del archivo de empleados.
+    
+
 
     objAccesoDatosEmpleados.setBuscarCorreo(objEmpleados.getCorreo()); // Establece el correo a buscar.
     objAccesoDatosEmpleados.setBuscarPassword(objEmpleados.getPassword()); // Establece la contraseña a buscar.
 
+    if (objEmpleados.getCorreo() == null || objEmpleados.getCorreo().trim().isEmpty()) {
+       throw new CustomException("La contraseña no puede estar vacía.");
+        }
+    if (objEmpleados.getCorreo() == null || !objEmpleados.getCorreo().contains("@")) {
+       throw new CustomException("El correo debe contener un '@'.");
+     }
+    
     objAccesoDatosEmpleados.verificarEmpleado(); // Verifica los datos del empleado.
 
     objEmpleados.setVerificacion(objAccesoDatosEmpleados.getVerificacion()); // Establece el resultado de la verificación.

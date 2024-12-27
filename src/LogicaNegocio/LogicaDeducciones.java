@@ -1,12 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package LogicaNegocio;
 
 import AccesoDatos.CrearEmpleadoPDF;
 import AccesoDatos.EnviarCorreo;
-import Entidades.Correos;
 import Entidades.Deducciones;
 import com.itextpdf.text.DocumentException;
 import java.io.FileNotFoundException;
@@ -15,6 +10,7 @@ import javax.mail.MessagingException;
 import javax.mail.SendFailedException;
 import javax.mail.internet.AddressException;
 import Servicios.ServicioDeducciones;
+import Exepciones.CustomException;
 
 /**
  *
@@ -49,7 +45,7 @@ public class LogicaDeducciones implements ServicioDeducciones {
             objDeducciones.setImpuestoRenta(0);
         }
 
-        objDeducciones.setCcss(objDeducciones.getSalarioBruto() * 0.10);
+        objDeducciones.setCcss(objDeducciones.getSalarioBruto() * 0.09);
         objDeducciones.setAsociacionSocial(objDeducciones.getSalarioBruto() * 0.05);
         objDeducciones.setSalarioNeto((objDeducciones.getSalarioBruto() - objDeducciones.getImpuestoRenta()) - objDeducciones.getCcss() - objDeducciones.getAsociacionSocial());
     }
@@ -63,8 +59,33 @@ public class LogicaDeducciones implements ServicioDeducciones {
      * @param objDeducciones El objeto Deducciones que contiene la información
      * del salario.
      */
-    public void datosCorreoPatrono(Deducciones objDeducciones) {
+    public void datosCorreoPatrono(Deducciones objDeducciones) throws CustomException {
         rebajaSalario(objDeducciones);
+
+        if (objDeducciones.getCorreo() == null || objDeducciones.getCorreo().trim().isEmpty()) {
+            throw new CustomException("El correo no puede estar vacio.");
+        }
+        if (objDeducciones.getCorreo() == null || !objDeducciones.getCorreo().contains("@")) {
+            throw new CustomException("El correo debe contener un '@'.");
+        }
+        if (objDeducciones.getAsunto() == null || objDeducciones.getAsunto().trim().isEmpty()) {
+            throw new CustomException("El asunto no puede estar vacío.");
+        }
+        if (objDeducciones.getAsunto().length() < 1 || objDeducciones.getAsunto().length() > 100) {
+            throw new CustomException("El asunto debe tener entre 1 y 100 caracteres.");
+        }
+        if (objDeducciones.getMensajePDF() == null || objDeducciones.getMensajePDF().trim().isEmpty()) {
+            throw new CustomException("El mensaje PDF no puede estar vacío.");
+        }
+        if (objDeducciones.getMensajePDF().length() < 1 || objDeducciones.getMensajePDF().length() > 10000) {
+            throw new CustomException("El mensaje PDF debe tener entre 1 y 10,000 caracteres.");
+        }
+        if (objDeducciones.getMensaje() == null || objDeducciones.getMensaje().trim().isEmpty()) {
+            throw new CustomException("El mensaje no puede estar vacío.");
+        }
+        if (objDeducciones.getMensaje().length() < 1 || objDeducciones.getMensaje().length() > 10000) {
+            throw new CustomException("El mensaje debe tener entre 1 y 10,000 caracteres.");
+        }
 
         datosEnviar = objDeducciones.getNombre() + "," // 0 contiene el nombre del usuario
                 + objDeducciones.getCorreo() + "," // 1 contiene el correo del empleado
@@ -92,7 +113,7 @@ public class LogicaDeducciones implements ServicioDeducciones {
      * mensajería.
      * @throws IOException Si ocurre un error de entrada/salida.
      */
-    public void enviarCorreos(Deducciones objDeducciones) throws AddressException, SendFailedException, MessagingException, IOException {
+    public void enviarCorreos(Deducciones objDeducciones) throws AddressException, SendFailedException, MessagingException, IOException, CustomException {
         EnviarCorreo objEnviarCorreo = new EnviarCorreo();
         objEnviarCorreo.setNombrePDF(objCrearEmpleadosPDF.getNombreArchivo());
         datosCorreoPatrono(objDeducciones);
@@ -111,7 +132,7 @@ public class LogicaDeducciones implements ServicioDeducciones {
      * @throws DocumentException Si ocurre un error al crear el documento.
      * @throws FileNotFoundException Si no se encuentra el archivo especificado.
      */
-    public void crearPDF(Deducciones objDeducciones) throws DocumentException, FileNotFoundException {
+    public void crearPDF(Deducciones objDeducciones) throws DocumentException, FileNotFoundException, CustomException {
         objCrearEmpleadosPDF = new CrearEmpleadoPDF();
         objCrearEmpleadosPDF.setNombreArchivo("Reporte Salarial.pdf");
         datosCorreoPatrono(objDeducciones);

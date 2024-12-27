@@ -3,23 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaDeducciones.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Exepciones/CustomException.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/EmpleadosVentana/VentanaMirarPlantilla.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Entidades/Nominas.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/PatronoVentana/VentanaPlantilla.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Exepciones/ExceptionEmpleado.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Entidades/Empleados.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/PatronoVentana/VentanaPatrono.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Entidades/Correos.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/AccesoDatos/CrearEmpleadoPDF.java</file>
             <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/PatronoVentana/VentanaCorreo.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaNominas.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaCorreos.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Servicios/ServicioPatrono.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Exepciones/ExceptionCorreo.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Entidades/Deducciones.java</file>
-            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaEmpleados.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/LogicaNegocio/LogicaDeducciones.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/VentanaLogin.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/AccesoDatos/AccesoDatosEmpleados.java</file>
+            <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/PatronoVentana/VentanaPatrono.java</file>
             <file>file:/C:/Users/Empresaurio50/Documents/NetBeansProjects/ProgramacionProyecto/src/Presentacion/App.java</file>
         </group>
     </open-files>

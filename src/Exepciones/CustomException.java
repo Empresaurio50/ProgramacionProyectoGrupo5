@@ -13,9 +13,6 @@ public class CustomException extends Exception{
     public static final long serialVersionUID = 700L;//esto es para asegurarse que sirva
     
     public CustomException(){
-        
-        
-        
     }
     
     

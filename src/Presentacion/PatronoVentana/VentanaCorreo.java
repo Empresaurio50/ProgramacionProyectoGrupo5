@@ -21,6 +21,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import Servicios.ServicioDeducciones;
 import Entidades.Deducciones;
+import Exepciones.CustomException;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -60,6 +61,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         lblAsunto = new javax.swing.JLabel();
         lblMensajePDF = new javax.swing.JLabel();
@@ -77,15 +79,27 @@ public class VentanaCorreo extends javax.swing.JFrame {
         bttEnviarCorreo = new javax.swing.JButton();
         bttVolverPrincipal = new javax.swing.JButton();
         bttEnviarReportesTodosEmpleados = new javax.swing.JButton();
+        txtSalarioBruto = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblCorreo = new javax.swing.JTable();
+        lblAsunto1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setForeground(new java.awt.Color(255, 255, 255));
+
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblAsunto.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
         lblAsunto.setText("Asunto");
 
+        lblMensajePDF.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
         lblMensajePDF.setText("Mensaje PDF");
 
+        lblMensaje.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
         lblMensaje.setText("Mensaje");
 
         txtMensaje.setColumns(20);
@@ -96,14 +110,23 @@ public class VentanaCorreo extends javax.swing.JFrame {
         txtMensajePDF.setRows(5);
         jScrollPane2.setViewportView(txtMensajePDF);
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
+        lblTitulo.setFont(new java.awt.Font("Roboto Black", 1, 36)); // NOI18N
         lblTitulo.setText("Correo");
 
+        lblNombre.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
         lblNombre.setText("Nombre");
 
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        lblCorreo.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
         lblCorreo.setText("Correo");
 
-        bttEnviarCorreo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        bttEnviarCorreo.setBackground(new java.awt.Color(252, 252, 252));
+        bttEnviarCorreo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         bttEnviarCorreo.setText("Enviar");
         bttEnviarCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -111,6 +134,8 @@ public class VentanaCorreo extends javax.swing.JFrame {
             }
         });
 
+        bttVolverPrincipal.setBackground(new java.awt.Color(252, 252, 252));
+        bttVolverPrincipal.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         bttVolverPrincipal.setText("Volver Atrás");
         bttVolverPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -118,6 +143,8 @@ public class VentanaCorreo extends javax.swing.JFrame {
             }
         });
 
+        bttEnviarReportesTodosEmpleados.setBackground(new java.awt.Color(252, 252, 252));
+        bttEnviarReportesTodosEmpleados.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         bttEnviarReportesTodosEmpleados.setText("Enviar a todos");
         bttEnviarReportesTodosEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,80 +152,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblCorreo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblAsunto)
-                        .addGap(72, 72, 72))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(lblMensaje)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(jScrollPane2)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(lblNombre)
-                                    .addComponent(txtCorreo)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(lblTitulo))
-                            .addComponent(lblMensajePDF))
-                        .addGap(0, 6, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttEnviarReportesTodosEmpleados)
-                        .addGap(28, 28, 28))))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(86, 86, 86)
-                .addComponent(bttVolverPrincipal)
-                .addGap(0, 0, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(lblNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo)
-                    .addComponent(lblAsunto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lblMensajePDF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblMensaje)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(bttEnviarReportesTodosEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bttEnviarCorreo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
-                .addComponent(bttVolverPrincipal)
-                .addContainerGap())
-        );
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prueba 2.png"))); // NOI18N
 
         tblCorreo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,138 +172,162 @@ public class VentanaCorreo extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(tblCorreo);
 
+        lblAsunto1.setFont(new java.awt.Font("Roboto Light", 1, 12)); // NOI18N
+        lblAsunto1.setText("Salario Bruto");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane2)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                                        .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(bttEnviarReportesTodosEmpleados))
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblCorreo))
+                                                .addGap(18, 18, 18)
+                                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                    .addComponent(lblAsunto)
+                                                    .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(lblAsunto1)))
+                                            .addComponent(lblMensaje)
+                                            .addComponent(lblMensajePDF)
+                                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                                .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jLabel2))
+                            .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(lblNombre))
+                                    .addGroup(jPanel2Layout.createSequentialGroup()
+                                        .addGap(35, 35, 35)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(lblTitulo)))
+                                .addGap(105, 105, 105)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(bttVolverPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addComponent(lblTitulo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblNombre)
+                    .addComponent(lblAsunto1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtSalarioBruto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblCorreo)
+                    .addComponent(lblAsunto))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(lblMensajePDF)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(lblMensaje)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(bttEnviarReportesTodosEmpleados, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(26, 26, 26)))
+                .addComponent(bttVolverPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(618, 618, 618))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 606, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
+        );
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(17, 17, 17)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 363, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addComponent(jScrollPane3)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * Maneja el evento de clic en el botón "Enviar Correo".
-     *
-     * Este método se encarga de enviar un correo electrónico con un archivo PDF
-     * adjunto. Primero, crea un objeto `LogicaEmpleados` para manejar las
-     * operaciones relacionadas con los empleados. Luego, prepara los datos del
-     * correo y crea el archivo PDF. Finalmente, envía el correo electrónico con
-     * el PDF adjunto.
-     *
-     * Si ocurre algún error durante el proceso, se muestra un mensaje de error
-     * al usuario.
-     *
-     * @param evt El evento de clic en el botón.
-     */
+    private void tblCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCorreoMouseClicked
 
-    private void bttEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarCorreoActionPerformed
+        int fila = tblCorreo.getSelectedRow();// Obtiene la fila seleccionada en la tabla.
 
-        try {
-            servicioDeducciones = new LogicaDeducciones();
-        } catch (Exception e) {
-        }
+        // Establece los datos de la fila seleccionada en los campos de texto.
+        txtNombre.setText(tblCorreo.getValueAt(fila, 1).toString());
+        txtCorreo.setText(tblCorreo.getValueAt(fila, 2).toString());
+        txtSalarioBruto.setText(tblCorreo.getValueAt(fila, 3).toString());
+    }//GEN-LAST:event_tblCorreoMouseClicked
 
-        /**
-         * Prepara los datos necesarios para enviar el correo electrónico.
-         *
-         * Este método recopila la información del empleado, como el nombre,
-         * correo electrónico, asunto y mensaje, y la almacena en el objeto
-         * `objEmpleados`.
-         *
-         * @param objEmpleados El objeto empleado que contiene los datos del
-         * destinatario.
-         */
-        datosCorreo(objDeducciones);
-
-        /**
-         * Inicializa el servicio de empleados y crea un PDF para enviar un
-         * correo.
-         *
-         * Este método se encarga de: 1. Crear una instancia de la clase
-         * `LogicaEmpleados` para manejar las operaciones relacionadas con los
-         * empleados. 2. Preparar los datos del correo (a través del
-         * método`datosCorreo`). 3. Crear un archivo PDF utilizando los datos
-         * delempleado. 4. Mostrar un mensaje de éxito o error al usuario según
-         * corresponda.
-         *
-         * **Nota:** Este método captura excepciones generales para evitar que
-         * la aplicación se detenga, pero es recomendable manejar excepciones
-         * más específicas para proporcionar mensajes de error más detallados.
-         *
-         * @param evt El evento que desencadena la ejecución de este método
-         * (generalmente un evento de clic en un botón).
-         */
-        try {
-            servicioDeducciones.crearPDF(objDeducciones);
-            JOptionPane.showMessageDialog(null, "Se creo el PDF");
-
-        } catch (DocumentException | FileNotFoundException e) {
-            JOptionPane.showMessageDialog(null, "No se pudo crear el PDF \n" + "Error: " + e.getMessage());
-
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
-        }
-        /**
-         * Procesa el envío de un correo electrónico con un archivo PDF adjunto.
-         *
-         * Este método realiza las siguientes acciones: 1. Prepara los datos del
-         * correo electrónico utilizando el método `datosCorreo`. 2. Intenta
-         * crear un archivo PDF utilizando el método `crearPDF`. 3. Si
-         * lacreación del PDF es exitosa, intenta enviar el correo electrónico
-         * con el PDF adjunto utilizando el método `enviarCorreos`. 4. Maneja
-         * diferentes tipos de excepciones que pueden ocurrir durante el proceso
-         * y muestra mensajes de error informativos al usuario.
-         */
-        try {
-            servicioDeducciones.enviarCorreos(objDeducciones);
-            JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
-
-        } catch (AddressException e) {
-            JOptionPane.showMessageDialog(null, "No se pudo enviar el correo, al correo le falta un dominio\n" + "Error: " + e.getMessage());
-        } catch (SendFailedException e) {
-            JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
-        } catch (MessagingException e) {
-            JOptionPane.showMessageDialog(null, "Error al enviar a " + objDeducciones.getCorreo() + "\n error " + e.getMessage());
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
-
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Ya no se que paso: " + e.getMessage());
-
-        }
-    }//GEN-LAST:event_bttEnviarCorreoActionPerformed
-
-    private void bttVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVolverPrincipalActionPerformed
-
-        /**
-         * Crea una nueva instancia de la ventana del patrono y la muestra.
-         *
-         * Este código crea una nueva instancia de `VentanaPatrono`, la hace
-         * visible, la centra en la pantalla y oculta la ventana actual.
-         */
-        ventanaPatrono = new VentanaPatrono();
-
-        ventanaPatrono.setVisible(true); // Hace visible la ventana del patrono.
-        ventanaPatrono.setLocationRelativeTo(null); // Centra la ventana del patrono en la pantalla.
-        this.setVisible(false); // Oculta la ventana actual.
-
-
-    }//GEN-LAST:event_bttVolverPrincipalActionPerformed
-
-    
     /** 
      * Genera y envía los reportes de deducciones salariales a los empleados. 
      * * Este método crea instancias de las clases Deducciones, Empleados y LogicaDeducciones. 
@@ -372,6 +350,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
                 // Para cada empleado, prepara y envía el reporte de deducciones salariales.
                 objDeducciones.setNombre(Datos[1]);
                 objDeducciones.setCorreo(Datos[3]);
+                objDeducciones.setSalarioBruto(Double.parseDouble(Datos[4]));
                 objDeducciones.setMensaje(" Hola Empleado");
                 objDeducciones.setMensajePDF("Reducciones ");
                 objDeducciones.setAsunto("Reporte de salario");
@@ -391,20 +370,132 @@ public class VentanaCorreo extends javax.swing.JFrame {
             Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
         } catch (DocumentException ex) {
             Logger.getLogger(VentanaPatrono.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (CustomException ex) {
+            Logger.getLogger(VentanaCorreo.class.getName()).log(Level.SEVERE, null, ex);
         }
-
 
     }//GEN-LAST:event_bttEnviarReportesTodosEmpleadosActionPerformed
 
-    private void tblCorreoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tblCorreoMouseClicked
+    private void bttVolverPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttVolverPrincipalActionPerformed
 
-        int fila = tblCorreo.getSelectedRow();// Obtiene la fila seleccionada en la tabla.
+        /**
+        * Crea una nueva instancia de la ventana del patrono y la muestra.
+        *
+        * Este código crea una nueva instancia de `VentanaPatrono`, la hace
+        * visible, la centra en la pantalla y oculta la ventana actual.
+        */
+        ventanaPatrono = new VentanaPatrono();
 
-        // Establece los datos de la fila seleccionada en los campos de texto.
-        txtNombre.setText(tblCorreo.getValueAt(fila, 1).toString());
-        txtCorreo.setText(tblCorreo.getValueAt(fila, 2).toString());
-    }//GEN-LAST:event_tblCorreoMouseClicked
+        ventanaPatrono.setVisible(true); // Hace visible la ventana del patrono.
+        ventanaPatrono.setLocationRelativeTo(null); // Centra la ventana del patrono en la pantalla.
+        this.setVisible(false); // Oculta la ventana actual.
 
+    }//GEN-LAST:event_bttVolverPrincipalActionPerformed
+
+    /**
+     * Maneja el evento de clic en el botón "Enviar Correo".
+     *
+     * Este método se encarga de enviar un correo electrónico con un archivo PDF
+     * adjunto. Primero, crea un objeto `LogicaEmpleados` para manejar las
+     * operaciones relacionadas con los empleados. Luego, prepara los datos del
+     * correo y crea el archivo PDF. Finalmente, envía el correo electrónico con
+     * el PDF adjunto.
+     *
+     * Si ocurre algún error durante el proceso, se muestra un mensaje de error
+     * al usuario.
+     *
+     * @param evt El evento de clic en el botón.
+     */
+
+    private void bttEnviarCorreoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bttEnviarCorreoActionPerformed
+
+        try {
+            servicioDeducciones = new LogicaDeducciones();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e.getMessage());
+        }
+
+        /**
+        * Prepara los datos necesarios para enviar el correo electrónico.
+        *
+        * Este método recopila la información del empleado, como el nombre,
+        * correo electrónico, asunto y mensaje, y la almacena en el objeto
+        * `objEmpleados`.
+        *
+        * @param objEmpleados El objeto empleado que contiene los datos del
+        * destinatario.
+        */
+        datosCorreo(objDeducciones);
+
+        /**
+        * Inicializa el servicio de empleados y crea un PDF para enviar un
+        * correo.
+        *
+        * Este método se encarga de: 1. Crear una instancia de la clase
+        * `LogicaEmpleados` para manejar las operaciones relacionadas con los
+        * empleados. 2. Preparar los datos del correo (a través del
+            * método`datosCorreo`). 3. Crear un archivo PDF utilizando los datos
+        * delempleado. 4. Mostrar un mensaje de éxito o error al usuario según
+        * corresponda.
+        *
+        * **Nota:** Este método captura excepciones generales para evitar que
+        * la aplicación se detenga, pero es recomendable manejar excepciones
+        * más específicas para proporcionar mensajes de error más detallados.
+        *
+        * @param evt El evento que desencadena la ejecución de este método
+        * (generalmente un evento de clic en un botón).
+        */
+        try {
+            servicioDeducciones.crearPDF(objDeducciones);
+            JOptionPane.showMessageDialog(null, "Se creo el PDF");
+
+        } catch (DocumentException | FileNotFoundException e) {
+            JOptionPane.showMessageDialog(null, "No se pudo crear el PDF \n" + "Error: " + e.getMessage());
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Error: " + ex.getMessage());
+        }
+        /**
+        * Procesa el envío de un correo electrónico con un archivo PDF adjunto.
+        *
+        * Este método realiza las siguientes acciones: 1. Prepara los datos del
+        * correo electrónico utilizando el método `datosCorreo`. 2. Intenta
+        * crear un archivo PDF utilizando el método `crearPDF`. 3. Si
+        * lacreación del PDF es exitosa, intenta enviar el correo electrónico
+        * con el PDF adjunto utilizando el método `enviarCorreos`. 4. Maneja
+        * diferentes tipos de excepciones que pueden ocurrir durante el proceso
+        * y muestra mensajes de error informativos al usuario.
+        */
+        try {
+            servicioDeducciones.enviarCorreos(objDeducciones);
+            JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
+
+        }catch(CustomException e){
+
+            JOptionPane.showMessageDialog(null, e);
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"No ingresó un número válido. Solo se permiten números en el apartado salario bruto.");
+        }
+        catch (AddressException e) {
+            JOptionPane.showMessageDialog(null, "No se pudo enviar el correo, al correo le falta un dominio\n" + "Error: " + e.getMessage());
+        } catch (SendFailedException e) {
+            JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
+        } catch (MessagingException e) {
+            JOptionPane.showMessageDialog(null, "Error al enviar a " + objDeducciones.getCorreo() + "\n error " + e.getMessage());
+        } catch (IOException e) {
+            JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ya no se que paso: " + e.getMessage());
+
+        }
+    }//GEN-LAST:event_bttEnviarCorreoActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    
     public void CargarEmpleados() {
 
         modeloTablaEmpleados = new DefaultTableModel();
@@ -458,6 +549,7 @@ public class VentanaCorreo extends javax.swing.JFrame {
             objCorreo.setMensaje(txtMensaje.getText());
             objCorreo.setMensajePDF(txtMensajePDF.getText());
             objCorreo.setCorreo(txtCorreo.getText());
+            objEmpleados.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
 
         } catch (Exception e) {
             System.out.print(e);
@@ -504,11 +596,15 @@ public class VentanaCorreo extends javax.swing.JFrame {
     private javax.swing.JButton bttEnviarCorreo;
     private javax.swing.JButton bttEnviarReportesTodosEmpleados;
     private javax.swing.JButton bttVolverPrincipal;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JLabel lblAsunto;
+    private javax.swing.JLabel lblAsunto1;
     private javax.swing.JLabel lblCorreo;
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblMensajePDF;
@@ -520,5 +616,6 @@ public class VentanaCorreo extends javax.swing.JFrame {
     private javax.swing.JTextArea txtMensaje;
     private javax.swing.JTextArea txtMensajePDF;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtSalarioBruto;
     // End of variables declaration//GEN-END:variables
 }

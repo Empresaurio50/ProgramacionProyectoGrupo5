@@ -15,6 +15,7 @@ import javax.mail.SendFailedException;
 import javax.mail.internet.AddressException;
 import javax.swing.JOptionPane;
 import Entidades.Deducciones;
+import Exepciones.CustomException;
 
 /**
  *
@@ -42,127 +43,107 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         txtNombre = new javax.swing.JTextField();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtMensajePDF = new javax.swing.JTextArea();
         lblAsunto = new javax.swing.JLabel();
         lblCorreo = new javax.swing.JLabel();
+        lblTitulo = new javax.swing.JLabel();
         lblMensajePDF = new javax.swing.JLabel();
+        lblNombre = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
+        lblSalarioBruto = new javax.swing.JLabel();
         txtAsunto = new javax.swing.JTextField();
+        txtSalarioBruto = new javax.swing.JTextField();
         bttEnviarCorreo = new javax.swing.JButton();
         lblMensaje = new javax.swing.JLabel();
         bttVolverPrincipal = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtMensaje = new javax.swing.JTextArea();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        txtMensajePDF = new javax.swing.JTextArea();
-        lblTitulo = new javax.swing.JLabel();
-        lblNombre = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 91, 120, -1));
+
+        txtMensajePDF.setColumns(20);
+        txtMensajePDF.setRows(5);
+        jScrollPane2.setViewportView(txtMensajePDF);
+
+        jPanel1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 215, 268, -1));
+
+        lblAsunto.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         lblAsunto.setText("Asunto");
+        jPanel1.add(lblAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 131, -1, -1));
 
+        lblCorreo.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         lblCorreo.setText("Correo");
+        jPanel1.add(lblCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 131, -1, -1));
 
+        lblTitulo.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        lblTitulo.setText("Correo");
+        jPanel1.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+
+        lblMensajePDF.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         lblMensajePDF.setText("Mensaje PDF");
+        jPanel1.add(lblMensajePDF, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 193, -1, -1));
 
-        bttEnviarCorreo.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNombre.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblNombre.setText("Nombre");
+        jPanel1.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 69, -1, -1));
+        jPanel1.add(txtCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 153, 120, -1));
+
+        lblSalarioBruto.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
+        lblSalarioBruto.setText("Salario Bruto");
+        jPanel1.add(lblSalarioBruto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 69, -1, -1));
+        jPanel1.add(txtAsunto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 153, 130, -1));
+        jPanel1.add(txtSalarioBruto, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 91, 130, -1));
+
+        bttEnviarCorreo.setBackground(new java.awt.Color(252, 252, 252));
+        bttEnviarCorreo.setFont(new java.awt.Font("Roboto Light", 0, 18)); // NOI18N
         bttEnviarCorreo.setText("Enviar");
         bttEnviarCorreo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttEnviarCorreoActionPerformed(evt);
             }
         });
+        jPanel1.add(bttEnviarCorreo, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 101, -1));
 
+        lblMensaje.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         lblMensaje.setText("Mensaje");
+        jPanel1.add(lblMensaje, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 319, -1, -1));
 
-        bttVolverPrincipal.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        bttVolverPrincipal.setBackground(new java.awt.Color(252, 252, 252));
+        bttVolverPrincipal.setFont(new java.awt.Font("Roboto Light", 0, 14)); // NOI18N
         bttVolverPrincipal.setText("Volver Atrás");
         bttVolverPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttVolverPrincipalActionPerformed(evt);
             }
         });
+        jPanel1.add(bttVolverPrincipal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 126, 36));
 
         txtMensaje.setColumns(20);
         txtMensaje.setRows(5);
         jScrollPane1.setViewportView(txtMensaje);
 
-        txtMensajePDF.setColumns(20);
-        txtMensajePDF.setRows(5);
-        jScrollPane2.setViewportView(txtMensajePDF);
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(22, 341, 268, -1));
 
-        lblTitulo.setFont(new java.awt.Font("Segoe UI Black", 0, 24)); // NOI18N
-        lblTitulo.setText("Correo");
-
-        lblNombre.setText("Nombre");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prueba 2.png"))); // NOI18N
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(lblMensaje)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 300, Short.MAX_VALUE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(91, 91, 91)
-                                .addComponent(lblTitulo))
-                            .addComponent(lblMensajePDF, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(lblNombre)
-                                        .addComponent(txtCorreo)
-                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(lblCorreo))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblAsunto)
-                                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 8, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(bttEnviarCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bttVolverPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(31, 31, 31))))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblTitulo)
-                .addGap(18, 18, 18)
-                .addComponent(lblNombre)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblCorreo)
-                    .addComponent(lblAsunto))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtCorreo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtAsunto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addComponent(lblMensajePDF)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(lblMensaje)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(33, 33, 33)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bttEnviarCorreo)
-                    .addComponent(bttVolverPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(37, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
         );
 
         pack();
@@ -186,6 +167,8 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
             objCorreo.setMensajePDF(txtMensajePDF.getText());
             // Establece el correo electrónico del destinatario.
             objCorreo.setCorreo(txtCorreo.getText());
+            
+            objCorreo.setSalarioBruto(Double.parseDouble(txtSalarioBruto.getText()));
 
         } catch (Exception e) {
             System.out.print(e);
@@ -202,6 +185,7 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
         try {
             servicioDeducciones = new LogicaDeducciones();
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, e);
         }
 
         /**
@@ -238,7 +222,14 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
             servicioDeducciones.crearPDF(objDeducciones);
             JOptionPane.showMessageDialog(null, "Se creo el PDF");
 
-        } catch (DocumentException | FileNotFoundException e) {
+        }catch(CustomException e){
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            
+            
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null,"No ingresó un número válido. Solo se permiten números en el apartado salario bruto.");
+        }
+        catch (DocumentException | FileNotFoundException e) {
             JOptionPane.showMessageDialog(null, "No se pudo crear el PDF \n" + "Error: " + e.getMessage());
 
         } catch (Exception ex) {
@@ -259,7 +250,12 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
             servicioDeducciones.enviarCorreos(objDeducciones);
             JOptionPane.showMessageDialog(null, "El correo se envio de forma existosa");
 
-        } catch (AddressException e) {
+        }catch(CustomException e){
+            
+            JOptionPane.showMessageDialog(null, e.getMessage());
+            
+        }
+        catch (AddressException e) {
             JOptionPane.showMessageDialog(null, "No se pudo enviar el correo, al correo le falta un dominio\n" + "Error: " + e.getMessage());
         } catch (SendFailedException e) {
             JOptionPane.showMessageDialog(null, "Problemas con el servidor SMTP" + "\n Error: " + e.getMessage());
@@ -267,13 +263,9 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Error al enviar a " + objDeducciones.getCorreo() + "\n error " + e.getMessage());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(null, "Ocurrio un error el archivo \n" + "Error: " + e.getMessage());
-
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Ya no se que paso: " + e.getMessage());
-
         }
-
-
     }//GEN-LAST:event_bttEnviarCorreoActionPerformed
 
     /** 
@@ -330,6 +322,8 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bttEnviarCorreo;
     private javax.swing.JButton bttVolverPrincipal;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lblAsunto;
@@ -337,11 +331,13 @@ public class VentanaCorreosEmpleados extends javax.swing.JFrame {
     private javax.swing.JLabel lblMensaje;
     private javax.swing.JLabel lblMensajePDF;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblSalarioBruto;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JTextField txtAsunto;
     private javax.swing.JTextField txtCorreo;
     private javax.swing.JTextArea txtMensaje;
     private javax.swing.JTextArea txtMensajePDF;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtSalarioBruto;
     // End of variables declaration//GEN-END:variables
 }

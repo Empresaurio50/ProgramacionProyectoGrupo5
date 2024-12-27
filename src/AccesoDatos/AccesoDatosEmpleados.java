@@ -19,7 +19,25 @@ import java.util.ArrayList;
 public class AccesoDatosEmpleados {
 
     private String nombreArchivo, registro, buscarCorreo, buscarPassword,
-            administrador = "admin@gmail.com", contraAdmin = "321";
+            administrador = "empresaurio50@gmail.com", contraAdmin = "123";
+
+    public String getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(String administrador) {
+        this.administrador = administrador;
+    }
+
+    public String getContraAdmin() {
+        return contraAdmin;
+    }
+
+    public void setContraAdmin(String contraAdmin) {
+        this.contraAdmin = contraAdmin;
+    }
+     private ArrayList<String[]> listaEmpleados;
+    private int verificacion;
 
     ;
 
@@ -28,12 +46,9 @@ public class AccesoDatosEmpleados {
  * 
  * @return El administrador.
  */
-public String getAdministrador() {
-        return administrador;
-    }
 
-    private ArrayList<String[]> listaEmpleados;
-    private int verificacion;
+
+   
 
     /**
      * Obtiene el valor de verificación.

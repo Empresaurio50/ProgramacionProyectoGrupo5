@@ -30,77 +30,66 @@ public class VentanaEmpleado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        jScrollBar1 = new javax.swing.JScrollBar();
+        jPanel2 = new javax.swing.JPanel();
         lblOpciones = new javax.swing.JLabel();
         bttCerrarSeccion = new javax.swing.JButton();
         bttMirarPlantilla = new javax.swing.JButton();
         bttCorreoEmpleado = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        lblOpciones.setText("Opciones Del Empleado");
+        jPanel2.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        lblOpciones.setFont(new java.awt.Font("Roboto Black", 1, 24)); // NOI18N
+        lblOpciones.setText("Menu Del Empleado");
+        jPanel2.add(lblOpciones, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 80, -1, -1));
+
+        bttCerrarSeccion.setBackground(new java.awt.Color(252, 252, 252));
         bttCerrarSeccion.setText("Salir");
         bttCerrarSeccion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCerrarSeccionActionPerformed(evt);
             }
         });
+        jPanel2.add(bttCerrarSeccion, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 310, 100, 40));
 
+        bttMirarPlantilla.setBackground(new java.awt.Color(252, 252, 252));
         bttMirarPlantilla.setText("Plantilla");
         bttMirarPlantilla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttMirarPlantillaActionPerformed(evt);
             }
         });
+        jPanel2.add(bttMirarPlantilla, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 240, 100, 40));
 
+        bttCorreoEmpleado.setBackground(new java.awt.Color(252, 252, 252));
         bttCorreoEmpleado.setText("Correos");
         bttCorreoEmpleado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bttCorreoEmpleadoActionPerformed(evt);
             }
         });
+        jPanel2.add(bttCorreoEmpleado, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 170, 100, 40));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(lblOpciones))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bttCerrarSeccion)
-                            .addComponent(bttMirarPlantilla)
-                            .addComponent(bttCorreoEmpleado))))
-                .addContainerGap(40, Short.MAX_VALUE))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(lblOpciones)
-                .addGap(58, 58, 58)
-                .addComponent(bttMirarPlantilla)
-                .addGap(76, 76, 76)
-                .addComponent(bttCorreoEmpleado)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(bttCerrarSeccion)
-                .addGap(64, 64, 64))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/fONDO 2.png"))); // NOI18N
+        jPanel2.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-310, 70, -1, 430));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagenes/prueba 2.png"))); // NOI18N
+        jPanel2.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 10, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 483, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -192,7 +181,10 @@ public class VentanaEmpleado extends javax.swing.JFrame {
     private javax.swing.JButton bttCerrarSeccion;
     private javax.swing.JButton bttCorreoEmpleado;
     private javax.swing.JButton bttMirarPlantilla;
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JLabel lblOpciones;
     // End of variables declaration//GEN-END:variables
 }

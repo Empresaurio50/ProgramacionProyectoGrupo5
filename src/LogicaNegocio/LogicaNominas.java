@@ -21,6 +21,7 @@ public class LogicaNominas implements ServicioPatrono {
     private String datosEnviar;
     private CrearPatronoPDF objCrearPatronoPDF = new CrearPatronoPDF();
     private AccesoDatosEmpleados objAccesoDatosEmpleados = new AccesoDatosEmpleados();
+    
 
     /**
      * Calcula las deducciones del patrono y establece el total a pagar.
@@ -51,13 +52,16 @@ public class LogicaNominas implements ServicioPatrono {
     public void datosCorreoPatrono(Nominas objNominas) {
         rebajaPatrono(objNominas);
 
-        objNominas.setCorreo(objAccesoDatosEmpleados.getAdministrador());
+        
 
-        datosEnviar = objNominas.getCorreo() + "," // 0 contiene el correo del empleado
-                + objNominas.getTotalPagar() + "," // 1 contiene el total a pagar
+        datosEnviar = objNominas.getTotalPagar() + "," // 0 contiene el total a pagar
+                + objAccesoDatosEmpleados.getAdministrador() + "," // 1 contiene el correo del patrono
                 + objNominas.getCcssPatrono() + "," // 2 contiene la CCSS del patrono
                 + objNominas.getAportesInstitucionales() + "," // 3 aportes institucionales
-                + objNominas.getAportesLPT(); // 4 contiene los aportes LPT
+                + objNominas.getAportesLPT() + "," // 4 contiene los aportes LPT
+                + objNominas.getPagoPatronoTotal();
+        
+
     }
 
     /**
@@ -78,7 +82,7 @@ public class LogicaNominas implements ServicioPatrono {
         EnviarCorreo objEnviarCorreo = new EnviarCorreo();
         objEnviarCorreo.setNombrePDF(objCrearPatronoPDF.getNombreArchivo());
         datosCorreoPatrono(objNominas);
-        objEnviarCorreo.setDatos(datosEnviar);
+        objEnviarCorreo.setDatos(this.datosEnviar);
         objEnviarCorreo.EnviarCorreos();
     }
 
